@@ -19,16 +19,16 @@
    🌱 AI Crop Problem Detection: Diagnose issues with crops using AI.</br>
   
 <h2>📂 Project Structure </h2>
-    AgroSense/
-        ├── frontend/ (React App)
-        │   ├── src/
-        │   ├── public/
-        │   └── package.json
-        ├── backend/ (Node.js Server)
-        │   ├── src/
-        │   ├── server.js
-        │   └── package.json
-        └── README.md
+    AgroSense/</br>
+        ├── frontend/ (React App)</br>
+        │   ├── src/</br>
+        │   ├── public/</br>
+        │   └── package.json</br>
+        ├── backend/ (Node.js Server)</br>
+        │   ├── src/</br>
+        │   ├── server.js</br>
+        │   └── package.json</br>
+        └── README.md</br>
 
 <h2>💻 Technologies </h2>
         Frontend: React, Tailwind CSS
@@ -38,17 +38,17 @@
         
 <h2>🔧 Getting Started</h2>
     <h3>Cloning the Repository</h3>
-        git clone https://github.com/AgroSence/AgroSence.git
-        cd AgroSence
-        <h3>Setup Instructions</h3>
+        git clone https://github.com/AgroSence/AgroSence.git</br>
+        cd AgroSence </br>
+        <h3>Setup Instructions</h3></br>
     <p><strong>Frontend:</strong></p>
-        cd frontend
-        npm install
-        npm run dev
+        cd frontend</br>
+        npm install</br>
+        npm run dev</br>
     <p><strong>Backend:</strong></p>
-        cd backend
-        npm install
-        node server.js
+        cd backend</br>
+        npm install</br>
+        node server.js</br>
        
 
 <h2>📜 License</h2>

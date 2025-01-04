@@ -6,7 +6,8 @@
    
 </head>
 <body>
-    <img src="https://github.com/user-attachments/assets/89d24046-373e-4a3d-a9c2-1f225a3768da" alt="Logo AgroSence" width="200" height="200" style="border-radius:50%">    <h1>🌱 AgroSense</h1>
+    <img src="https://github.com/user-attachments/assets/89d24046-373e-4a3d-a9c2-1f225a3768da" alt="Logo AgroSence" width="150" height="150">    
+    <h1>🌱 AgroSense</h1>
     <p>
         AgroSense is a comprehensive solution designed to empower farmers by providing direct market access for their crops. This project, part of our college's CP-1 initiative, aims to eliminate intermediaries, improve profitability, and provide tools for enhanced agricultural practices.
     </p>
@@ -55,7 +56,7 @@
     <p>This project is part of the college CP-1 initiative and is meant for educational purposes.</p>
 
 
-<p><h2>Created with ❤️ by Team HexCode Breakers | "https://github.com/AgroSence/AgroSence" GitHub Repo</h2></p>
+<p><h3>Created with ❤️ by Team HexCode Breakers | "https://github.com/AgroSence/AgroSence" GitHub Repo</h3></p>
  
 </body>
 </html>

@@ -32,10 +32,10 @@
         └── README.md</br>
 
 <h2>💻 Technologies </h2>
-        Frontend: React, Tailwind CSS
-        Backend: Node.js, Express
-        Database: MongoDB
-        Other Tools: GSAP, React Router
+        <b>Frontend:</b> React, Tailwind CSS </br>
+        <b>Backend:</b> Node.js, Express </br>
+        <b>Database:</b> MongoDB </br>
+        <b>Other Tools:</b> GSAP, React Router </br>
         
 <h2>🔧 Getting Started</h2>
     <h3>Cloning the Repository</h3>

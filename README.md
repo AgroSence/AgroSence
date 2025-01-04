@@ -11,12 +11,12 @@
         AgroSense is a comprehensive solution designed to empower farmers by providing direct market access for their crops. This project, part of our college's CP-1 initiative, aims to eliminate intermediaries, improve profitability, and provide tools for enhanced agricultural practices.
     </p>
 
-   🌾 Direct Market Access: Farmers can sell crops directly to buyers.
-   💡 AI Chatbot Support: Assistance for agricultural queries.
-   📚 Learning Resources: Educational materials for farmers.
-   🏛️ Government Schemes: Access to beneficial schemes and policies.
-   🧑‍🏫 Expert Guidance: Help from agricultural specialists.
-   🌱 AI Crop Problem Detection: Diagnose issues with crops using AI.
+   🌾 Direct Market Access: Farmers can sell crops directly to buyers. </br>
+   💡 AI Chatbot Support: Assistance for agricultural queries. </br>
+   📚 Learning Resources: Educational materials for farmers. </br>
+   🏛️ Government Schemes: Access to beneficial schemes and policies.</br>
+   🧑‍🏫 Expert Guidance: Help from agricultural specialists. </br>
+   🌱 AI Crop Problem Detection: Diagnose issues with crops using AI.</br>
   
 <h2>📂 Project Structure </h2>
     AgroSense/

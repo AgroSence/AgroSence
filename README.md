@@ -46,7 +46,6 @@
         cd agrosence</br>
         npm install</br>
         npm run dev</br>
-        
     <p><strong>Backend:</strong></p>
         cd agrosence_backend</br>
         npm install</br>

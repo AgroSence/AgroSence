@@ -21,11 +21,11 @@
   
 <h2>📂 Project Structure </h2>
     AgroSense/</br>
-        ├── frontend/ (React App)</br>
+        ├── agrosence/ (React App)</br>
         │   ├── src/</br>
         │   ├── public/</br>
         │   └── package.json</br>
-        ├── backend/ (Node.js Server)</br>
+        ├── agrosence_backend/ (Node.js Server)</br>
         │   ├── src/</br>
         │   ├── server.js</br>
         │   └── package.json</br>
@@ -43,11 +43,12 @@
         cd AgroSence </br>
         <h3>Setup Instructions</h3> 
     <p><strong>Frontend:</strong></p>
-        cd frontend</br>
+        cd agrosence</br>
         npm install</br>
-        npm run dev
+        npm run dev</br>
+        
     <p><strong>Backend:</strong></p>
-        cd backend</br>
+        cd agrosence_backend</br>
         npm install</br>
         node server.js</br>
        

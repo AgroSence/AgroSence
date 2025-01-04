@@ -1,4 +1,4 @@
-<img src="![AgroSence_logo](https://github.com/user-attachments/assets/89d24046-373e-4a3d-a9c2-1f225a3768da)" alt="AgroSense Logo" width:"200px" height:"200px" >
+<img src="https://github.com/user-attachments/assets/89d24046-373e-4a3d-a9c2-1f225a3768da" alt="Logo AgroSence" width="200" height="200">
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -41,11 +41,11 @@
     <h3>Cloning the Repository</h3>
         git clone https://github.com/AgroSence/AgroSence.git</br>
         cd AgroSence </br>
-        <h3>Setup Instructions</h3>
+        <h3>Setup Instructions</h3> 
     <p><strong>Frontend:</strong></p>
         cd frontend</br>
         npm install</br>
-        npm run dev</br>
+        npm run dev
     <p><strong>Backend:</strong></p>
         cd backend</br>
         npm install</br>

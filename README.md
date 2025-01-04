@@ -6,6 +6,7 @@
    
 </head>
 <body>
+     <img src="![AgroSence_logo](https://github.com/user-attachments/assets/89d24046-373e-4a3d-a9c2-1f225a3768da)" alt="AgroSense Logo" class="circular-image">
     <h1>🌱 AgroSense</h1>
     <p>
         AgroSense is a comprehensive solution designed to empower farmers by providing direct market access for their crops. This project, part of our college's CP-1 initiative, aims to eliminate intermediaries, improve profitability, and provide tools for enhanced agricultural practices.
@@ -40,7 +41,7 @@
     <h3>Cloning the Repository</h3>
         git clone https://github.com/AgroSence/AgroSence.git</br>
         cd AgroSence </br>
-        <h3>Setup Instructions</h3></br>
+        <h3>Setup Instructions</h3>
     <p><strong>Frontend:</strong></p>
         cd frontend</br>
         npm install</br>

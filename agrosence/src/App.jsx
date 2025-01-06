@@ -1,10 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css'; 
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SignIn from "../pages/SignIn"; 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function App() {
+  return (
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;

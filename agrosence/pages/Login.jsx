@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { resource } from "../resource";
 import "../src/css/Login.css";
+import { Link } from "react-router-dom"; // Import Link from React Router
 
 const LoginPage = () => {
   return (
@@ -11,13 +12,15 @@ const LoginPage = () => {
         style={{ height: "100vh", backgroundColor: "#35a750" }}
       >
         <div className="d-flex justify-content-end p-3">
-          <button
-            type="button"
-            className="btn btn-light fs-6"
-            style={{ color: "#35a750", width: "120px" }}
-          >
-            Sign Up
-          </button>
+          <Link to="/signup">
+            <button
+              type="button"
+              className="btn btn-light fs-6"
+              style={{ color: "#35a750", width: "120px" }}
+            >
+              Sign Up
+            </button>
+          </Link>
         </div>
         <div
           className="w-100 d-flex justify-content-center align-items-center flex-column flex-md-row"
@@ -44,9 +47,7 @@ const LoginPage = () => {
                 marginTop: "2rem",
               }}
             >
-              <h2 className="text-center">
-                Sign in
-              </h2>
+              <h2 className="text-center">Sign in</h2>
               <p className="text-center text-muted fs-4">
                 Hey, Enter your details to login to your account
               </p>

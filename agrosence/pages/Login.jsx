@@ -24,12 +24,12 @@ const LoginPage = () => {
           style={{ backgroundColor: "#35a750" }}
         >
           {/* Left Container: Image */}
-          <div className="container w-75 w-md-50 d-flex justify-content-center align-items-center mt-4 mt-md-0">
+          <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4 mt-md-0">
             <img
               src={resource.Register.src}
               alt={resource.Register.alt}
               className="img-fluid"
-              style={{ maxHeight: "60%", width: "auto" }}
+              style={{ maxHeight: "70%", width: "auto" }}
             />
           </div>
 
@@ -45,12 +45,6 @@ const LoginPage = () => {
               }}
             >
               <h2 className="text-center">
-                <img
-                  src={resource.Logo.src}
-                  alt={resource.Logo.alt}
-                  className="rounded-circle"
-                  style={{ width: "50px", height: "50px" }}
-                />
                 Sign in
               </h2>
               <p className="text-center text-muted fs-4">

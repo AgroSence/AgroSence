@@ -1,7 +1,11 @@
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"], // Ensure paths match your file structure
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        BgGreen: '#35A750',
+      },
+    },
   },
   plugins: [],
 };

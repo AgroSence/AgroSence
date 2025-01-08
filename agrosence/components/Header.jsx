@@ -7,26 +7,26 @@ function Header() {
   return (
     <nav
       className="navbar navbar-expand-md shadow-sm"
-      style={{ backgroundColor: "#34a853" }}
+      style={{backgroundColor: "#F2F4F8"}}
     >
       <div className="container-fluid">
         {/* Logo Section */}
         <a
-          className="navbar-brand d-flex align-items-center text-white"
+          className="navbar-brand d-flex align-items-center"
           href="/"
         >
           <img
-            src={resource.Logo2.src} // Replace with your actual logo path
-            alt={resource.Logo2.alt} // Replace with your actual logo alt text
+            src={resource.Logo3.src} // Replace with your actual logo path
+            alt={resource.Logo3.alt} // Replace with your actual logo alt text
             className="rounded-circle me-2"
             style={{ width: "48px", height: "auto" }}
           />
-          <h4 className="logoname mb-0">AgroSense</h4>
+          <h4 className="logoname mb-0" style={{ color: "#34a853" }}><b>AgroSense</b></h4>
         </a>
 
         {/* Mobile Toggle Button */}
         <button
-          className="navbar-toggler text-white"
+          className="navbar-toggler "
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -39,48 +39,48 @@ function Header() {
 
         {/* Navigation Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto">
+          <ul className="navbar-nav mx-auto gap-3">
             <li className="nav-item fs-5">
               <a
-                className="nav-link text-white position-relative"
+                className="nav-link  position-relative"
                 href="/"
-                style={{ textTransform: "capitalize" }}
+                style={{ textTransform: "capitalize", color: "#34a853" }}
               >
                 Home
               </a>
             </li>
             <li className="nav-item fs-5">
               <a
-                className="nav-link text-white position-relative"
+                className="nav-link  position-relative"
                 href="/dashboard"
-                style={{ textTransform: "capitalize" }}
+                style={{ textTransform: "capitalize", color: "#34a853" }}
               >
                 Dashboard
               </a>
             </li>
             <li className="nav-item fs-5">
               <a
-                className="nav-link text-white position-relative"
+                className="nav-link  position-relative"
                 href="/team"
-                style={{ textTransform: "capitalize" }}
+                style={{ textTransform: "capitalize", color: "#34a853" }}
               >
                 Team
               </a>
             </li>
             <li className="nav-item fs-5">
               <a
-                className="nav-link text-white position-relative"
+                className="nav-link  position-relative"
                 href="/contact"
-                style={{ textTransform: "capitalize" }}
+                style={{ textTransform: "capitalize", color: "#34a853" }}
               >
                 Contact Us
               </a>
             </li>
             <li className="nav-item fs-5">
               <a
-                className="nav-link text-white position-relative"
+                className="nav-link  position-relative"
                 href="/about"
-                style={{ textTransform: "capitalize" }}
+                style={{ textTransform: "capitalize", color: "#34a853" }}
               >
                 About
               </a>
@@ -90,21 +90,22 @@ function Header() {
           {/* Search Bar and User Profile */}
           <div className="d-flex align-items-center flex-wrap">
             {/* User Profile */}
-            <div className="d-flex align-items-center text-white">
+            <div className="d-flex align-items-center ">
               <FaUserCircle
-                className="me-2 rounded-circle"
-                style={{ fontSize: "2.5rem", backgroundColor: "#e0dbdb" }}
+                className="me-2 rounded-circle bg-light"
+                style={{ fontSize: "2.5rem", color: "#34a853"}}
               />
             </div>
 
             {/* Search Bar */}
             <form className="d-flex align-items-center me-3">
-              <div className="input-group" style={{ width: "300px" }}>
+              <div className="input-group" style={{ width: "300px"}}>
                 {/* Search icon */}
                 <span
                   className="input-group-text text-muted fs-5"
                   id="search-icon"
                   style={{
+                    color: "#34a853",
                     backgroundColor: "#F2F4F8",
                     borderTopLeftRadius: "25px",
                     borderBottomLeftRadius: "25px",
@@ -122,6 +123,7 @@ function Header() {
                   aria-label="Search"
                   aria-describedby="search-icon"
                   style={{
+                    color: "#34a853",
                     backgroundColor: "#F2F4F8",
                     borderTopRightRadius: "25px",
                     borderBottomRightRadius: "25px",

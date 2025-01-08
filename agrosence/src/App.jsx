@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { gsap } from "gsap"; // Import GSAP
 import LoginPage from "../pages/Login";
 import './App.css'
 import SignupPage from "../pages/Signup";
+import Home from "../pages/Home"
 import { resource } from "../resource";
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -39,17 +42,18 @@ const App = () => {
     <Router>
       {isLoaded ? (
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Routes>
       ) : (
         <div className="loading-screen">
           {/* Logo Animation */}
           <img
-            src={resource.Logo.src}
-            alt={resource.Logo.alt}
+            src={resource.Logo2.src}
+            alt={resource.Logo2.alt}
             className="logo rounded-circle"
-            style={{ width: "200px", height: "200px" }} // Adjust size as necessary
+            style={{ width: "auto", height: "200px" }} // Adjust size as necessary
           />
           <h1 className="app-name fs-1">
             {Array.from("AgroSence - An Agriculture Future").map((letter, index) => (

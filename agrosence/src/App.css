@@ -26,11 +26,6 @@
 
 .main-content {
   background-color: white;
-  min-height: 70vh;
   display: flex;
   flex-direction: column;
-}
-
-footer {
-  margin-top: auto;
 }

@@ -3,8 +3,47 @@ import Logo from './src/assets/Logo.png';
 import LogoName from './src/assets/LogoName.png';
 import Logo2 from './src/assets/Logo-2.png';
 import Logo3 from './src/assets/Logo3.png';
-
+import IndianAgriculture from './src/assets/home/indian agriculture.png';
+import AboutOurProject from './src/assets/home/about our project.png';
+import Aichatbot from './src/assets/home/AI chat bot.png';
+import CropDetection from './src/assets/home/crop detection.png';
+import MarketAccess from './src/assets/home/market access.png';
+import GovScheme from './src/assets/home/gov schemes.png';
+import FarmingResources from './src/assets/home/resources.png';
+import WelcomeHomeImg from './src/assets/home/Welcome to word of agriculture.png';
 const resource = {
+    WelcomeHomeImg:{
+        src: WelcomeHomeImg,
+        alt: 'WelcomeHomeImg',
+    },
+    FarmingResources:{
+        src: FarmingResources,
+        alt: 'FarmingResources',
+    },
+    GovScheme:{
+        src: GovScheme,
+        alt: 'GovScheme',
+    },
+    MarketAccess:{
+        src: MarketAccess,
+        alt: 'MarketAccess',
+    },
+    CropDetection:{
+        src: CropDetection,
+        alt: 'CropDetection',
+    },
+    Aichatbot:{
+        src: Aichatbot,
+        alt: 'Aichatbot',
+    },
+    IndianAgriculture:{
+        src: IndianAgriculture,
+        alt: 'IndianAgriculture',
+    },
+    AboutOurProject:{
+        src: AboutOurProject,
+        alt: 'AboutOurProject',
+    },
     Register:{
         src: Register,
         alt: 'Register',

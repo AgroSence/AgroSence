@@ -6,22 +6,22 @@ import "../src/App.css";
 function Header() {
   return (
     <nav
-      className="navbar navbar-expand-md shadow-sm"
-      style={{backgroundColor: "#F2F4F8"}}
+      className="navbar navbar-expand-md shadow-sm text-white"
+      style={{backgroundColor: "#252525"}}
     >
-      <div className="container-fluid">
+      <div className="container-fluid ">
         {/* Logo Section */}
         <a
           className="navbar-brand d-flex align-items-center"
           href="/"
         >
           <img
-            src={resource.Logo3.src} // Replace with your actual logo path
-            alt={resource.Logo3.alt} // Replace with your actual logo alt text
+            src={resource.Logo2.src} // Replace with your actual logo path
+            alt={resource.Logo2.alt} // Replace with your actual logo alt text
             className="rounded-circle me-2"
             style={{ width: "48px", height: "auto" }}
           />
-          <h4 className="logoname mb-0" style={{ color: "#34a853" }}><b>AgroSense</b></h4>
+          <h4 className="logoname mb-0 text-white" ><b>AgroSense</b></h4>
         </a>
 
         {/* Mobile Toggle Button */}
@@ -40,47 +40,38 @@ function Header() {
         {/* Navigation Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto gap-3">
-            <li className="nav-item fs-5">
+            <li className="nav-item fs-5 ">
               <a
-                className="nav-link  position-relative"
+                className="nav-link  position-relative text-white"
                 href="/"
-                style={{ textTransform: "capitalize", color: "#34a853" }}
+                style={{ textTransform: "capitalize" }}
               >
                 Home
               </a>
             </li>
             <li className="nav-item fs-5">
               <a
-                className="nav-link  position-relative"
+                className="nav-link  position-relative text-white"
                 href="/dashboard"
-                style={{ textTransform: "capitalize", color: "#34a853" }}
+                style={{ textTransform: "capitalize" }}
               >
                 Dashboard
               </a>
             </li>
             <li className="nav-item fs-5">
               <a
-                className="nav-link  position-relative"
-                href="/team"
-                style={{ textTransform: "capitalize", color: "#34a853" }}
-              >
-                Team
-              </a>
-            </li>
-            <li className="nav-item fs-5">
-              <a
-                className="nav-link  position-relative"
+                className="nav-link  position-relative text-white"
                 href="/contact"
-                style={{ textTransform: "capitalize", color: "#34a853" }}
+                style={{ textTransform: "capitalize" }}
               >
                 Contact Us
               </a>
             </li>
             <li className="nav-item fs-5">
               <a
-                className="nav-link  position-relative"
+                className="nav-link  position-relative text-white"
                 href="/about"
-                style={{ textTransform: "capitalize", color: "#34a853" }}
+                style={{ textTransform: "capitalize" }}
               >
                 About
               </a>
@@ -92,8 +83,8 @@ function Header() {
             {/* User Profile */}
             <div className="d-flex align-items-center ">
               <FaUserCircle
-                className="me-2 rounded-circle bg-light"
-                style={{ fontSize: "2.5rem", color: "#34a853"}}
+                className="me-2 rounded-circle"
+                style={{ fontSize: "2.5rem" }}
               />
             </div>
 
@@ -105,7 +96,6 @@ function Header() {
                   className="input-group-text text-muted fs-5"
                   id="search-icon"
                   style={{
-                    color: "#34a853",
                     backgroundColor: "#F2F4F8",
                     borderTopLeftRadius: "25px",
                     borderBottomLeftRadius: "25px",
@@ -123,7 +113,6 @@ function Header() {
                   aria-label="Search"
                   aria-describedby="search-icon"
                   style={{
-                    color: "#34a853",
                     backgroundColor: "#F2F4F8",
                     borderTopRightRadius: "25px",
                     borderBottomRightRadius: "25px",

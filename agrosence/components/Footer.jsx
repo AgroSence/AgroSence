@@ -4,7 +4,7 @@ import { resource } from '../resource';
 
 const Footer = () => {
   return (
-    <footer className="text-white py-4 mt-auto"
+    <footer className="text-white py-4"
     style={{backgroundColor: "#252525"}}>
       <div className="container">
         {/* App Name */}

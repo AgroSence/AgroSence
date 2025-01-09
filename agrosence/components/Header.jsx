@@ -26,7 +26,7 @@ function Header() {
 
         {/* Mobile Toggle Button */}
         <button
-          className="navbar-toggler "
+          className="navbar-toggler text-white bg-light"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"

@@ -8,7 +8,7 @@ const LoginPage = () => {
   return (
     <>
       <div
-        className="main"
+        className="main overflow-hidden"
         style={{ height: "100vh", backgroundColor: "#35a750" }}
       >
         <div className="d-flex justify-content-end p-3">
@@ -39,7 +39,7 @@ const LoginPage = () => {
           {/* Right Container: Form */}
           <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4 mt-md-0">
             <div
-              className="container bg-white p-5 rounded shadow"
+              className="container bg-white p-5 rounded shadow-lg"
               style={{
                 minWidth: "300px",
                 maxWidth: "500px",

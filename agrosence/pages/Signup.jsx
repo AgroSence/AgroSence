@@ -7,7 +7,7 @@ const SignUpPage = () => {
   return (
     <>
       <div
-        className="main"
+        className="main overflow-x-hidden"
         style={{ height: "100vh", backgroundColor: "#35a750" }}
       >
        
@@ -26,14 +26,13 @@ const SignUpPage = () => {
           </div>
 
           {/* Right Container: Form */}
-          <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4 mt-md-0">
+          <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-md-3 mb-1">
             <div
-              className="container bg-white p-5 rounded shadow"
+              className="container bg-white p-5 rounded shadow m-auto"
               style={{
                 minWidth: "300px",
                 maxWidth: "500px",
                 height: "auto",
-                marginTop: "2rem",
               }}
             >
               <h2 className="text-center">Sign Up</h2>

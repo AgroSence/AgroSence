@@ -33,7 +33,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-5 text-white" style={{ backgroundColor: "#414040" }}>
+    <section className="py-5 text-white overflow-x-hidden " style={{ backgroundColor: "#414040" }}>
       <h2 className="text-center mb-5">Features of our Project</h2>
       <div className="row d-flex justify-content-center align-content-center p-2">
         {features.map((feature, index) => (

@@ -6,7 +6,7 @@ import "../src/App.css";
 function Header() {
   return (
     <nav
-      className="navbar navbar-expand-md shadow-sm text-white"
+      className="navbar navbar-expand-md shadow-sm text-white overflow-x-hidden"
       style={{backgroundColor: "#252525"}}
     >
       <div className="container-fluid ">

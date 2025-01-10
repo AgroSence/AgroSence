@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <header style={headerStyle}>
+    <header style={headerStyle} className="overflow-x-hidden">
       <div>
         <h1>Welcome to the world of Agriculture</h1>
       </div>

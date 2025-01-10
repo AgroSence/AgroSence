@@ -43,7 +43,7 @@ function Header() {
             <li className="nav-item fs-5 ">
               <a
                 className="nav-link  position-relative text-white"
-                href="/"
+                href="/Home"
                 style={{ textTransform: "capitalize" }}
               >
                 Home
@@ -70,7 +70,7 @@ function Header() {
             <li className="nav-item fs-5">
               <a
                 className="nav-link  position-relative text-white"
-                href="/about"
+                href="/About"
                 style={{ textTransform: "capitalize" }}
               >
                 About

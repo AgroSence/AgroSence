@@ -11,7 +11,33 @@ import MarketAccess from './src/assets/home/market access.png';
 import GovScheme from './src/assets/home/gov schemes.png';
 import FarmingResources from './src/assets/home/resources.png';
 import WelcomeHomeImg from './src/assets/home/Welcome to word of agriculture.png';
+import Jeet from './src/assets/about/Jeet.jpg'
+import Herin from './src/assets/about/Herin.png'
+import Dhruv from './src/assets/about/Dhruv.jpg'
+import KMP from './src/assets/about/Kavindra sir.png'
+import AboutHeader from './src/assets/about/About us.png'
+
 const resource = {
+    Dhruv:{
+        src: Dhruv,
+        alt: 'Dhruv',
+    },
+    Jeet:{
+        src: Jeet,
+        alt: 'Jeet',
+    },
+    Herin:{
+        src: Herin,
+        alt: 'Herin',
+    },
+    KMP:{
+        src: KMP,
+        alt: 'KMP',
+    },
+    AboutHeader:{
+        src: AboutHeader,
+        alt: "About Header"
+    },
     WelcomeHomeImg:{
         src: WelcomeHomeImg,
         alt: 'WelcomeHomeImg',

@@ -7,6 +7,7 @@ import LoginPage from "../pages/Login";
 import './App.css'
 import SignupPage from "../pages/Signup";
 import Home from "../pages/Home"
+import About from "../pages/About"
 import { resource } from "../resource";
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -45,6 +46,7 @@ const App = () => {
           <Route path="/Home" element={<Home />} />
           <Route path="/" element={<LoginPage />} />
           <Route path="/Signup" element={<SignupPage />} />
+          <Route path="/About" element={<About />} />
         </Routes>
       ) : (
         <div className="loading-screen">

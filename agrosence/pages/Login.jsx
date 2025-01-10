@@ -9,7 +9,7 @@ const LoginPage = () => {
     <>
       <div
         className="main overflow-hidden"
-        style={{ height: "100vh", backgroundColor: "#256825" }}
+        style={{ height: "100vh", backgroundColor: "#34a853" }}
       >
         <div className="d-flex justify-content-end p-3">
           <Link to="/signup">
@@ -24,7 +24,7 @@ const LoginPage = () => {
         </div>
         <div
           className="w-100 d-flex justify-content-center align-items-center flex-column flex-md-row"
-          style={{ backgroundColor: "#256825" }}
+          style={{ backgroundColor: "#34a853" }}
         >
           {/* Left Container: Image */}
           <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4 mt-md-0">

@@ -8,12 +8,12 @@ const SignUpPage = () => {
     <>
       <div
         className="main overflow-x-hidden"
-        style={{ height: "100vh", backgroundColor: "#35a750" }}
+        style={{ height: "100vh", backgroundColor: "#35a853" }}
       >
        
         <div
           className="w-100 d-flex justify-content-center align-items-center flex-column flex-md-row"
-          style={{ backgroundColor: "#35a750" }}
+          style={{ backgroundColor: "#35a853" }}
         >
           {/* Left Container: Image */}
           <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4 mt-md-0">

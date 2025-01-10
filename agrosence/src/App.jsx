@@ -42,8 +42,8 @@ const App = () => {
     <Router>
       {isLoaded ? (
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Signin" element={<LoginPage />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Routes>
       ) : (

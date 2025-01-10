@@ -12,7 +12,7 @@ function Header() {
       <div className="container-fluid ">
         {/* Logo Section */}
         <a
-          className="navbar-brand d-flex align-items-center"
+          className="navbar-brand d-flex align-items-center p-1"
           href="/"
         >
           <img

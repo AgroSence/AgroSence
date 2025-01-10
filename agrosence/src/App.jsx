@@ -44,7 +44,7 @@ const App = () => {
         <Routes>
           <Route path="/Home" element={<Home />} />
           <Route path="/" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/Signup" element={<SignupPage />} />
         </Routes>
       ) : (
         <div className="loading-screen">

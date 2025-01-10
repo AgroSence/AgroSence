@@ -9,14 +9,14 @@ const LoginPage = () => {
     <>
       <div
         className="main overflow-hidden"
-        style={{ height: "100vh", backgroundColor: "#34a853" }}
+        style={{ height: "100vh", backgroundColor: "#252525" }}
       >
         <div className="d-flex justify-content-end p-3">
-          <Link to="/signup">
+          <Link to="/Signup">
             <button
               type="button"
               className="btn btn-light fs-6"
-              style={{ color: "#35a750", width: "120px" }}
+              style={{ color: "#252525", width: "120px" }}
             >
               Sign Up
             </button>
@@ -24,7 +24,7 @@ const LoginPage = () => {
         </div>
         <div
           className="w-100 d-flex justify-content-center align-items-center flex-column flex-md-row"
-          style={{ backgroundColor: "#34a853" }}
+          style={{ backgroundColor: "#252525 " }}
         >
           {/* Left Container: Image */}
           <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4 mt-md-0">
@@ -80,7 +80,7 @@ const LoginPage = () => {
                 <button
                   type="submit"
                   className="btn w-100"
-                  style={{ backgroundColor: "#35a750", color: "white" }}
+                  style={{ backgroundColor: "#252525", color: "white" }}
                 >
                   Sign in
                 </button>

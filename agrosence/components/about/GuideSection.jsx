@@ -11,8 +11,8 @@ const GuideSection = () => {
             <img 
               src={resource.KMP.src}
               alt="Prof. Kavindra M. Patel"
-              className="img-fluid rounded-circle shadow-lg border border-2 border-dark"
-              style={{ width: '250px', height: '250px', objectFit: 'cover' }}
+              className="img-fluid rounded border border-2 border-Secondary"
+              style={{ width: '250px', height: '300px', objectFit: 'cover' }}
             />
           </div>
           <div className="col-lg-8">

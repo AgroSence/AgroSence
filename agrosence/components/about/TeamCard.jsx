@@ -7,6 +7,7 @@ const TeamCard = ({ image, name, role }) => {
         <img 
           src={image}  
           alt={name}
+          className="rounded"
           style={{ height: '350px', objectFit: 'cover' }}
         />
         <div className="card-body text-center">

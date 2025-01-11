@@ -3,46 +3,44 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { gsap } from "gsap";
-import "./App.css";
 import LoginPage from "../pages/Login";
+import "./App.css";
 import SignupPage from "../pages/Signup";
 import Home from "../pages/Home";
 import About from "../pages/About";
-import Contact from "../pages/Contact"
+import Contact from "../pages/Contact";
 import { resource } from "../resource";
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const hasVisited = localStorage.getItem("hasVisited");
+    // GSAP animation for the logo
+    gsap.fromTo(
+      ".logo",
+      { opacity: 0, scale: 0.5 },
+      { opacity: 1, scale: 1, duration: 1, delay: 0.5 }
+    );
 
-    if (!hasVisited) {
-      setShowAnimation(true);
+    // GSAP staggered animation for each letter of the app name
+    gsap.fromTo(
+      ".app-name span",
+      { opacity: 0, y: -30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.05,
+        delay: 1.2,
+      }
+    );
 
-      // GSAP Logo Animation
-      gsap.fromTo(
-        ".logo",
-        { opacity: 0, scale: 0.5 },
-        { opacity: 1, scale: 1, duration: 1, delay: 0.5 }
-      );
-
-      // GSAP Text Animation
-      gsap.fromTo(
-        ".app-name span",
-        { opacity: 0, y: -30 },
-        { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, delay: 1.2 }
-      );
-
-      const timeout = setTimeout(() => {
-        setIsLoaded(true);
-        localStorage.setItem("hasVisited", "true");
-      }, 3000);
-
-      return () => clearTimeout(timeout);
-    } else {
+    // Set timeout for animation and then load the main content
+    const timeout = setTimeout(() => {
       setIsLoaded(true);
-    }
+    }, 3000); // Reduced duration for better UX
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
@@ -52,8 +50,8 @@ const App = () => {
           <Route path="/Home" element={<Home />} />
           <Route path="/" element={<LoginPage />} />
           <Route path="/Signup" element={<SignupPage />} />
-          <Route path="/About" element={<About />} />          
-          <Route path="/ContactUs" element={<Contact />} />          
+          <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
         </Routes>
       ) : (
         <div
@@ -68,7 +66,7 @@ const App = () => {
             src={resource.Logo2.src}
             alt={resource.Logo2.alt}
             className="logo rounded-circle"
-            style={{ width: "180px", height: "auto" }}
+            style={{ width: "180px", height: "180px" }}
           />
           <h1 className="app-name text-white mt-3 fs-3 text-center">
             {Array.from("AgroSense - An Agriculture Future").map((letter, index) => (

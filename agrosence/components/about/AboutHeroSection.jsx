@@ -7,7 +7,7 @@ const HeroSection = () => {
       className="hero-section position-relative d-flex align-items-center justify-content-center"
       style={{
         backgroundImage: `url(${resource.AboutHeader.src})`,
-        backgroundSize: 'cover',
+        backgroundSize: 'contain',
         backgroundPosition: 'center',
         height: '400px'
       }}

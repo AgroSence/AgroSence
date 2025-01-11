@@ -14,32 +14,34 @@ const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // GSAP animation for the logo
-    gsap.fromTo(
-      ".logo",
-      { opacity: 0, scale: 0.5 },
-      { opacity: 1, scale: 1, duration: 1, delay: 0.5 }
-    );
+    const hasVisited = localStorage.getItem("hasVisited");
 
-    // GSAP staggered animation for each letter of the app name
-    gsap.fromTo(
-      ".app-name span",
-      { opacity: 0, y: -30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.05,
-        delay: 1.2,
-      }
-    );
+    if (!hasVisited) {
+      setShowAnimation(true);
 
-    // Set timeout for animation and then load the main content
-    const timeout = setTimeout(() => {
+      // GSAP Logo Animation
+      gsap.fromTo(
+        ".logo",
+        { opacity: 0, scale: 0.5 },
+        { opacity: 1, scale: 1, duration: 1, delay: 0.5 }
+      );
+
+      // GSAP Text Animation
+      gsap.fromTo(
+        ".app-name span",
+        { opacity: 0, y: -30 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, delay: 1.2 }
+      );
+
+      const timeout = setTimeout(() => {
+        setIsLoaded(true);
+        localStorage.setItem("hasVisited", "true");
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    } else {
       setIsLoaded(true);
-    }, 3000); // Reduced duration for better UX
-
-    return () => clearTimeout(timeout);
+    }
   }, []);
 
   return (
@@ -64,7 +66,7 @@ const App = () => {
             src={resource.Logo2.src}
             alt={resource.Logo2.alt}
             className="logo rounded-circle"
-            style={{ width: "180px", height: "180px" }}
+            style={{ width: "180px", height: "auto" }}
           />
           <h1 className="app-name text-white mt-3 fs-3 text-center">
             {Array.from("AgroSense - An Agriculture Future").map((letter, index) => (

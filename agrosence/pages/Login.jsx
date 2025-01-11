@@ -8,8 +8,8 @@ const LoginPage = () => {
   return (
     <>
       <div
-        className="main overflow-hidden"
-        style={{ height: "100vh", backgroundColor: "#252525" }}
+        className="main"
+        style={{ minHeight: "100vh", backgroundColor: "#252525", overflowY: "auto" }} // Ensuring the page is scrollable
       >
         <div className="d-flex justify-content-end p-3">
           <Link to="/Signup">
@@ -24,7 +24,7 @@ const LoginPage = () => {
         </div>
         <div
           className="w-100 d-flex justify-content-center align-items-center flex-column flex-md-row"
-          style={{ backgroundColor: "#252525 " }}
+          style={{ backgroundColor: "#252525" }}
         >
           {/* Left Container: Image */}
           <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4 mt-md-0">
@@ -32,7 +32,11 @@ const LoginPage = () => {
               src={resource.Register.src}
               alt={resource.Register.alt}
               className="img-fluid"
-              style={{ maxHeight: "70%", width: "auto" }}
+              style={{
+                maxHeight: "40%", // Reduced max-height to make the image smaller
+                width: "auto",
+                objectFit: "contain", // Ensures the image maintains aspect ratio
+              }}
             />
           </div>
 
@@ -44,7 +48,7 @@ const LoginPage = () => {
                 minWidth: "300px",
                 maxWidth: "500px",
                 height: "auto",
-                marginTop: "2rem",
+                marginTop: "2rem", // Keeps the form centered
               }}
             >
               <h2 className="text-center">Sign in</h2>

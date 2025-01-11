@@ -7,8 +7,12 @@ function Header() {
   return (
     <nav
       className="navbar navbar-expand-md shadow-sm text-white w-100 fixed-top"
-      style={{ backgroundColor: "#252525", overflowX: "hidden" }}
+      style={{overflowX: "hidden" ,backgroundColor: 'rgba(0,0,0,0.3)' }}
     >
+          
+          {/* <div className="overlay position-absolute w-100 h-100 top-0 start-0" 
+        style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+      > */}
       <div className="container-fluid px-4">
         {/* Logo Section */}
         <a className="navbar-brand d-flex align-items-center p-1" href="/">

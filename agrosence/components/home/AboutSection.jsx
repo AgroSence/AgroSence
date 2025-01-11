@@ -3,7 +3,7 @@ import { resource } from "../../resource";
 
 const AboutSection = () => {
   return (
-    <section className="px-4 overflow-x-hidden " style={{ backgroundColor: "#EEEEEE" }}>
+    <section className="px-4 overflow-x-hidden bg-white">
       {/* Indian Agriculture Section */}
       <div className="row align-items-center justify-content-center mx-0 my-5">
         <div className="col-lg-5 text-center">

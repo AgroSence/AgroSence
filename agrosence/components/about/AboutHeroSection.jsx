@@ -8,12 +8,9 @@ const HeroSection = () => {
       style={{
         backgroundImage: `url(${resource.AboutHeader.src})`,
         backgroundSize: 'contain',
-        height: '400px'
+        height: '500px'
       }}
     >
-      {/* <div className="overlay position-absolute w-100 h-100 top-0 start-0" 
-        style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
-      /> */}
       <h1 className="text-white position-relative display-2 fw-bold">About Us</h1>
     </div>
   );

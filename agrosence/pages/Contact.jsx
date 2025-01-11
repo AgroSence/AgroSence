@@ -7,7 +7,6 @@ const Contact = () => {
   return (
     <div className="contact-page">
       <Header />
-      <div className="mt-5"></div>
       <ContactHero />
       <ContactForm />
       <Footer />

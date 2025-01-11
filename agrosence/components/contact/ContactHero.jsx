@@ -6,9 +6,8 @@ const ContactHero = () => {
       style={{
         backgroundImage: `url(${resource.ContactBg.src})`,
         backgroundSize: "contain",
-        // backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        height: "400px",
+        height: "500px",
       }}
     >
       <h1 className="text-white position-relative display-2 fw-bold">

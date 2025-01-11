@@ -13,9 +13,9 @@ function Home() {
 
       {/* Main Content */}
       <div className="main-content">
-      <div className="mt-5"></div>
         <HomeHeader />
         <AboutSection />
+        <hr />
         <Features />
       </div>
 

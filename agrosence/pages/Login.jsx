@@ -9,7 +9,7 @@ const LoginPage = () => {
     <>
       <div
         className="main"
-        style={{ minHeight: "100vh", backgroundColor: "#252525", overflowY: "auto" }} // Ensuring the page is scrollable
+        style={{ minHeight: "100vh", backgroundColor: "#34a853", overflowY: "auto" }} // Ensuring the page is scrollable
       >
         <div className="d-flex justify-content-end p-3">
           <Link to="/Signup">
@@ -24,7 +24,7 @@ const LoginPage = () => {
         </div>
         <div
           className="w-100 d-flex justify-content-center align-items-center flex-column flex-md-row"
-          style={{ backgroundColor: "#252525" }}
+          style={{ backgroundColor: "#34a853" }}
         >
           {/* Left Container: Image */}
           <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4 mt-md-0">
@@ -84,7 +84,7 @@ const LoginPage = () => {
                 <button
                   type="submit"
                   className="btn w-100"
-                  style={{ backgroundColor: "#252525", color: "white" }}
+                  style={{ backgroundColor: "#34a853", color: "white" }}
                 >
                   Sign in
                 </button>

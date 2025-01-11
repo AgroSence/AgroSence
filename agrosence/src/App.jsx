@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { gsap } from "gsap";
-import LoginPage from "../pages/Login";
 import "./App.css";
+import LoginPage from "../pages/Login";
 import SignupPage from "../pages/Signup";
 import Home from "../pages/Home";
 import About from "../pages/About";
+import Contact from "../pages/Contact"
 import { resource } from "../resource";
 
 const App = () => {
@@ -51,7 +52,8 @@ const App = () => {
           <Route path="/Home" element={<Home />} />
           <Route path="/" element={<LoginPage />} />
           <Route path="/Signup" element={<SignupPage />} />
-          <Route path="/About" element={<About />} />
+          <Route path="/About" element={<About />} />          
+          <Route path="/ContactUs" element={<Contact />} />          
         </Routes>
       ) : (
         <div

@@ -16,8 +16,13 @@ import Herin from './src/assets/about/Herin.png'
 import Dhruv from './src/assets/about/Dhruv.jpg'
 import KMP from './src/assets/about/Kavindra sir.png'
 import AboutHeader from './src/assets/about/About us.png'
+import ContactBg from './src/assets/contact/ContactHead.png'
 
 const resource = {
+    ContactBg:{
+        src: ContactBg,
+        alt: "Contact BG",
+    },
     Dhruv:{
         src: Dhruv,
         alt: 'Dhruv',

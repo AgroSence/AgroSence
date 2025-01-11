@@ -7,17 +7,26 @@ const TeamSection = () => {
     {
       image: `${resource.Jeet.src}`,
       name: "Jeet Jani",
-      role: "UI/UX Designer & Front end developer"
-    },
-    {
-      image: `${resource.Herin.src}`,
-      name: "Herin Patel",
-      role: "Cloud Engineer & Back end developer"
+      role: "UI/UX Designer & Front end developer",
+      instagram: "https://www.instagram.com/jeet_jani_17/",
+      github: "https://github.com/janijeet17",
+      linkedin: "https://www.linkedin.com/in/jeet-jani-7a5267248/"
     },
     {
       image: `${resource.Dhruv.src}`,
       name: "Dhruv Shere",
-      role: "Front end & Back end developer"
+      role: "Front end & Back end developer",
+      instagram: "https://www.instagram.com/sheredhruv/",
+      github: "https://github.com/DHRUV-SHERE",
+      linkedin: "https://www.linkedin.com/in/dhruv-shere/"
+    },
+    {
+      image: `${resource.Herin.src}`,
+      name: "Herin Patel",
+      role: "Cloud Engineer & Back end developer",
+      instagram: "https://www.instagram.com/herin.567/",
+      github: "https://github.com/Herin27",
+      linkedin: "https://www.linkedin.com/in/herin-patel-5a6b3b30a/"
     }
   ];
 
@@ -36,4 +45,3 @@ const TeamSection = () => {
 };
 
 export default TeamSection;
-

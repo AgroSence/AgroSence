@@ -8,7 +8,6 @@ const HeroSection = () => {
       style={{
         backgroundImage: `url(${resource.AboutHeader.src})`,
         backgroundSize: 'contain',
-        backgroundPosition: 'center',
         height: '400px'
       }}
     >

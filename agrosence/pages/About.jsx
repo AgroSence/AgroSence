@@ -10,6 +10,7 @@ const AboutPage = () => {
   return (
     <main>
       <Header />
+      <div className="mt-5"></div>
       <HeroSection />
       <VisionSection />
       <TeamSection />

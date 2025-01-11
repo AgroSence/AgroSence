@@ -66,7 +66,7 @@ const App = () => {
             src={resource.Logo2.src}
             alt={resource.Logo2.alt}
             className="logo rounded-circle"
-            style={{ width: "180px", height: "180px" }}
+            style={{ width: "180px", height: "auto" }}
           />
           <h1 className="app-name text-white mt-3 fs-3 text-center">
             {Array.from("AgroSense - An Agriculture Future").map((letter, index) => (

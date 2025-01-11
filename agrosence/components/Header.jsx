@@ -6,22 +6,21 @@ import "../src/App.css";
 function Header() {
   return (
     <nav
-      className="navbar navbar-expand-md shadow-sm text-white overflow-x-hidden"
-      style={{backgroundColor: "#252525"}}
+      className="navbar navbar-expand-md shadow-sm text-white w-100"
+      style={{ backgroundColor: "#252525", overflowX: "hidden" }}
     >
-      <div className="container-fluid ">
+      <div className="container-fluid px-4">
         {/* Logo Section */}
-        <a
-          className="navbar-brand d-flex align-items-center p-1"
-          href="/"
-        >
+        <a className="navbar-brand d-flex align-items-center p-1" href="/">
           <img
-            src={resource.Logo2.src} // Replace with your actual logo path
-            alt={resource.Logo2.alt} // Replace with your actual logo alt text
+            src={resource.Logo2.src}
+            alt={resource.Logo2.alt}
             className="rounded-circle me-2"
             style={{ width: "48px", height: "auto" }}
           />
-          <h4 className="logoname mb-0 text-white" ><b>AgroSense</b></h4>
+          <h4 className="logoname mb-0 text-white">
+            <b>AgroSense</b>
+          </h4>
         </a>
 
         {/* Mobile Toggle Button */}
@@ -40,58 +39,24 @@ function Header() {
         {/* Navigation Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto gap-3">
-            <li className="nav-item fs-5 ">
-              <a
-                className="nav-link  position-relative text-white"
-                href="/Home"
-                style={{ textTransform: "capitalize" }}
-              >
-                Home
-              </a>
-            </li>
-            <li className="nav-item fs-5">
-              <a
-                className="nav-link  position-relative text-white"
-                href="/dashboard"
-                style={{ textTransform: "capitalize" }}
-              >
-                Dashboard
-              </a>
-            </li>
-            <li className="nav-item fs-5">
-              <a
-                className="nav-link  position-relative text-white"
-                href="/contact"
-                style={{ textTransform: "capitalize" }}
-              >
-                Contact Us
-              </a>
-            </li>
-            <li className="nav-item fs-5">
-              <a
-                className="nav-link  position-relative text-white"
-                href="/About"
-                style={{ textTransform: "capitalize" }}
-              >
-                About
-              </a>
-            </li>
+            {['Home', 'Dashboard', 'Contact Us', 'About'].map((item) => (
+              <li className="nav-item fs-5" key={item}>
+                <a
+                  className="nav-link position-relative text-white"
+                  href={`/${item.replace(/\s+/g, '').toLowerCase()}`}
+                  style={{ textTransform: "capitalize" }}
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
           </ul>
 
           {/* Search Bar and User Profile */}
-          <div className="d-flex align-items-center flex-wrap">
-            {/* User Profile */}
-            <div className="d-flex align-items-center ">
-              <FaUserCircle
-                className="me-2 rounded-circle"
-                style={{ fontSize: "2.5rem" }}
-              />
-            </div>
-
-            {/* Search Bar */}
-            <form className="d-flex align-items-center me-3">
-              <div className="input-group" style={{ width: "300px"}}>
-                {/* Search icon */}
+          <div className="d-flex align-items-center">
+            <FaUserCircle className="me-3 rounded-circle" style={{ fontSize: "2.5rem" }} />
+            <form className="d-flex align-items-center">
+              <div className="input-group" style={{ width: "250px" }}>
                 <span
                   className="input-group-text text-muted fs-5"
                   id="search-icon"
@@ -100,8 +65,8 @@ function Header() {
                     borderTopLeftRadius: "25px",
                     borderBottomLeftRadius: "25px",
                     border: "1px solid #ccc",
-                    borderRight: "none", // Remove line between icon and input
-                    padding: "8px", // Adjust padding to reduce the gap
+                    borderRight: "none",
+                    padding: "8px",
                   }}
                 >
                   <FaSearch />
@@ -117,8 +82,8 @@ function Header() {
                     borderTopRightRadius: "25px",
                     borderBottomRightRadius: "25px",
                     border: "1px solid #ccc",
-                    borderLeft: "none", // Remove line between input and icon
-                    padding: "8px 12px", // Adjust padding for a clean look
+                    borderLeft: "none",
+                    padding: "8px 12px",
                   }}
                 />
               </div>

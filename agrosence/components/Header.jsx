@@ -43,7 +43,7 @@ function Header() {
               <li className="nav-item fs-5" key={item}>
                 <a
                   className="nav-link position-relative text-white"
-                  href={`/${item.replace(/\s+/g, '').toLowerCase()}`}
+                  href={`/${item.replace(/\s+/g, '')}`}
                   style={{ textTransform: "capitalize" }}
                 >
                   {item}

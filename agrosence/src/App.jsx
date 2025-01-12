@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
+import Feature from "../pages/Feature";
 import LoginPage from "../pages/Login";
 import SignupPage from "../pages/Signup";
 
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/Signup" element={<SignupPage />} />
         <Route path="/About" element={<About />} />
         <Route path="/ContactUs" element={<Contact />} />
+        <Route path="/Feature" element={<Feature />} />
       </Routes>
     </Router>
   );

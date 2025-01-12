@@ -43,7 +43,7 @@ function Header() {
         {/* Navigation Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto gap-3">
-            {['Home', 'Dashboard', 'Contact Us', 'About'].map((item) => (
+            {['Home', 'Feature','Dashboard', 'Contact Us', 'About'].map((item) => (
               <li className="nav-item fs-5" key={item}>
                 <a
                   className="nav-link position-relative text-white"

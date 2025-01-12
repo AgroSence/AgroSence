@@ -41,21 +41,23 @@ const Features = () => {
   ];
 
   return (
-    <div className="p-4" style={{backgroundColor:"#34a853"}}>
+    <>
       <Header />
-      {/* <FeatureHeader /> */}
-      <div className="container py-5">
-        <h1 className="text-center mb-5">Features of our Project</h1>
-        <div className="row g-4">
-          {features.map((feature, index) => (
-            <div key={index} className="col-12 col-md-6 col-lg-4">
-              <FeatureCard {...feature} />
-            </div>
-          ))}
+      <div className="p-4 bg-secondary">
+        {/* <FeatureHeader /> */}
+        <div className="container py-5">
+          <h1 className="text-center mb-5">Features of our Project</h1>
+          <div className="row g-4">
+            {features.map((feature, index) => (
+              <div key={index} className="col-12 col-md-6 col-lg-4">
+                <FeatureCard {...feature} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

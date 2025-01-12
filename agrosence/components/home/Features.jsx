@@ -7,28 +7,27 @@ const Features = () => {
     {
       image: `${resource.Aichatbot.src}`,
       title: `${resource.Aichatbot.alt}`,
-      description: "24/7 AI assistance for farmers."
+      description: "Our AI-powered chatbot offers round-the-clock assistance to farmers, providing real-time answers to their queries related to farming practices, pest control, crop management, and weather updates. This feature ensures farmers can always access reliable information to make informed decisions, no matter the time of day."
     },
     {
       image: `${resource.CropDetection.src}`,
       title: `${resource.CropDetection.alt}`,
-      description: "Identify crop issues and get actionable solutions."
+      description: "The Crop Detection tool uses advanced machine learning algorithms to identify diseases, pests, and nutrient deficiencies in crops by analyzing images. Farmers can easily upload pictures of their crops, and the system will provide detailed feedback on any issues, along with practical solutions and preventative measures."
     },
     {
       image: `${resource.FarmingResources.src}`,
       title: `${resource.FarmingResources.alt}`,
-      description: "Guides and tutorials to enhance farming knowledge."
+      description: "This feature offers a comprehensive library of farming resources, including step-by-step guides, video tutorials, and expert tips. Farmers can access valuable content on various topics like sustainable farming practices, irrigation techniques, soil health, and pest management to improve crop yield and farm productivity."
     },
     {
       image: `${resource.GovScheme.src}`,
       title: `${resource.GovScheme.alt}`,
-      description: "Easy access to the latest schemes and benefits."
+      description: "Stay up-to-date with the latest government schemes and benefits specifically tailored to farmers. This feature helps farmers access detailed information about subsidies, financial support, and agricultural schemes, ensuring they don't miss out on opportunities that could enhance their farming activities."
     },
     {
       image: `${resource.MarketAccess.src}`,
       title: `${resource.MarketAccess.alt}`,
-      description:
-        "Farmers can list their crops with images, descriptions, and prices."
+      description: "Farmers can use this platform to showcase their crops to a wider audience by listing them with detailed descriptions, images, and pricing. This feature simplifies the process of connecting with potential buyers, helping farmers reach local and national markets and increase their sales potential."
     }
   ];
 

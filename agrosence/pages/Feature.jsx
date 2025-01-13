@@ -1,64 +1,62 @@
-import React from "react";
+// FeaturesPage.js
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import HeroSection from "../components/feature/FeatureHeader";
 import FeatureCard from "../components/feature/FeatureCard";
 import { resource } from "../resource";
-import FeatureHeader from "../components/feature/FeatureHeader";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
-const Features = () => {
+const FeaturesPage = () => {
   const features = [
     {
-      title: "Aichatbot",
-      description: "24/7 AI assistance for farmers for problem solution..",
-      image: `${resource.Aichatbot.src}`,
-      path: "/aichatbot",
-    },
-    {
-      title: "CropDetection",
-      description: "Identify crop issues and get actionable solutions.",
-      image: `${resource.CropDetection.src}`,
-      path: "/crop-detection",
-    },
-    {
-      title: "FarmingResources",
-      description: "Guides and tutorials to enhance farming knowledge.",
-      image: `${resource.FarmingResources.src}`,
-      path: "/resources",
-    },
-    {
-      title: "GovScheme",
-      description: "Easy access to the latest schemes and benefits.",
-      image: `${resource.GovScheme.src}`,
-      path: "/schemes",
-    },
-    {
-      title: "MarketAccess",
+      title: "Crop detection report",
       description:
-        "Farmers can list their crops with images, descriptions, and prices.",
+        "The Crop Detection tool uses advanced machine learning algorithms to identify diseases, pests, and nutrient deficiencies in crops by analyzing images.",
+      image: `${resource.CropDetection.src}`,
+    },
+    {
+      title: "AI chat bot",
+      description:
+        "Our AI-powered chatbot offers round-the-clock assistance to farmers, providing real-time answers to their queries related to farming practices, pest control, crop management, and weather updates.",
+      image: `${resource.Aichatbot.src}`,
+      isReversed: true,
+    },
+    {
+      title: "Resources",
+      description:
+        "This feature offers a comprehensive library of farming resources, including step-by-step guides, video tutorials, and expert tips.",
+      image: `${resource.CropDetection.src}`,
+    },
+    {
+      title: "Government schemes",
+      description:
+        "Stay up-to-date with the latest government schemes and benefits specifically tailored for farmers.",
+      image: `${resource.GovScheme.src}`,
+      isReversed: true,
+    },
+    {
+      title: "Market access",
+      description:
+        "Farmers can use this platform to showcase their crops to a wider audience by listing them with detailed descriptions, images, and pricing.",
       image: `${resource.MarketAccess.src}`,
-      path: "/market",
     },
   ];
 
   return (
     <>
-      <Header />
-      <div className="p-4 bg-secondary">
-        {/* <FeatureHeader /> */}
-        <div className="container py-5">
-          <h1 className="text-center mb-5">Features of our Project</h1>
-          <div className="row g-4">
-            {features.map((feature, index) => (
-              <div key={index} className="col-12 col-md-6 col-lg-4">
-                <FeatureCard {...feature} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+    <Header />
+      <HeroSection />
+      {features.map((feature, index) => (
+        <FeatureCard
+          key={index}
+          title={feature.title}
+          description={feature.description}
+          image={feature.image}
+          index={index}
+        />
+      ))}
       <Footer />
     </>
   );
 };
 
-export default Features;
+export default FeaturesPage;

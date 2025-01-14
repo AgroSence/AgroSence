@@ -7,7 +7,6 @@
 </head>
 <body>
     <img src="https://github.com/user-attachments/assets/c42ebff2-0625-4550-a141-2b0a0600d872" alt="Logo AgroSence" width="150" height="auto">    
-
     <h1>🌱 AgroSense</h1>
     <p>
         AgroSense is a comprehensive solution designed to empower farmers by providing direct market access for their crops. This project, part of our college's CP-1 initiative, aims to eliminate intermediaries, improve profitability, and provide tools for enhanced agricultural practices.

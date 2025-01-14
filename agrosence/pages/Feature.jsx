@@ -1,12 +1,17 @@
 // FeaturesPage.js
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-// import HeroSection from "../components/feature/FeatureHeader";
 import FeatureCard from "../components/feature/FeatureCard";
 import { resource } from "../resource";
 
 const Features= () => {
   const features = [
+    {
+      title: "Market access",
+      description:
+        "Farmers can use this platform to showcase their crops to a wider audience by listing them with detailed descriptions, images, and pricing.",
+      image: `${resource.MarketAccess2.src}`,
+    },
     {
       title: "Crop detection report",
       description:
@@ -32,13 +37,7 @@ const Features= () => {
         "Stay up-to-date with the latest government schemes and benefits specifically tailored for farmers.",
       image: `${resource.GovScheme2.src}`,
       isReversed: true,
-    },
-    {
-      title: "Market access",
-      description:
-        "Farmers can use this platform to showcase their crops to a wider audience by listing them with detailed descriptions, images, and pricing.",
-      image: `${resource.MarketAccess2.src}`,
-    },
+    }
   ];
 
   return (

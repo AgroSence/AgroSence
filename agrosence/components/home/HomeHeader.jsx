@@ -7,7 +7,7 @@ const Header = () => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    height: "300px", // Adjust as needed
+    height: "400px", // Adjust as needed
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

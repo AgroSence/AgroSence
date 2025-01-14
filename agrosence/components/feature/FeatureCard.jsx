@@ -1,8 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { resource } from '../../resource';
 
 const FeatureCard = ({ title, description, image, index }) => {
   const isEven = index % 2 === 0;
+
+  const linkPaths = {
+    "Market access": "/features/market-access",
+    "Crop detection report": "/features/crop-detection",
+    "AI chat bot": "/features/ai-chatbot",
+    "Resources": "/features/resources",
+    "Government schemes": "/features/government-schemes",
+  };
 
   return (
     <div className={`container my-4 my-md-5 ${isEven ? '' : 'offset-md-4'}`}>
@@ -36,7 +45,9 @@ const FeatureCard = ({ title, description, image, index }) => {
               <div className="vr me-3" style={{width:'5px', height: 'auto', backgroundColor:'#34a853'}}></div>
               <p className="text-muted mb-0">{description}</p>
             </div>
+            <Link to={linkPaths[title]}>
             <button className="btn btn-success px-4 py-2">CLICK HERE</button>
+            </Link>
           </div>
         </div>
       </div>

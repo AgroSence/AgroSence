@@ -6,7 +6,7 @@ const AboutSection = () => {
     <section className="px-4 overflow-x-hidden bg-white">
       {/* Indian Agriculture Section */}
       <div className="row align-items-center justify-content-center mx-0 my-5">
-        <div className="col-lg-5 text-center">
+        <div className="col-lg-4 text-center">
           <img
             src={resource.IndianAgriculture.src}
             alt={resource.IndianAgriculture.alt}
@@ -28,7 +28,7 @@ const AboutSection = () => {
 
       {/* About Our Project Section */}
       <div className="row align-items-center justify-content-center mx-0 mt-5 my-5">
-        <div className="col-lg-5 order-lg-2 text-center">
+        <div className="col-lg-4 order-lg-2 text-center">
           <img
             src={resource.AboutOurProject.src}
             alt={resource.AboutOurProject.alt}

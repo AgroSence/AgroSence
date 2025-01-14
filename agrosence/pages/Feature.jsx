@@ -1,10 +1,10 @@
 // FeaturesPage.js
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import FeatureCard from "../components/feature/FeatureCard";
 import { resource } from "../resource";
 
-const Features= () => {
+const Features = () => {
   const features = [
     {
       title: "Market access",
@@ -37,7 +37,7 @@ const Features= () => {
         "Stay up-to-date with the latest government schemes and benefits specifically tailored for farmers.",
       image: `${resource.GovScheme2.src}`,
       isReversed: true,
-    }
+    },
   ];
 
   return (
@@ -45,31 +45,27 @@ const Features= () => {
       <Header />
       <main>
         <div className="container-fluid p-0">
-          <div 
-            className="position-relative text-white text-center py-5 mb-5"
+          <div
+            className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5 mb-5"
             style={{
               backgroundImage: `url(${resource.FeatureBG.src})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              height: '400px'
+              backgroundSize: "contain", // Changed from 'cover' to 'contain'
+              backgroundRepeat: "no-repeat", // Prevents background tiling
+              height: "400px",
             }}
           >
-            <div 
+            <div
               className="position-absolute top-0 start-0 w-100 h-100"
-              style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
+              style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
             ></div>
-            <div className="position-relative container h-100 d-flex align-items-center justify-content-center">
-              <h1 className="display-3 fw-bold">Features</h1>
-            </div>
+            <h1 className="text-white position-relative display-2 fw-bold">
+              Features
+            </h1>
           </div>
         </div>
         <div className="container-fluid px-md-5">
           {features.map((feature, index) => (
-            <FeatureCard
-              key={index}
-              {...feature}
-              index={index}
-            />
+            <FeatureCard key={index} {...feature} index={index} />
           ))}
         </div>
       </main>
@@ -79,4 +75,3 @@ const Features= () => {
 };
 
 export default Features;
-

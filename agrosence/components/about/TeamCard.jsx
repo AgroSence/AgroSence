@@ -9,7 +9,7 @@ const TeamCard = ({ image, name, role, instagram, github, linkedin }) => {
           src={image}  
           alt={name}
           className="rounded img-fluid w-100"
-          style={{ height: '300px',width:'auto', objectFit: 'cover' }}
+          style={{ height: '350px',width:'auto', objectFit: 'cover' }}
         />
         <div className="card-body text-center">
           <h5 className="card-title mb-1">{name}</h5>

@@ -17,84 +17,119 @@ import Dhruv from './src/assets/about/Dhruv.jpg'
 import KMP from './src/assets/about/Kavindra sir.png'
 import AboutHeader from './src/assets/about/About us.png'
 import ContactBg from './src/assets/contact/ContactHead.png'
+import FeatureBG from './src/assets/Feature/Feature BG.png'
+import Aichatbot2 from './src/assets/Feature/Ai ChatBot.png'
+import CropDetection2 from './src/assets/Feature/Crop Detection.png'
+import GovScheme2 from './src/assets/Feature/Gov Scheme.png'
+import Leaf from './src/assets/Feature/Leaf.png'
+import MarketAccess2 from './src/assets/Feature/Market Access.png'
+import FarmingResource2 from './src/assets/Feature/Resource.png'
 
 const resource = {
-    ContactBg:{
+    Aichatbot2: {
+        src: Aichatbot2,
+        alt: "Aichatbot2",
+    },
+    CropDetection2: {
+        src: CropDetection2,
+        alt: "CropDetection2",
+    },
+    GovScheme2: {
+        src: GovScheme2,
+        alt: "GovScheme2",
+    },
+    Leaf: {
+        src: Leaf,
+        alt: "Leaf",
+    },
+    MarketAccess2: {
+        src: MarketAccess2,
+        alt: "MarketAccess2",
+    },
+    FarmingResource2: {
+        src: FarmingResource2,
+        alt: "Resource2",
+    },
+    FeatureBG: {
+        src: FeatureBG,
+        alt: 'Feature BG',
+    },
+    ContactBg: {
         src: ContactBg,
         alt: "Contact BG",
     },
-    Dhruv:{
+    Dhruv: {
         src: Dhruv,
         alt: 'Dhruv',
     },
-    Jeet:{
+    Jeet: {
         src: Jeet,
         alt: 'Jeet',
     },
-    Herin:{
+    Herin: {
         src: Herin,
         alt: 'Herin',
     },
-    KMP:{
+    KMP: {
         src: KMP,
         alt: 'KMP',
     },
-    AboutHeader:{
+    AboutHeader: {
         src: AboutHeader,
         alt: "About Header"
     },
-    WelcomeHomeImg:{
+    WelcomeHomeImg: {
         src: WelcomeHomeImg,
         alt: 'WelcomeHomeImg',
     },
-    FarmingResources:{
+    FarmingResources: {
         src: FarmingResources,
         alt: 'FarmingResources',
     },
-    GovScheme:{
+    GovScheme: {
         src: GovScheme,
         alt: 'GovScheme',
     },
-    MarketAccess:{
+    MarketAccess: {
         src: MarketAccess,
         alt: 'MarketAccess',
     },
-    CropDetection:{
+    CropDetection: {
         src: CropDetection,
         alt: 'CropDetection',
     },
-    Aichatbot:{
+    Aichatbot: {
         src: Aichatbot,
         alt: 'Aichatbot',
     },
-    IndianAgriculture:{
+    IndianAgriculture: {
         src: IndianAgriculture,
         alt: 'IndianAgriculture',
     },
-    AboutOurProject:{
+    AboutOurProject: {
         src: AboutOurProject,
         alt: 'AboutOurProject',
     },
-    Register:{
+    Register: {
         src: Register,
         alt: 'Register',
     },
-    Logo:{
+    Logo: {
         src: Logo,
         alt: 'Logo',
     },
-    LogoName:{
+    LogoName: {
         src: LogoName,
         alt: 'LogoName',
     },
-    Logo2:{
+    Logo2: {
         src: Logo2,
         alt: 'Logo-2',
     },
-    Logo3:{
+    Logo3: {
         src: Logo3,
         alt: 'Logo-3',
     },
 };
 
-export {resource};
+export { resource };

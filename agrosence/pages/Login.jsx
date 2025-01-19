@@ -2,17 +2,17 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { resource } from "../resource";
 import "../src/css/Login.css";
-import { Link } from "react-router-dom"; // Import Link from React Router
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   return (
     <>
       <div
         className="main"
-        style={{ minHeight: "100vh", backgroundColor: "#34a853", overflowY: "auto" }} // Ensuring the page is scrollable
+        style={{ minHeight: "100vh", backgroundColor: "#34a853", overflowY: "auto" }}
       >
         <div className="d-flex justify-content-end p-3">
-          <Link to="/Signup">
+          <Link to="/signup">
             <button
               type="button"
               className="btn btn-light fs-6"
@@ -33,9 +33,9 @@ const LoginPage = () => {
               alt={resource.Register.alt}
               className="img-fluid"
               style={{
-                maxHeight: "40%", // Reduced max-height to make the image smaller
+                maxHeight: "40%",
                 width: "auto",
-                objectFit: "contain", // Ensures the image maintains aspect ratio
+                objectFit: "contain",
               }}
             />
           </div>
@@ -48,7 +48,7 @@ const LoginPage = () => {
                 minWidth: "300px",
                 maxWidth: "500px",
                 height: "auto",
-                marginTop: "2rem", // Keeps the form centered
+                marginTop: "2rem",
               }}
             >
               <h2 className="text-center">Sign in</h2>

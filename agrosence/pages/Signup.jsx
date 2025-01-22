@@ -62,7 +62,7 @@ const SignUpPage = () => {
             style={{
               minWidth: "300px",
               maxWidth: "500px",
-              height: "auto",
+              height: "100%",
             }}
           >
             <h2 className="text-center">Sign Up</h2>
@@ -73,7 +73,7 @@ const SignUpPage = () => {
             {message && <p className="text-center text-info">{message}</p>}
 
             <form onSubmit={handleSubmit}>
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="name" className="form-label fs-6">
                   Name
                 </label>
@@ -87,7 +87,7 @@ const SignUpPage = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="mobile" className="form-label fs-6">
                   Mobile No.
                 </label>
@@ -101,7 +101,7 @@ const SignUpPage = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="password" className="form-label fs-6">
                   Password
                 </label>
@@ -115,7 +115,7 @@ const SignUpPage = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="confirmPassword" className="form-label fs-6">
                   Confirm Password
                 </label>
@@ -129,7 +129,7 @@ const SignUpPage = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="state" className="form-label fs-6">
                   State
                 </label>
@@ -143,7 +143,7 @@ const SignUpPage = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="mb-1">
                 <label htmlFor="address" className="form-label fs-6">
                   Address
                 </label>

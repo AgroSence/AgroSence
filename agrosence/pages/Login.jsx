@@ -12,7 +12,7 @@ const LoginPage = () => {
         style={{ minHeight: "100vh", backgroundColor: "#34a853", overflowY: "auto" }}
       >
         <div className="d-flex justify-content-end p-3">
-          <Link to="/signup">
+          <Link to="/Signup">
             <button
               type="button"
               className="btn btn-light fs-6"

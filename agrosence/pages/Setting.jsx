@@ -1,76 +1,68 @@
-import { useState } from "react";
+import React from "react";
+import { FiEdit2 } from "react-icons/fi";
 import Sidebar from "../components/dashboard/Sidebar";
 import Header from "../components/dashboard/DashHeader";
-import ProfileImage from "../components/usersetting/ProfileImage";
-import ProfileForm from "../components/usersetting/ProfileForm";
+import { resource } from "../resource";
 
 const Settings = () => {
-  const [formData, setFormData] = useState({
-    yourName: "Jeet Jani",
-    userName: "Janijeet17",
-    email: "janijeet50@gmail.com",
-    password: "••••••••••",
-    dateOfBirth: "2002-09-17",
-    presentAddress: "Mehsana, Gujarat",
-    permanentAddress: "Mehsana, Gujarat",
-    city: "Mehsana",
-    pinCode: "384002",
-    country: "IND",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleImageChange = (e) => {
-    console.log("Image changed:", e.target.files[0]);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
-
   return (
-    <div className="d-flex min-vh-100">
-      {/* Static Sidebar */}
+    <div className="d-flex">
+      {/* Sidebar */}
       <Sidebar className="position-fixed vh-100" />
 
-      {/* Scrollable Content */}
+      {/* Main Content */}
       <div className="flex-grow-1 overflow-auto" style={{ marginLeft: "250px" }}>
+        {/* Header */}
         <Header />
 
-        <div className="p-3 p-lg-4">
-          <h4 className="mb-4">Settings</h4>
-
-          <div className="card border-0 shadow-sm">
-            <div className="card-body">
-              <ul className="nav nav-tabs mb-4">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#">
-                    Edit Profile
-                  </a>
-                </li>
-              </ul>
-
+        {/* Settings Content */}
+        <div className="container p-4">
+          <h2 className="mb-4">Settings</h2>
+          <div className="bg-white rounded-3 p-4">
+            <h5 className="text-success mb-4">Edit Profile</h5>
+            <div className="row g-4">
               {/* Profile Image */}
-              <div className="text-center">
-                <ProfileImage
-                  imageUrl="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Setting%20(Dashboard)-aFUjAYGO1eNlwR7CBjIuQQSqbjtMUe.png"
-                  onImageChange={handleImageChange}
-                />
+              <div className="col-12 text-center">
+                <div className="position-relative d-inline-block">
+                  <img
+                    src={`${resource.Jeet.src}`}
+                    alt="Profile"
+                    className="rounded-circle"
+                    style={{ width: "120px", height: "120px", objectFit: "cover" }}
+                  />
+                  <button className="btn btn-success btn-sm position-absolute bottom-0 end-0 rounded-circle p-2">
+                    <FiEdit2 size={16} />
+                  </button>
+                </div>
               </div>
 
-              {/* Profile Form */}
-              <ProfileForm
-                formData={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-              />
+              {/* Input Fields */}
+              {[
+                { label: "Your Name", type: "text", defaultValue: "Jeet Jani" },
+                { label: "User Name", type: "text", defaultValue: "Janijeet17" },
+                { label: "Email", type: "email", defaultValue: "janijeet50@gmail.com" },
+                { label: "Password", type: "password", defaultValue: "********" },
+                { label: "Date of Birth", type: "date", defaultValue: "2002-09-17" },
+                { label: "Present Address", type: "text", defaultValue: "Mehsana, Gujarat" },
+                { label: "Permanent Address", type: "text", defaultValue: "Mehsana, Gujarat" },
+                { label: "City", type: "text", defaultValue: "Mehsana" },
+                { label: "Pin Code", type: "text", defaultValue: "384002" },
+                { label: "Country", type: "text", defaultValue: "IND" },
+              ].map((field, index) => (
+                <div key={index} className="col-md-6">
+                  <label className="form-label">{field.label}</label>
+                  <input
+                    type={field.type}
+                    className="form-control"
+                    defaultValue={field.defaultValue}
+                  />
+                </div>
+              ))}
+
+              {/* Save Button */}
+              <div className="col-12 text-end">
+                <button className="btn btn-success px-4">Save</button>
+              </div>
             </div>
           </div>
         </div>

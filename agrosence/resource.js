@@ -26,8 +26,17 @@ import GovScheme2 from './src/assets/Feature/Gov Scheme.png'
 import Leaf from './src/assets/Feature/Leaf.png'
 import MarketAccess2 from './src/assets/Feature/Market Access.png'
 import FarmingResource2 from './src/assets/Feature/Resource.png'
-
+import Chatbot from './src/assets/Chatbot.jpg'
+import Chatbot1 from './src/assets/Chatbot1.gif'
 const resource = {
+    Chatbot1:{
+        src:Chatbot1,
+        alt:"Chatbot1"
+    },
+    Chatbot:{
+        src:Chatbot,
+        alt:'Chatbot',
+    },
     ExpertAdvice:{
         src:ExpertAdvice,
         alt:"Expert Advice",

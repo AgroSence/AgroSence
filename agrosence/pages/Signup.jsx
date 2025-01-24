@@ -25,16 +25,16 @@ const SignUpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/signup", formData);
+      const response = await axios.post("http://localhost:5000/api/auth/signup", formData);
       setMessage(response.data.message);
-
+  
       // Redirect to Login page upon successful signup
       navigate("/");  // This will navigate to the Login page
-
+  
     } catch (error) {
       setMessage(error.response?.data?.message || "An error occurred");
     }
-  };
+  };  
 
   return (
     <div

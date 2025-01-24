@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { resource } from "../resource";
 import "../src/css/Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"; // Ensure axios is installed
 
 const LoginPage = () => {
+  const navigate = useNavigate(); // Hook to navigate to other pages
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/login", {
+        mobile: phone,
+        password: password,
+      });
+
+      if (response.status === 200) {
+        // Redirect to the Home page if login is successful
+        navigate("/Home");
+      }
+    } catch (error) {
+      setErrorMessage("Invalid phone number or password.");
+    }
+  };
+
   return (
     <>
       <div
@@ -56,7 +80,9 @@ const LoginPage = () => {
                 Hey, Enter your details to login to your account
               </p>
 
-              <form>
+              {errorMessage && <p className="text-danger text-center">{errorMessage}</p>}
+
+              <form onSubmit={handleLogin}>
                 <div className="mb-3">
                   <label htmlFor="phone" className="form-label fs-5">
                     Enter Phone No.
@@ -66,6 +92,8 @@ const LoginPage = () => {
                     id="phone"
                     className="form-control fs-6"
                     placeholder="Enter your phone number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
 
@@ -78,6 +106,8 @@ const LoginPage = () => {
                     id="password"
                     className="form-control fs-6"
                     placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 

@@ -3,20 +3,20 @@ import { resource } from "../../resource";
 
 const AboutSection = () => {
   return (
-    <section className="px-4 overflow-x-hidden bg-white">
+    <section className="overflow-x-hidden bg-white">
       {/* Indian Agriculture Section */}
-      <div className="row align-items-center justify-content-center mx-0 my-5">
-        <div className="col-lg-4 text-center">
+      <div className="row align-items-center justify-content-center mx-0 my-5 px-3">
+        <div className="col-md-6 col-lg-4 text-center mb-4 mb-lg-0">
           <img
             src={resource.IndianAgriculture.src}
             alt={resource.IndianAgriculture.alt}
             className="img-fluid rounded-circle"
-            style={{ maxWidth: "350px" }} // Adjust image size as needed
+            style={{ maxWidth: "100%", maxHeight: "300px" }} // Responsive image
           />
         </div>
-        <div className="col-lg-6 text-center text-lg-start">
-          <h2 className="mb-3">Indian Agriculture</h2>
-          <p>
+        <div className="col-md-10 col-lg-6 text-center text-lg-start">
+          <h2 className="mb-3 fw-bold">Indian Agriculture</h2>
+          <p className="fs-5">
             Explore our carefully curated selection of plants, ranging from
             exotic tropicals to hardy succulents, flowering perennials to
             majestic trees. Our team of experts meticulously sources and
@@ -27,19 +27,18 @@ const AboutSection = () => {
       </div>
 
       {/* About Our Project Section */}
-      <div className="row align-items-center justify-content-center mx-0 mt-5 my-5">
-        <div className="col-lg-4 order-lg-2 text-center">
+      <div className="row align-items-center justify-content-center mx-0 my-5 px-3">
+        <div className="col-md-6 col-lg-4 order-lg-2 text-center mb-4 mb-lg-0">
           <img
             src={resource.AboutOurProject.src}
             alt={resource.AboutOurProject.alt}
             className="img-fluid rounded-circle"
-            style={{ maxWidth: "350px" }} // Adjust image size as needed
+            style={{ maxWidth: "100%", maxHeight: "300px" }} // Responsive image
           />
         </div>
-        <hr className="text-white"/>
-        <div className="col-lg-6 order-lg-1 text-center text-lg-start">
-          <h2 className="mb-3">About Our Project</h2>
-          <p>
+        <div className="col-md-10 col-lg-6 order-lg-1 text-center text-lg-start">
+          <h2 className="mb-3 fw-bold">About Our Project</h2>
+          <p className="fs-5">
             AgroSense is a cutting-edge platform designed to revolutionize the
             way farmers sell their crops. By connecting farmers directly to
             buyers, we eliminate the need for middlemen, empowering farmers to

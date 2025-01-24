@@ -5,7 +5,8 @@ const ContactHero = () => {
       className="hero-section position-relative d-flex align-items-center justify-content-center"
       style={{
         backgroundImage: `url(${resource.ContactBg.src})`,
-        backgroundSize: "contain",
+        backgroundPosition:"center",
+        backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         height: "400px",
       }}

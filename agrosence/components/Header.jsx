@@ -7,7 +7,7 @@ function Header() {
   return (
     <nav
       className="navbar navbar-expand-md shadow-sm text-white w-100 fixed-top"
-      style={{overflowX: "hidden", position: "absolute", backgroundColor: "#252525" }}
+      style={{overflowX: "hidden", position: "absolute"}}
     >
           
           {/* <div className="overlay position-absolute w-100 h-100 top-0 start-0" 

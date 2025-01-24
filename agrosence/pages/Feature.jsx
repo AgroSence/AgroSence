@@ -51,12 +51,13 @@ const Features = () => {
     <div className="min-vh-100 d-flex flex-column overflow-x-hidden ">
       <Header />
       <main>
-        <div className="container-fluid p-0">
+        <div className="w-100 p-0">
           <div
-            className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5 mb-5"
+            className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5 "
             style={{
               backgroundImage: `url(${resource.FeatureBG.src})`,
-              backgroundSize: "contain", // Changed from 'cover' to 'contain'
+              backgroundPosition:"bottom center",
+              backgroundSize: "cover", // Changed from 'cover' to 'contain'
               backgroundRepeat: "no-repeat", // Prevents background tiling
               height: "400px",
             }}

@@ -193,3 +193,15 @@ html {
   height: 100%;
   object-fit: contain;
 }
+
+/* App.css */
+@media (max-width: 768px) {
+  .navbar {
+    background-color: #252525 !important; /* Set the background color for mobile view */
+  }
+
+  .navbar-toggler {
+    border-color: white; /* Optional: Change toggle button border color for better contrast */
+  }
+
+}

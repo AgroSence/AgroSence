@@ -3,13 +3,13 @@ import { resource } from "../../resource";
 const ContactHero = () => {
   return (
     <div
-      className="hero-section position-relative d-flex align-items-center justify-content-center text-center"
+      className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5"
       style={{
         backgroundImage: `url(${resource.WelcomeHomeImg.src})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "400px",
+        backgroundPosition: "bottom", // Default: image aligned at the bottom
+        backgroundSize: "cover", // Image scales to cover the section
+        backgroundRepeat: "no-repeat", // Prevents background tiling
+        height: "450px", // Default height for larger screens
       }}
     >
       <h1

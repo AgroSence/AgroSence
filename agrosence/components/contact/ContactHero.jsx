@@ -8,7 +8,7 @@ const ContactHero = () => {
         backgroundPosition:"center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        height: "400px",
+        height: "450px",
       }}
     >
       <div

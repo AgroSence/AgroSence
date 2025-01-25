@@ -51,25 +51,19 @@ const Features = () => {
     <div className="min-vh-100 d-flex flex-column overflow-x-hidden ">
       <Header />
       <main>
-        <div className="w-100 p-0">
-          <div
-            className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5 "
-            style={{
-              backgroundImage: `url(${resource.FeatureBG.src})`,
-              backgroundPosition:"bottom center",
-              backgroundSize: "cover", // Changed from 'cover' to 'contain'
-              backgroundRepeat: "no-repeat", // Prevents background tiling
-              height: "400px",
-            }}
-          >
-            {/* <div
-              className="position-absolute top-0 start-0 w-100"
-              style={{ backgroundColor: "rgba(0,0,0,0.4)" , height:"400px"}}
-            ></div> */}
-            <h1 className="text-white position-relative display-2 fw-bold">
-              Features
-            </h1>
-          </div>
+        <div
+          className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5"
+          style={{
+            backgroundImage: `url(${resource.FeatureBG.src})`,
+            backgroundPosition: "bottom", // Ensures the image is aligned at the bottom
+            backgroundSize: "cover", // Image scales to cover the section
+            backgroundRepeat: "no-repeat", // Prevents background tiling
+            height: "450px", // Or adjust as needed for your layout
+          }}
+        >
+          <h1 className="text-white position-relative display-2 fw-bold">
+            Features
+          </h1>
         </div>
         <div className="container-fluid px-md-5">
           {features.map((feature, index) => (

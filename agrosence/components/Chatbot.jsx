@@ -90,7 +90,7 @@ const Chatbot = () => {
                   <img
                     src={resource.Chatbot.src}
                     alt={resource.Chatbot.alt}
-                    className="chatbox-image"
+                    className="chatbox-image border"
                   />
                 )}
                 <span>{chat.message}</span>

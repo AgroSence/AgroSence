@@ -12,7 +12,7 @@ import LoginPage from "../pages/Login";
 import SignupPage from "../pages/Signup";
 import Chatbot from "../components/Chatbot";
 import Products from "../pages/Product";
-import Layout from "../components/dashboard/Layout";
+import OrderHistory from "../pages/OrderHistory";
 
 const App = () => {
   return (
@@ -46,6 +46,7 @@ const AppContent = () => {
         <Route path="/Setting" element={<Setting />} />
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/product" element={<Products />} />
+        <Route path="/OrderHistory" element={<OrderHistory />} />
         </Routes>
 
       {/* Conditionally render Chatbot */}

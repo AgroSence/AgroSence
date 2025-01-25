@@ -11,6 +11,8 @@ import Dashboard from "../pages/Dashboard";
 import LoginPage from "../pages/Login";
 import SignupPage from "../pages/Signup";
 import Chatbot from "../components/Chatbot";
+import Products from "../pages/Product";
+import Layout from "../components/dashboard/Layout";
 
 const App = () => {
   return (
@@ -20,9 +22,14 @@ const App = () => {
   );
 };
 
+// const ProtectedRoute = ({ children }) => {
+//   return isAuthenticated() ? children : <Navigate to="/" />;
+// };
+
 const AppContent = () => {
   const location = useLocation(); // Get the current location
   const hideChatbotRoutes = ["/", "/Signup"]; // Define routes where Chatbot should be hidden
+  const layoutRoutes = ["/dashboard", "/product"];
 
   return (
     <>
@@ -37,8 +44,9 @@ const AppContent = () => {
         <Route path="/ContactUs" element={<Contact />} />
         <Route path="/Feature" element={<Feature />} />
         <Route path="/Setting" element={<Setting />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-      </Routes>
+        <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/product" element={<Products />} />
+        </Routes>
 
       {/* Conditionally render Chatbot */}
       {!hideChatbotRoutes.includes(location.pathname) && <Chatbot />}

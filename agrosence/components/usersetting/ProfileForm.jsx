@@ -1,156 +1,80 @@
-const ProfileForm = ({ formData, handleChange, handleSubmit }) => {
-    return (
-      <form onSubmit={handleSubmit}>
-        <div className="row g-4">
-          {/* Name Fields */}
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">Your Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="yourName"
-                value={formData.yourName}
-                onChange={handleChange}
-                placeholder="Enter your name"
-              />
-            </div>
+import { useState } from "react"
+import ProfileImage from "./ProfileImage"
+import ProfileForm from "./ProfileForm"
+
+const ProfileForm = () => {
+  const [formData, setFormData] = useState({
+    yourName: "Jeet Jani",
+    userName: "Janijeet17",
+    email: "janijeet50@gmail.com",
+    password: "**********",
+    dateOfBirth: "2002-09-17",
+    presentAddress: "Mehsana, Gujarat",
+    permanentAddress: "Mehsana, Gujarat",
+    city: "Mehsana",
+    pinCode: "384002",
+    country: "IND",
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      // Handle image upload logic here
+      console.log("Image file:", file)
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Handle form submission
+    console.log("Form submitted:", formData)
+  }
+
+  return (
+    <div className="container-fluid p-4">
+      <h4 className="mb-4">Setting</h4>
+
+      <div className="card border-0 shadow-sm">
+        <div className="card-body">
+          {/* Tabs */}
+          <ul className="nav nav-tabs border-bottom mb-4">
+            <li className="nav-item">
+              <a
+                className="nav-link active px-0 me-3 border-0"
+                href="#"
+                style={{
+                  borderBottom: "2px solid #198754",
+                  color: "#198754",
+                }}
+              >
+                Edit Profile
+              </a>
+            </li>
+          </ul>
+
+          {/* Profile Image */}
+          <div className="text-center mb-4">
+            <ProfileImage
+              imageUrl="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Setting%20(Dashboard)-JwivTNtBXmePugbliZbwuRsqwUr6ss.png"
+              onImageChange={handleImageChange}
+            />
           </div>
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">User Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="userName"
-                value={formData.userName}
-                onChange={handleChange}
-                placeholder="Enter username"
-              />
-            </div>
-          </div>
-  
-          {/* Email & Password Fields */}
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter email"
-              />
-            </div>
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="••••••••••"
-              />
-            </div>
-          </div>
-  
-          {/* Date of Birth & Present Address Fields */}
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">Date of Birth</label>
-              <input
-                type="date"
-                className="form-control"
-                name="dateOfBirth"
-                value={formData.dateOfBirth}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">Present Address</label>
-              <input
-                type="text"
-                className="form-control"
-                name="presentAddress"
-                value={formData.presentAddress}
-                onChange={handleChange}
-                placeholder="Enter present address"
-              />
-            </div>
-          </div>
-  
-          {/* Permanent Address & City Fields */}
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">Permanent Address</label>
-              <input
-                type="text"
-                className="form-control"
-                name="permanentAddress"
-                value={formData.permanentAddress}
-                onChange={handleChange}
-                placeholder="Enter permanent address"
-              />
-            </div>
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">City</label>
-              <input
-                type="text"
-                className="form-control"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                placeholder="Enter city"
-              />
-            </div>
-          </div>
-  
-          {/* Pin Code & Country Fields */}
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">Pin Code</label>
-              <input
-                type="text"
-                className="form-control"
-                name="pinCode"
-                value={formData.pinCode}
-                onChange={handleChange}
-                placeholder="Enter pin code"
-              />
-            </div>
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="form-group">
-              <label className="form-label">Country</label>
-              <input
-                type="text"
-                className="form-control"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                placeholder="Enter country"
-              />
-            </div>
-          </div>
-  
-          {/* Submit Button */}
-          <div className="col-12 text-end">
-            <button type="submit" className="btn btn-success px-4">
-              Save
-            </button>
-          </div>
+
+          {/* Profile Form */}
+          <ProfileForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
         </div>
-      </form>
-    );
-  };
-  
-  export default ProfileForm;
-  
+      </div>
+    </div>
+  )
+}
+
+export default ProfileForm
+

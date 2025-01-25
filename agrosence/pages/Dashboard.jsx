@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { BsPeople, BsBox, BsGraphUp, BsClock } from "react-icons/bs";
-import Sidebar from "../components/dashboard/Sidebar";
-import Header from "../components/dashboard/DashHeader";
+import React from "react";
+import { BsPeople, BsBox,BsGraphUp, BsClock,} from "react-icons/bs";
 import MetricCard from "../components/dashboard/MetricCard";
 import RatingChart from "../components/dashboard/RatingChart";
 import MostOrdered from "../components/dashboard/Order";
+import Layout from "../components/dashboard/Layout"; // Import the Layout component
 
 const Dashboard = () => {
   const metrics = [
@@ -17,7 +16,7 @@ const Dashboard = () => {
     },
     {
       title: "Total Order",
-      value: "10293",
+      value: "10,293",
       change: "1.3% Up from past week",
       icon: <BsBox className="text-warning" size={24} />,
       color: "warning",
@@ -31,7 +30,7 @@ const Dashboard = () => {
     },
     {
       title: "Total Pending",
-      value: "2040",
+      value: "2,040",
       change: "1.8% Up from yesterday",
       icon: <BsClock className="text-danger" size={24} />,
       color: "danger",
@@ -39,38 +38,30 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="d-flex min-vh-100">
-      {/* Static Sidebar */}
-      <Sidebar className="position-fixed vh-100" />
+    <Layout>
+      <div className="p-3 p-lg-4">
+        <h4 className="mb-4">Dashboard</h4>
 
-      {/* Scrollable Content */}
-      <div className="flex-grow-1 overflow-auto" style={{ marginLeft: "250px" }}>
-        <Header />
+        {/* Metrics Section */}
+        <div className="row g-3 g-xl-4 mb-4">
+          {metrics.map((metric, index) => (
+            <div key={index} className="col-12 col-sm-6 col-xl-3">
+              <MetricCard {...metric} />
+            </div>
+          ))}
+        </div>
 
-        <div className="p-3 p-lg-4">
-          <h4 className="mb-4">Dashboard</h4>
-
-          {/* Metrics Section */}
-          <div className="row g-3 g-xl-4 mb-4">
-            {metrics.map((metric, index) => (
-              <div key={index} className="col-12 col-sm-6 col-xl-3">
-                <MetricCard {...metric} />
-              </div>
-            ))}
+        {/* Charts Section */}
+        <div className="row g-3 g-xl-4">
+          <div className="col-12 col-lg-6">
+            <RatingChart />
           </div>
-
-          {/* Charts Section */}
-          <div className="row g-3 g-xl-4">
-            <div className="col-12 col-lg-6">
-              <RatingChart />
-            </div>
-            <div className="col-12 col-lg-6">
-              <MostOrdered />
-            </div>
+          <div className="col-12 col-lg-6">
+            <MostOrdered />
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

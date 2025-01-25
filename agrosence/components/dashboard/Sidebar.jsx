@@ -44,7 +44,7 @@ const Sidebar = () => {
 
           <div className="mb-2">
             <Link
-              to="/"
+              to="/Product"
               className="d-flex align-items-center text-decoration-none text-secondary p-2"
             >
               <BsBox className="me-3" />
@@ -222,7 +222,7 @@ const Sidebar = () => {
 
           <div className="mb-2">
             <Link
-              to="/"
+              to="/Product"
               className="d-flex align-items-center text-decoration-none text-secondary p-2"
             >
               <BsBox className="me-3" />

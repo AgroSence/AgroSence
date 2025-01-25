@@ -161,9 +161,23 @@ html {
   }
 }
 
+/* App.css */
+@media (max-width: 768px) {
+  .navbar {
+    background-color: #252525 !important; /* Set the background color for mobile view */
+  }
+
+  .navbar-toggler {
+    border-color: white; /* Optional: Change toggle button border color for better contrast */
+  }
+
+}
+
+
 /* Chatbot */
 /* src/components/Chatbot.css */
-/* src/components/Chatbot.css */
+
+/* Chatbot Button */
 .chatbot-button {
   position: fixed;
   bottom: 30px;
@@ -188,21 +202,148 @@ html {
 }
 
 .chatbot-image {
-  background-blend-mode:darken;
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* App.css */
-@media (max-width: 768px) {
-  .navbar {
-    background-color: #252525 !important; /* Set the background color for mobile view */
-  }
-
-  .navbar-toggler {
-    border-color: white; /* Optional: Change toggle button border color for better contrast */
-  }
-
+/* Chatbox */
+.chatbox {
+  position: fixed;
+  bottom: 110px; /* Adjust the bottom position for chatbox */
+  margin: auto;
+  right: 20px;
+  width: 30rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  transition: transform 0.3s ease-in-out;
 }
-/*  */
+
+.chatbox-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatbox-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.chatbox-header h3 {
+  margin: 0;
+}
+
+.chatbox-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Loading Effect */
+.loading {
+  display: inline-block;
+  font-size: 16px;
+  color: #555;
+}
+
+.loading:after {
+  content: "...";
+  animation: typing 1.5s steps(5) infinite;
+}
+
+@keyframes typing {
+  0% {
+    content: ".";
+  }
+  25% {
+    content: "..";
+  }
+  50% {
+    content: "...";
+  }
+  75% {
+    content: "..";
+  }
+  100% {
+    content: ".";
+  }
+}
+
+.chatbox-footer {
+  background-color: #b3b1b1;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.chatbox-input {
+  width: 80%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.send-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.send-button:hover {
+  background-color: #45a049;
+}
+
+/* Chatbot */
+
+/* User Messages */
+.user-message {
+  display: flex;
+  justify-content: flex-end; /* Aligns user messages to the right */
+  margin-bottom: 10px;
+}
+
+.user-message span {
+  background-color: #d1e7fd; /* Light blue for user messages */
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  max-width: 70%;
+  text-align: right; /* Aligns text inside the user message to the right */
+}
+
+/* Bot Messages */
+.bot-message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.bot-message img {
+  margin-right: 10px; /* Adds space between the bot's logo and the message */
+}
+
+.bot-message span,
+.bot-message p {
+  background-color: #f0f0f0; /* Light gray for bot messages */
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  max-width: 70%;
+  text-align: left; /* Aligns text inside the bot message to the left */
+}

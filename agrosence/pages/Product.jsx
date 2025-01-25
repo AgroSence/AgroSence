@@ -1,4 +1,5 @@
 import ProductGrid from "../components/product/ProductGrid";
+import { resource } from '../resource'
 import Layout from "../components/dashboard/Layout";
 const Products = () => {
   const products = [
@@ -6,37 +7,37 @@ const Products = () => {
       name: "Rice",
       price: "20",
       location: "Mehsana",
-      image: "/placeholder.svg?height=200&width=300",
+      image: `${resource.CropDetection.src}`,
     },
     {
       name: "Potato",
       price: "20",
       location: "Mehsana",
-      image: "/placeholder.svg?height=200&width=300",
+      image: `${resource.CropDetection2.src}`,
     },
     {
       name: "Corn",
       price: "50",
       location: "Ahmedabad",
-      image: "/placeholder.svg?height=200&width=300",
+      image: `${resource.CropDetection.src}`,
     },
     {
       name: "Strawberry",
       price: "40",
       location: "Rajkot",
-      image: "/placeholder.svg?height=200&width=300",
+      image: `${resource.CropDetection2.src}`,
     },
     {
       name: "Wheat",
       price: "50",
       location: "Patan",
-      image: "/placeholder.svg?height=200&width=300",
+      image: `${resource.CropDetection.src}`,
     },
     {
       name: "Cotton",
       price: "60",
       location: "Vadodara",
-      image: "/placeholder.svg?height=200&width=300",
+      image: `${resource.CropDetection2.src}`,
     },
   ];
 

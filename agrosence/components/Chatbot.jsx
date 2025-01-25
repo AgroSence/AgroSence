@@ -73,6 +73,9 @@ const Chatbot = () => {
           </div>
           {/* Body Section */}
           <div className="chatbox-body text-dark p-1">
+            <p className="chat-message bot-message">
+              Welcome! How can I assist you today?
+            </p>
             {isLoading && <p className="loading">...</p>}{" "}
             {/* Show loading effect when typing */}
             {/* Display chat history */}
@@ -96,9 +99,7 @@ const Chatbot = () => {
           </div>
 
           {/* Bottom Section - Input and Send Button */}
-          <div
-            className="chatbox-footer p-1"
-          >
+          <div className="chatbox-footer p-1">
             <input
               type="text"
               value={message}

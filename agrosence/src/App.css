@@ -194,10 +194,10 @@ html {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 70px;
-  height: 70px;
-  background-color: #007bff;
-  border: 2px solid #007bff;
+  width: 75px;
+  height: 75px;
+  background-color: #009444;
+  border: 2px solid #009444;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -209,7 +209,7 @@ html {
 }
 
 .chatbot-button:hover {
-  background-color: #0056b3;
+  background-color: #009444;
   transform: scale(1.1);
 }
 
@@ -292,7 +292,7 @@ html {
 }
 
 .chatbox-footer {
-  background-color: #b3b1b1;
+  background-color: #838282;
   display: flex;
   align-items: center;
   margin-top: 10px;
@@ -308,7 +308,7 @@ html {
 }
 
 .send-button {
-  background-color: #4caf50;
+  background-color: #009444;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -395,3 +395,4 @@ html {
   }
 }
 
+/* chatbot */

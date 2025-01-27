@@ -8,7 +8,7 @@ const TeamCard = ({ image, name, role, instagram, github, linkedin }) => {
         <img 
           src={image}  
           alt={name}
-          className="rounded img-fluid w-100"
+          className="rounded img-fluid w-100 border border-2"
           style={{ height: '350px',width:'auto', objectFit: 'cover' }}
         />
         <div className="card-body text-center">

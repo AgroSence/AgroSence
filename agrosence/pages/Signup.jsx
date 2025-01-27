@@ -29,7 +29,7 @@ const SignUpPage = () => {
       navigate("/"); // Redirect to login page on successful signup
     } catch (error) {
       setMessage(error.response?.data?.message || "An error occurred");
-    }
+    }    
   };
 
   return (

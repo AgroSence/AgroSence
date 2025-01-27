@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
   const { name, price, location, image } = product
 
   return (
-    <div className="card h-100 border-0 shadow-lg p-1 ">
+    <div className="card h-100 border-0 shadow-lg">
       <div className="position-relative p-1">
         <img
           src={image || "/placeholder.svg"}
@@ -24,7 +24,11 @@ const ProductCard = ({ product }) => {
               <FaLocationDot size={18} /> {location}
             </small>
           </div>
-          <button className="btn btn-success rounded-circle p-2">
+        </div>
+      </div>
+      <div className="d-flex justify-content-end align-item-end">
+        <div className="" style={{ backgroundColor:"lightgrey",padding:"10px 2px 2px 10px",borderRadius:"37px 0px 0px 0px "}}>
+          <button style={{width:"45px",borderRadius:"50%", backgroundColor:"#34a853"}} className="btn p-2">
             <BsCartPlus size={20} />
           </button>
         </div>

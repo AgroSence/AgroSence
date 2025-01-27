@@ -46,7 +46,7 @@ const FeatureCard = ({ title, description, image, index }) => {
               <p className="text-muted mb-0">{description}</p>
             </div>
             <Link to={linkPaths[title]}>
-            <button className="btn btn-success px-4 py-2">CLICK HERE</button>
+            <button className="btn px-4 py-3 text-white fw-medium" style={{backgroundColor:"#34a853", borderRadius:"0px 25px 25px 25px"}}>CLICK HERE</button>
             </Link>
           </div>
         </div>

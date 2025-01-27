@@ -62,7 +62,7 @@ const Chatbot = () => {
           {/* Top Section - Logo and Title */}
           <div
             className="chatbox-header p-2"
-            style={{ backgroundColor: "#34a853" }}
+            style={{ backgroundColor: "#009444" }}
           >
             <img
               src={resource.Chatbot.src}
@@ -90,7 +90,7 @@ const Chatbot = () => {
                   <img
                     src={resource.Chatbot.src}
                     alt={resource.Chatbot.alt}
-                    className="chatbox-image border"
+                    className="chatbox-image border border-2 border-success"
                   />
                 )}
                 <span>{chat.message}</span>

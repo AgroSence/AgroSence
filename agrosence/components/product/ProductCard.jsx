@@ -5,8 +5,8 @@ const ProductCard = ({ product }) => {
   const { name, price, location, image } = product
 
   return (
-    <div className="card h-100 border-0 shadow-lg">
-      <div className="position-relative p-1">
+    <div className="card h-100 border-0" style={{borderRadius:"8px 8px 100px 8px"}}>
+      <div className="position-relative">
         <img
           src={image || "/placeholder.svg"}
           className="card-img-top"
@@ -26,9 +26,9 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className="d-flex justify-content-end align-item-end">
-        <div className="" style={{ backgroundColor:"lightgrey",padding:"10px 2px 2px 10px",borderRadius:"37px 0px 0px 0px "}}>
-          <button style={{width:"45px",borderRadius:"50%", backgroundColor:"#34a853"}} className="btn p-2">
+      <div className="d-flex justify-content-end align-item-center" style={{height:"70px"}}>
+        <div className="" style={{backgroundColor:"#eaeaea",padding:"10px 2px 2px 10px",borderRadius:"30px 0px 0px 0px "}}>
+          <button style={{width:"45px",borderRadius:"50%", backgroundColor:"#34a853"}} className="btn p-2 text-white">
             <BsCartPlus size={20} />
           </button>
         </div>

@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { resource } from "../resource";
 import { FaPaperPlane } from "react-icons/fa"; // Send icon
+import axios from "axios";
 
 const Chatbot = () => {
   const [isChatboxVisible, setIsChatboxVisible] = useState(false);
   const [message, setMessage] = useState(""); // Stores user's message
   const [isLoading, setIsLoading] = useState(false); // For showing the loading effect
   const [chatHistory, setChatHistory] = useState([]); // Stores the chat history
+
+  // Show welcome message when chatbot is opened
+  useEffect(() => {
+    if (isChatboxVisible) {
+      setChatHistory([
+        { sender: "bot", message: "Welcome! How can I assist you today?" },
+      ]);
+    }
+  }, [isChatboxVisible]);
 
   // Toggle the visibility of the chatbox
   const handleChatbotClick = () => {
@@ -16,29 +26,34 @@ const Chatbot = () => {
   // Handle message input change
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
-    setIsLoading(true); // Start loading when user starts typing
   };
 
   // Handle sending the message
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (message.trim()) {
       // Add user message to chat history
       setChatHistory([...chatHistory, { sender: "user", message: message }]);
       setMessage(""); // Clear the input field after sending
       setIsLoading(true); // Set loading while bot is responding
 
-      // Simulate chatbot response
-      setTimeout(() => {
-        let botMessage = "Hello"; // Basic response for "Hello"
-        if (message.toLowerCase() === "hello") {
-          botMessage = "Hello! How can I assist you today?";
-        }
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/agriculture/faq?q=${message}`
+        );
+        const botMessage = response.data.answer;
+
         setChatHistory((prevChatHistory) => [
           ...prevChatHistory,
           { sender: "bot", message: botMessage },
         ]);
-        setIsLoading(false); // Stop loading after bot replies
-      }, 1500); // Delay the bot's reply for effect
+      } catch (error) {
+        setChatHistory((prevChatHistory) => [
+          ...prevChatHistory,
+          { sender: "bot", message: "Sorry, I couldn't understand your question." },
+        ]);
+      }
+
+      setIsLoading(false); // Stop loading after bot replies
     }
   };
 
@@ -73,11 +88,6 @@ const Chatbot = () => {
           </div>
           {/* Body Section */}
           <div className="chatbox-body text-dark p-1">
-            <p className="chat-message bot-message">
-              Welcome! How can I assist you today?
-            </p>
-            {isLoading && <p className="loading">...</p>}{" "}
-            {/* Show loading effect when typing */}
             {/* Display chat history */}
             {chatHistory.map((chat, index) => (
               <div
@@ -96,6 +106,7 @@ const Chatbot = () => {
                 <span>{chat.message}</span>
               </div>
             ))}
+            {isLoading && <p className="loading">...</p>} {/* Show loading effect when typing */}
           </div>
 
           {/* Bottom Section - Input and Send Button */}
@@ -104,7 +115,7 @@ const Chatbot = () => {
               type="text"
               value={message}
               onChange={handleMessageChange}
-              placeholder="Type your message..."
+              placeholder="Ask about farming..."
               className="chatbox-input"
             />
             <button onClick={handleSendMessage} className="send-button">

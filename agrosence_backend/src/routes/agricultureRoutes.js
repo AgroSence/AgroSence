@@ -3,17 +3,17 @@ const router = express.Router();
 const agricultureFAQ = require("../data/agricultureFAQ");
 
 // Basic keyword matching function
+// Inside findAnswer function, implement fuzzy search (using fuse.js or similar)
 const findAnswer = (query) => {
-  // Convert query to lowercase for case-insensitive comparison
   const queryLower = query.toLowerCase();
-  
-  // Find the first FAQ where the question includes any keyword from the user's query
+
+  // Try matching the question with fuzzy search logic or a list of common variations
   for (let faq of agricultureFAQ) {
     if (faq.question.toLowerCase().includes(queryLower)) {
-      return faq.answer; // Return the answer if a match is found
+      return faq.answer;
     }
   }
-  return "Sorry, I couldn't find an answer to your question."; // If no match found
+  return "Sorry, I couldn't find an answer to your question."; // Fallback response
 };
 
 router.get("/faq", (req, res) => {

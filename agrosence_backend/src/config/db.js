@@ -1,18 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-// MongoDB URI
-const uri = "mongodb+srv://workwithdhruv05:agrosence@agrosencecluster.1cxr0.mongodb.net/?retryWrites=true&w=majority&appName=AgrosenceCluster";
-
-// Function to connect to MongoDB
-const connectToDatabase = async () => {
-  try {
-    // Connecting to MongoDB
-    await mongoose.connect(uri);
-    console.log("MongoDB connected successfully!");
-  } catch (error) {
-    console.error("MongoDB connection failed:", error);
-    process.exit(1); // Exit the process if MongoDB connection fails
-  }
+const connectDB = async () => {
+    try {
+        await mongoose.connect("mongodb://127.0.0.1:27017/AgroSence", {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log("MongoDB Connected...");
+    } catch (error) {
+        console.error("MongoDB Connection Failed:", error);
+        process.exit(1);
+    }
 };
 
-module.exports = connectToDatabase;
+module.exports = connectDB;

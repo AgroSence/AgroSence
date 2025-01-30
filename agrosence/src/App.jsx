@@ -13,7 +13,6 @@ import SignupPage from "../pages/Signup";
 import Chatbot from "../components/Chatbot";
 import Products from "../pages/Product";
 import OrderHistory from "../pages/OrderHistory";
-import Admin  from "../AdminPanel/pages/AdminPanel";
 
 const App = () => {
   return (
@@ -41,7 +40,6 @@ const AppContent = () => {
 
         {/* Protected Routes */}
         <Route path="/Home" element={<Home />} />
-        <Route path="/Admin" element={<Admin />} />
         <Route path="/About" element={<About />} />
         <Route path="/ContactUs" element={<Contact />} />
         <Route path="/Feature" element={<Feature />} />

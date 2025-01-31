@@ -3,7 +3,6 @@ const connectDB = require("./src/config/db");
 const contactFormRoutes = require('./src/routes/contactFormRoutes');
 const cors = require("cors");
 require("dotenv").config();
-
 const authRoutes = require("./src/routes/authRoutes");
 const agricultureRoutes = require("./src/routes/agricultureRoutes");
 
@@ -17,7 +16,7 @@ app.use(cors());
 connectDB();
 
 // Routes
-app.use('/api/contact', contactFormRoutes);
+app.use("/api/contact", contactFormRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/agriculture", agricultureRoutes);
 

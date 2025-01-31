@@ -27,3 +27,19 @@ exports.submitForm = async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+exports.deleteContact = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedContact = await ContactForm.findByIdAndDelete(id);
+
+    if (!deletedContact) {
+      return res.status(404).json({ message: "Contact not found" });
+    }
+
+    res.status(200).json({ message: "Contact deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};

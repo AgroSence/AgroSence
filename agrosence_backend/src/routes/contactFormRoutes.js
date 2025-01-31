@@ -1,9 +1,8 @@
 const express = require("express");
-const router = express.Router(); // ✅ Define the router
-
+const router = express.Router();
 const ContactForm = require("../models/ContactFormModel");
 
-// GET all contact form submissions
+// ✅ GET all contact form submissions
 router.get("/contacts", async (req, res) => {
     try {
         const contacts = await ContactForm.find();
@@ -30,5 +29,21 @@ router.get("/contacts", async (req, res) => {
     }
 });
 
-// ✅ Export the router
+// ✅ DELETE a contact by ID
+router.delete("/contacts/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedContact = await ContactForm.findByIdAndDelete(id);
+
+        if (!deletedContact) {
+            return res.status(404).json({ error: "Contact not found" });
+        }
+
+        res.status(200).json({ message: "Contact deleted successfully", data: { id } });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 module.exports = router;

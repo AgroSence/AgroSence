@@ -13,6 +13,7 @@ import SignupPage from "../pages/Signup";
 import Chatbot from "../components/Chatbot";
 import Products from "../pages/Product";
 import OrderHistory from "../pages/OrderHistory";
+import GovSchemes from "../pages/GovScheme";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const AppContent = () => {
         <Route path="/About" element={<About />} />
         <Route path="/ContactUs" element={<Contact />} />
         <Route path="/Feature" element={<Feature />} />
+        <Route path="/features/government-schemes" element={<GovSchemes />} />
         <Route path="/Setting" element={<Setting />} />
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/product" element={<Products />} />

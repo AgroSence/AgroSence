@@ -28,7 +28,13 @@ import MarketAccess2 from './src/assets/Feature/Market Access.png'
 import FarmingResource2 from './src/assets/Feature/Resource.png'
 import Chatbot from './src/assets/Chatbot.jpg'
 import Chatbot1 from './src/assets/Chatbot1.gif'
+import GovBG from './src/assets/Feature/GovSchemeBg.jpeg'
+
 const resource = {
+    GovBG:{
+        src:GovBG,
+        alt:"Government Scheme"
+    },
     Chatbot1:{
         src:Chatbot1,
         alt:"Chatbot1"

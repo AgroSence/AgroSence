@@ -395,4 +395,35 @@ html {
   }
 }
 
-/* chatbot */
+/* Government Scheme */
+.scheme-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.scheme-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.quick-reports {
+  height: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.news-item {
+  transition: background-color 0.2s;
+}
+
+.news-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.card-background {
+  transition: opacity 0.2s;
+}
+
+.scheme-card:hover .card-background {
+  opacity: 0.3;
+}
+

@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import {
   BsGrid1X2Fill,
   BsBox,
-  BsClockHistory,
-  BsTranslate,
-  BsStarFill,
-  BsCreditCard,
+  BsBookmark,
+  BsBarChart,
+  BsFileText,
+  BsClock,
+  BsLifePreserver,
   BsHouseFill,
   BsGearFill,
-  BsPeopleFill,
   BsPhoneFill,
-  BsSearch  
-  ,BsBoxArrowRight,
+  BsTools,
+  BsSearch,
+  BsBoxArrowRight,
   BsX,
 } from "react-icons/bs";
 
@@ -44,56 +45,66 @@ const Sidebar = () => {
 
           <div className="mb-2">
             <Link
-              to="/Product"
+              to="/UserHistory"
+              className="d-flex align-items-center text-decoration-none text-secondary p-2"
+            >
+              <BsClock className="me-3" />
+              <span>User History</span>
+            </Link>
+          </div>
+
+          <div className="mb-2">
+            <Link
+              to="/Bookmarks"
+              className="d-flex align-items-center text-decoration-none text-secondary p-2"
+            >
+              <BsBookmark className="me-3" />
+              <span>Bookmarks / Collection</span>
+            </Link>
+          </div>
+
+          <div className="mb-2">
+            <Link
+              to="/AppUsage"
+              className="d-flex align-items-center text-decoration-none text-secondary p-2"
+            >
+              <BsBarChart className="me-3" />
+              <span>Analytic of App Usage</span>
+            </Link>
+          </div>
+
+          <div className="mb-2">
+            <Link
+              to="/Reports"
+              className="d-flex align-items-center text-decoration-none text-secondary p-2"
+            >
+              <BsFileText className="me-3" />
+              <span>Farming Report</span>
+            </Link>
+          </div>
+
+          <div className="mb-2">
+            <Link
+              to="/Reports"
               className="d-flex align-items-center text-decoration-none text-secondary p-2"
             >
               <BsBox className="me-3" />
-              <span>Products</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link
-              to="/OrderHistory"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
-              <BsClockHistory className="me-3" />
-              <span>Order History</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link
-              to="/"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
-              <BsTranslate className="me-3" />
-              <span>Manage Language</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link
-              to="/"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
-              <BsStarFill className="me-3" />
-              <span>Customer Review</span>
+              <span>Farming Routine</span>
             </Link>
           </div>
 
           <div className="mb-4">
             <Link
-              to="/"
+              to="/QuickSupport"
               className="d-flex align-items-center text-decoration-none text-secondary p-2"
             >
-              <BsCreditCard className="me-3" />
-              <span>Payment</span>
+              <BsLifePreserver className="me-3" />
+              <span>Quick Support / Feedback</span>
             </Link>
           </div>
 
           <div className="border-top pt-4">
-            <small className="text-muted px-2">PAGES</small>
+            <small className="text-muted px-2 fw-bold">Access Other Features</small>
 
             <div className="mt-2">
               <Link
@@ -110,18 +121,8 @@ const Sidebar = () => {
                 to="/Feature"
                 className="d-flex align-items-center text-decoration-none text-secondary p-2"
               >
-                <BsGearFill className="me-3" />
+                <BsTools className="me-3" />
                 <span>Features</span>
-              </Link>
-            </div>
-
-            <div className="mb-2">
-              <Link
-                to="/"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
-                <BsPeopleFill className="me-3" />
-                <span>Team</span>
               </Link>
             </div>
 
@@ -144,7 +145,9 @@ const Sidebar = () => {
                 <span>Settings</span>
               </Link>
             </div>
+          </div>
 
+          <div className="border-top pt-4">
             <div className="mb-2">
               <Link
                 to="/"
@@ -222,56 +225,66 @@ const Sidebar = () => {
 
           <div className="mb-2">
             <Link
-              to="/Product"
+              to="/UserHistory"
+              className="d-flex align-items-center text-decoration-none text-secondary p-2"
+            >
+              <BsClock className="me-3" />
+              <span>User History</span>
+            </Link>
+          </div>
+
+          <div className="mb-2">
+            <Link
+              to="/Bookmarks"
+              className="d-flex align-items-center text-decoration-none text-secondary p-2"
+            >
+              <BsBookmark className="me-3" />
+              <span>Bookmarks / Collection</span>
+            </Link>
+          </div>
+
+          <div className="mb-2">
+            <Link
+              to="/AppUsage"
+              className="d-flex align-items-center text-decoration-none text-secondary p-2"
+            >
+              <BsBarChart className="me-3" />
+              <span>Analytic of App Usage</span>
+            </Link>
+          </div>
+
+          <div className="mb-2">
+            <Link
+              to="/Reports"
+              className="d-flex align-items-center text-decoration-none text-secondary p-2"
+            >
+              <BsFileText className="me-3" />
+              <span>Farming Report</span>
+            </Link>
+          </div>
+
+          <div className="mb-2">
+            <Link
+              to="/Reports"
               className="d-flex align-items-center text-decoration-none text-secondary p-2"
             >
               <BsBox className="me-3" />
-              <span>Products</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link
-              to="/OrderHistory"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
-              <BsClockHistory className="me-3" />
-              <span>Order History</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link
-              to="/"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
-              <BsTranslate className="me-3" />
-              <span>Manage Language</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link
-              to="/"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
-              <BsStarFill className="me-3" />
-              <span>Customer Review</span>
+              <span>Farming Routine</span>
             </Link>
           </div>
 
           <div className="mb-4">
             <Link
-              to="/"
+              to="/QuickSupport"
               className="d-flex align-items-center text-decoration-none text-secondary p-2"
             >
-              <BsCreditCard className="me-3" />
-              <span>Payment</span>
+              <BsLifePreserver className="me-3" />
+              <span>Quick Support / Feedback</span>
             </Link>
           </div>
 
           <div className="border-top pt-4">
-            <small className="text-muted px-2">PAGES</small>
+            <small className="text-muted px-2 fw-bold">Access Other Features</small>
 
             <div className="mt-2">
               <Link
@@ -288,18 +301,8 @@ const Sidebar = () => {
                 to="/Feature"
                 className="d-flex align-items-center text-decoration-none text-secondary p-2"
               >
-                <BsGearFill className="me-3" />
+                <BsTools className="me-3" />
                 <span>Features</span>
-              </Link>
-            </div>
-
-            <div className="mb-2">
-              <Link
-                to="/About"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
-                <BsPeopleFill className="me-3" />
-                <span>Team</span>
               </Link>
             </div>
 

@@ -1,9 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const ContactForm = require("../models/ContactFormModel");
+const { submitForm } = require("../controllers/ContactFormController");
+
+// ✅ ADD MISSING POST ROUTE FOR FORM SUBMISSION
+router.post("/submit", submitForm); // 🔥 This was missing!
 
 // ✅ GET all contact form submissions
-router.get("/contacts", async (req, res) => {
+router.get("/submit", async (req, res) => {
     try {
         const contacts = await ContactForm.find();
         const totalCount = await ContactForm.countDocuments();
@@ -13,7 +17,7 @@ router.get("/contacts", async (req, res) => {
 
         res.status(200).json({
             data: contacts.map(contact => ({
-                id: contact._id, // ✅ Convert _id to id
+                id: contact._id,
                 name: contact.name,
                 mobile: contact.mobile,
                 email: contact.email,
@@ -21,7 +25,7 @@ router.get("/contacts", async (req, res) => {
                 message: contact.message,
                 dateSubmitted: contact.dateSubmitted
             })),
-            total: totalCount, // ✅ Include total count
+            total: totalCount,
         });
     } catch (error) {
         console.error(error);

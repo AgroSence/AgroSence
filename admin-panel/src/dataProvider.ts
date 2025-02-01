@@ -12,7 +12,7 @@ const customDataProvider = {
   getList: async (resource, params) => {
     let url = "";
     if (resource === "contacts") {
-      url = `${API_URL}/contact/contacts`;
+      url = `${API_URL}/contact/submit`;
     } else if (resource === "users") {
       url = `${API_URL}/auth/users`;
     } else {

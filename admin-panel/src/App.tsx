@@ -15,13 +15,27 @@ import {
 import customDataProvider from "./dataProvider";
 import authProvider from "./authProvider";
 
+// For User List
+const UserList = () => (
+  <List>
+    <Datagrid>
+      <TextField source="id" />
+      <TextField source="name" />
+      <TextField source="mobile" /> {/* Check if this is 'mobile' or 'phoneNumber' */}
+      <TextField source="state" />
+      <TextField source="address" />
+    </Datagrid>
+  </List>
+);
+
+// For Contact List
 const ContactList = () => (
   <List>
     <Datagrid>
       <TextField source="id" />
       <TextField source="name" />
-      <TextField source="mobile" />
-      <TextField source="email" />
+      <TextField source="mobile" /> {/* Ensure correct field name */}
+      <TextField source="email" /> {/* Ensure email exists */}
       <TextField source="address" />
       <TextField source="message" />
       <TextField source="dateSubmitted" />
@@ -30,17 +44,6 @@ const ContactList = () => (
   </List>
 );
 
-const UserList = () => (
-  <List>
-    <Datagrid>
-      <TextField source="id" />
-      <TextField source="name" />
-      <TextField source="mobile" />
-      <TextField source="state" />
-      <TextField source="address" />
-    </Datagrid>
-  </List>
-);
 
 const SchemeList = () => (
   <List>

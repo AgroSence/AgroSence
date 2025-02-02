@@ -15,7 +15,7 @@ const customDataProvider = {
     } else if (resource === "users") {
       url = `${API_URL}/auth/users`;
     } else if (resource === "schemes") {
-      url = `${API_URL}/schemes/all`; // ✅ Fetch schemes
+      url = `${API_URL}/schemes/all`; // Make sure this is the correct endpoint for fetching schemes
     } else {
       throw new Error(`Unknown resource: ${resource}`);
     }
@@ -29,19 +29,20 @@ const customDataProvider = {
 
       const transformedData = Array.isArray(data.data)
         ? data.data.map((item) => ({
-            id: item.id || item._id,
+            id: item.id || item._id, // Ensure 'id' exists
             name: item.name,
             description: item.description,
             eligibility: item.eligibility,
             benefits: item.benefits,
             state: item.state,
-            applyLink: item.applyLink, // ✅ Ensure applyLink is included
+            applyLink: item.applyLink, // Make sure applyLink is included in the response
+            ...item,
           }))
         : [];
 
       return {
         data: transformedData,
-        total: transformedData.length,
+        total: typeof data.total === "number" ? data.total : transformedData.length,
       };
     } catch (error) {
       console.error("Error fetching data:", error);

@@ -6,7 +6,7 @@ const Scheme = require("../models/GovSchemeModel");
 router.post("/add", async (req, res) => {
     try {
         const { name, description, eligibility, benefits, state, applyLink } = req.body;
-        
+
         const newScheme = new Scheme({
             name,
             description,
@@ -42,7 +42,7 @@ router.get("/all", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
     try {
         const { name, description, eligibility, benefits, state, applyLink } = req.body;
-        
+
         const updatedScheme = await Scheme.findByIdAndUpdate(
             req.params.id,
             { name, description, eligibility, benefits, state, applyLink }, // ✅ Include applyLink

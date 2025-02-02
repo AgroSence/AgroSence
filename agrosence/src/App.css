@@ -96,7 +96,7 @@ html {
 }
 
 .btn-success {
-  background-color: #4CAF50;
+  background-color: #34a853;
   border: none;
   padding: 8px 16px;
   border-radius: 5px;
@@ -104,7 +104,7 @@ html {
 }
 
 .btn-success:hover {
-  background-color: #45a049;
+  background-color: #34a853;
 }
 
 @media (max-width: 991.98px) {

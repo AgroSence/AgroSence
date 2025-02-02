@@ -1,16 +1,15 @@
 import React from "react";
-import { Admin, Resource, List, Datagrid, TextField, EmailField, DeleteButton } from "react-admin";
+import { Admin, Resource, List, Create, Edit, SimpleForm, TextInput, Datagrid, TextField, EditButton, DeleteButton } from "react-admin";
 import customDataProvider from "./dataProvider";
 import authProvider from "./authProvider";  
 
-// Define a ContactList component
-const ContactList: React.FC = () => (
+const ContactList = () => (
   <List>
     <Datagrid>
       <TextField source="id" />
       <TextField source="name" />
       <TextField source="mobile" />
-      <EmailField source="email" />
+      <TextField source="email" />
       <TextField source="address" />
       <TextField source="message" />
       <TextField source="dateSubmitted" />
@@ -19,7 +18,7 @@ const ContactList: React.FC = () => (
   </List>
 );
 
-const UserList: React.FC = () => (
+const UserList = () => (
   <List>
     <Datagrid>
       <TextField source="id" />
@@ -31,10 +30,50 @@ const UserList: React.FC = () => (
   </List>
 );
 
-const App: React.FC = () => (
+const SchemeList = () => (
+  <List>
+    <Datagrid>
+      <TextField source="id" />
+      <TextField source="name" />
+      <TextField source="description" />
+      <TextField source="eligibility" />
+      <TextField source="benefits" />
+      <TextField source="state" />
+      <EditButton />
+      <DeleteButton />
+    </Datagrid>
+  </List>
+);
+
+const SchemeCreate = () => (
+  <Create>
+    <SimpleForm>
+      <TextInput source="name" />
+      <TextInput source="description" />
+      <TextInput source="eligibility" />
+      <TextInput source="benefits" />
+      <TextInput source="state" />
+    </SimpleForm>
+  </Create>
+);
+
+const SchemeEdit = () => (
+  <Edit>
+    <SimpleForm>
+      <TextInput source="name" />
+      <TextInput source="description" />
+      <TextInput source="eligibility" />
+      <TextInput source="benefits" />
+      <TextInput source="state" />
+    </SimpleForm>
+  </Edit>
+);
+
+const App = () => (
   <Admin dataProvider={customDataProvider} authProvider={authProvider}>
     <Resource name="contacts" list={ContactList} />
-    <Resource name="users" list={UserList} /> {/* Add User resource here */}
+    <Resource name="users" list={UserList} />
+    <Resource name="schemes" list={SchemeList} create={SchemeCreate} edit={SchemeEdit} />
   </Admin>
 );
 

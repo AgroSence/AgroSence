@@ -5,19 +5,20 @@
     require("dotenv").config();
     const authRoutes = require("./src/routes/authRoutes");
     const agricultureRoutes = require("./src/routes/agricultureRoutes");
-
+    const schemeRoutes = require("./src/routes/govSchemeRoutes");
     const app = express();
-
+    
     // Middleware
     app.use(express.json());
     app.use(cors());
-
+    
     // Database Connection
     connectDB();
 
     // Routes
     app.use("/api/contact", contactFormRoutes);
     app.use("/api/auth", authRoutes);
+    app.use("/api/schemes", schemeRoutes);
     app.use("/api/agriculture", agricultureRoutes);
 
     const PORT = process.env.PORT || 5000;

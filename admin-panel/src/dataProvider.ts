@@ -8,13 +8,14 @@ const dataProvider = simpleRestProvider(API_URL, httpClient);
 const customDataProvider = {
   ...dataProvider,
 
-  // Overriding the getList function
   getList: async (resource, params) => {
     let url = "";
     if (resource === "contacts") {
       url = `${API_URL}/contact/submit`;
     } else if (resource === "users") {
       url = `${API_URL}/auth/users`;
+    } else if (resource === "schemes") {
+      url = `${API_URL}/schemes/all`; // ✅ Fetch schemes
     } else {
       throw new Error(`Unknown resource: ${resource}`);
     }
@@ -28,14 +29,19 @@ const customDataProvider = {
 
       const transformedData = Array.isArray(data.data)
         ? data.data.map((item) => ({
-            id: item.id || item._id, // Ensure 'id' is present
-            ...item,
+            id: item.id || item._id,
+            name: item.name,
+            description: item.description,
+            eligibility: item.eligibility,
+            benefits: item.benefits,
+            state: item.state,
+            applyLink: item.applyLink, // ✅ Ensure applyLink is included
           }))
         : [];
 
       return {
         data: transformedData,
-        total: typeof data.total === "number" ? data.total : transformedData.length,
+        total: transformedData.length,
       };
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -43,19 +49,54 @@ const customDataProvider = {
     }
   },
 
-  // Overriding the delete function to remove data from the DB
-  
-  delete: async (resource, params) => {
-    const response = await fetch(`${API_URL}/${resource}/${params.id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    });
+  create: async (resource, params) => {
+    if (resource === "schemes") {
+      const response = await fetch(`${API_URL}/schemes/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(params.data),
+      });
 
-    if (!response.ok) {
-      throw new Error("Error deleting item");
+      if (!response.ok) {
+        throw new Error("Error adding scheme");
+      }
+
+      const data = await response.json();
+      return { data: { ...params.data, id: data.scheme._id } };
     }
+    return dataProvider.create(resource, params);
+  },
 
-    return { data: { id: params.id } };
+  update: async (resource, params) => {
+    if (resource === "schemes") {
+      const response = await fetch(`${API_URL}/schemes/update/${params.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(params.data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error updating scheme");
+      }
+
+      return { data: params.data };
+    }
+    return dataProvider.update(resource, params);
+  },
+
+  delete: async (resource, params) => {
+    if (resource === "schemes") {
+      const response = await fetch(`${API_URL}/schemes/delete/${params.id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Error deleting scheme");
+      }
+
+      return { data: { id: params.id } };
+    }
+    return dataProvider.delete(resource, params);
   },
 };
 

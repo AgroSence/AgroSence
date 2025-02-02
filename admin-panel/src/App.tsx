@@ -1,7 +1,19 @@
 import React from "react";
-import { Admin, Resource, List, Create, Edit, SimpleForm, TextInput, Datagrid, TextField, EditButton, DeleteButton } from "react-admin";
+import {
+  Admin,
+  Resource,
+  List,
+  Create,
+  Edit,
+  SimpleForm,
+  TextInput,
+  Datagrid,
+  TextField,
+  EditButton,
+  DeleteButton,
+} from "react-admin";
 import customDataProvider from "./dataProvider";
-import authProvider from "./authProvider";  
+import authProvider from "./authProvider";
 
 const ContactList = () => (
   <List>
@@ -38,6 +50,7 @@ const SchemeList = () => (
       <TextField source="description" />
       <TextField source="eligibility" />
       <TextField source="benefits" />
+      <TextField source="applyLink" /> {/* Ensure applyLink is displayed */}
       <TextField source="state" />
       <EditButton />
       <DeleteButton />
@@ -52,6 +65,7 @@ const SchemeCreate = () => (
       <TextInput source="description" />
       <TextInput source="eligibility" />
       <TextInput source="benefits" />
+      <TextInput source="applyLink" /> {/* Added applyLink input */}
       <TextInput source="state" />
     </SimpleForm>
   </Create>
@@ -64,6 +78,7 @@ const SchemeEdit = () => (
       <TextInput source="description" />
       <TextInput source="eligibility" />
       <TextInput source="benefits" />
+      <TextInput source="applyLink" /> {/* Added applyLink input */}
       <TextInput source="state" />
     </SimpleForm>
   </Edit>

@@ -29,8 +29,158 @@ import FarmingResource2 from './src/assets/Feature/Resource.png'
 import Chatbot from './src/assets/Chatbot.jpg'
 import Chatbot1 from './src/assets/Chatbot1.gif'
 import GovBG from './src/assets/Feature/GovSchemeBg.jpeg'
+import AndhraPradesh from "./src/assets/scheme/AndhraPradesh.jpeg";
+import ArunachalPradesh from "./src/assets/scheme/ArunachalPradesh.jpeg";
+import Assam from "./src/assets/scheme/Asssam.jpeg";
+import Bihar from "./src/assets/scheme/Bihar.jpeg";
+import Chhattisgarh from "./src/assets/scheme/Chhattisgarh.png";
+import Goa from "./src/assets/scheme/Goa.png";
+import Gujarat from "./src/assets/scheme/Gujarat.jpeg";
+import Haryana from "./src/assets/scheme/Haryana.jpeg";
+import HimachalPradesh from "./src/assets/scheme/Himachal Pradesh.jpeg";
+import Jharkhand from "./src/assets/scheme/Jharkhand.jpeg";
+import Karnataka from "./src/assets/scheme/Karnataka.jpeg";
+import Kerala from "./src/assets/scheme/Kerala.jpeg";
+import MadhyaPradesh from "./src/assets/scheme/MadhyaPradesh.jpeg";
+import Maharashtra from "./src/assets/scheme/Maharastra.jpeg";
+import Manipur from "./src/assets/scheme/Manipur.jpeg";
+import Meghalaya from "./src/assets/scheme/Meghalaya.png";
+import Mizoram from "./src/assets/scheme/Mizoram.jpeg";
+import Nagaland from "./src/assets/scheme/Nagaland.jpeg";
+import Odisha from "./src/assets/scheme/Odisha.png";
+import Punjab from "./src/assets/scheme/Punjab.jpeg";
+import Rajasthan from "./src/assets/scheme/Rajasthan.jpeg";
+import Sikkim from "./src/assets/scheme/Sikkim.png";
+import TamilNadu from "./src/assets/scheme/Tamil Nadu.jpeg";
+import Telangana from "./src/assets/scheme/Telangana.jpeg";
+import Tripura from "./src/assets/scheme/Tripura.jpeg";
+import UttarPradesh from "./src/assets/scheme/UP.jpeg";
+import Uttarakhand from "./src/assets/scheme/Uttarakhand.jpeg";
+import WestBengal from "./src/assets/scheme/West Bengal.png";
+import MarketAccessBG from './src/assets/Feature/MarketAccessBG.jpg';
+import MarketAccessHeroBG from './src/assets/Feature/MarketAccessHeroBG.jpg'
 
 const resource = {
+    MarketAccessHeroBG:{
+        src: MarketAccessHeroBG,
+        alt: "Market Access Hero BG",
+    },
+    MarketAccessBG:{
+        src:MarketAccessBG,
+        alt:"Market Access BG",
+    },
+    AndhraPradesh: {
+        src: AndhraPradesh,
+        alt: "Andhra Pradesh Scheme"
+    },
+    ArunachalPradesh: {
+        src: ArunachalPradesh,
+        alt: "Arunachal Pradesh Scheme"
+    },
+    Assam: {
+        src: Assam,
+        alt: "Assam Scheme"
+    },
+    Bihar: {
+        src: Bihar,
+        alt: "Bihar Scheme"
+    },
+    Chhattisgarh: {
+        src: Chhattisgarh,
+        alt: "Chhattisgarh Scheme"
+    },
+    Goa: {
+        src: Goa,
+        alt: "Goa Scheme"
+    },
+    Gujarat: {
+        src: Gujarat,
+        alt: "Gujarat Scheme"
+    },
+    Haryana: {
+        src: Haryana,
+        alt: "Haryana Scheme"
+    },
+    HimachalPradesh: {
+        src: HimachalPradesh,
+        alt: "Himachal Pradesh Scheme"
+    },
+    Jharkhand: {
+        src: Jharkhand,
+        alt: "Jharkhand Scheme"
+    },
+    Karnataka: {
+        src: Karnataka,
+        alt: "Karnataka Scheme"
+    },
+    Kerala: {
+        src: Kerala,
+        alt: "Kerala Scheme"
+    },
+    MadhyaPradesh: {
+        src: MadhyaPradesh,
+        alt: "Madhya Pradesh Scheme"
+    },
+    Maharashtra: {
+        src: Maharashtra,
+        alt: "Maharashtra Scheme"
+    },
+    Manipur: {
+        src: Manipur,
+        alt: "Manipur Scheme"
+    },
+    Meghalaya: {
+        src: Meghalaya,
+        alt: "Meghalaya Scheme"
+    },
+    Mizoram: {
+        src: Mizoram,
+        alt: "Mizoram Scheme"
+    },
+    Nagaland: {
+        src: Nagaland,
+        alt: "Nagaland Scheme"
+    },
+    Odisha: {
+        src: Odisha,
+        alt: "Odisha Scheme"
+    },
+    Punjab: {
+        src: Punjab,
+        alt: "Punjab Scheme"
+    },
+    Rajasthan: {
+        src: Rajasthan,
+        alt: "Rajasthan Scheme"
+    },
+    Sikkim: {
+        src: Sikkim,
+        alt: "Sikkim Scheme"
+    },
+    TamilNadu: {
+        src: TamilNadu,
+        alt: "Tamil Nadu Scheme"
+    },
+    Telangana: {
+        src: Telangana,
+        alt: "Telangana Scheme"
+    },
+    Tripura: {
+        src: Tripura,
+        alt: "Tripura Scheme"
+    },
+    UttarPradesh: {
+        src: UttarPradesh,
+        alt: "Uttar Pradesh Scheme"
+    },
+    Uttarakhand: {
+        src: Uttarakhand,
+        alt: "Uttarakhand Scheme"
+    },
+    WestBengal: {
+        src: WestBengal,
+        alt: "West Bengal Scheme"
+    },
     GovBG:{
         src:GovBG,
         alt:"Government Scheme"

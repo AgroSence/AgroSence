@@ -14,6 +14,7 @@ import Chatbot from "../components/Chatbot";
 import Products from "../pages/Product";
 import OrderHistory from "../pages/OrderHistory";
 import GovSchemes from "../pages/GovScheme";
+import MarketAccess from "../pages/MarketAccess";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const AppContent = () => {
         <Route path="/ContactUs" element={<Contact />} />
         <Route path="/Feature" element={<Feature />} />
         <Route path="/features/government-schemes" element={<GovSchemes />} />
+        <Route path="/features/MarketAccess" element={<MarketAccess />} />
         <Route path="/Setting" element={<Setting />} />
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/product" element={<Products />} />

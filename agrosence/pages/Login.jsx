@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { resource } from "../resource"; // Replace this with your actual resource imports
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -17,8 +16,11 @@ const LoginPage = () => {
         mobile: phone,
         password: password,
       });
+
       if (response.status === 200) {
-        navigate("/Home");
+        // ✅ Store auth token in localStorage
+        localStorage.setItem("authToken", response.data.token);
+        navigate("/Home"); // Redirect to Home Page
       }
     } catch (error) {
       setErrorMessage("Invalid phone number or password.");
@@ -34,7 +36,7 @@ const LoginPage = () => {
       </div>
       <div className="w-100 d-flex justify-content-center align-items-center flex-column flex-md-row">
         <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4">
-          <img src={resource.Register.src} alt={resource.Register.alt} className="img-fluid" style={{ maxHeight: "40%" }} />
+          <img src="/images/login-image.svg" alt="Login" className="img-fluid" style={{ maxHeight: "40%" }} />
         </div>
         <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4">
           <div className="container bg-white p-5 rounded shadow-lg" style={{ maxWidth: "500px" }}>
@@ -44,13 +46,31 @@ const LoginPage = () => {
             <form onSubmit={handleLogin}>
               <div className="mb-3">
                 <label htmlFor="phone" className="form-label fs-5">Enter Phone No.</label>
-                <input type="text" id="phone" className="form-control fs-6" placeholder="Enter your phone number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                <input
+                  type="text"
+                  id="phone"
+                  className="form-control fs-6"
+                  placeholder="Enter your phone number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
               </div>
               <div className="mb-4">
                 <label htmlFor="password" className="form-label fs-5">Password</label>
-                <input type="password" id="password" className="form-control fs-6" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input
+                  type="password"
+                  id="password"
+                  className="form-control fs-6"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
               </div>
-              <button type="submit" className="btn w-100" style={{ backgroundColor: "#34a853", color: "white" }}>Sign in</button>
+              <button type="submit" className="btn w-100" style={{ backgroundColor: "#34a853", color: "white" }}>
+                Sign in
+              </button>
             </form>
           </div>
         </div>

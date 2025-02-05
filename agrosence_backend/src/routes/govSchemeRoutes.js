@@ -27,15 +27,23 @@ router.post("/add", async (req, res) => {
 module.exports = router;
 
 // ✅ Get All Schemes
-router.get("/all", async (req, res) => {
-    try {
-        const schemes = await Scheme.find();
-        res.json({ data: schemes, total: schemes.length }); // ✅ Ensure applyLink is included
-    } catch (error) {
-        console.error("Error fetching schemes:", error);
-        res.status(500).json({ error: "Server error" });
-    }
-});
+// Example backend route handler
+router.get("/getSchemes", async (req, res) => {
+    const { selectedState } = req.query;
+  
+    const sanitizedState = selectedState.trim().toLowerCase(); // User input normalization
+    const schemes = await Scheme.find({
+      $or: [
+        { state: sanitizedState },  // Match by state
+        { state: "All States" },     // Allow 'All States' as a valid selection
+      ],
+    });
+  
+    res.json(schemes);
+  });
+  
+  
+  
 
 
 // ✅ Update Scheme

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SchemeCard from "../components/govscheme/SchemeCard";
 import QuickReports from "../components/govscheme/QuickReport";
 import { Container, Row, Col, Form } from "react-bootstrap";
@@ -7,9 +8,19 @@ import Footer from "../components/Footer";
 import { resource } from "../resource";
 
 const GovSchemes = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate(); // Initialize navigate
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
 
+  // This part is already implemented
+  const handleSchemeClick = (stateName) => {
+    const formattedStateName = stateName.replace(/\b\w/g, (char) => char.toUpperCase());
+    navigate(`/state-schemes/${formattedStateName}`);
+  };
+  
+
+  // States data
   const states = [
+    { name: "All States", mapUrl: `${resource.Logo.src}` },
     { name: "Andhra Pradesh", mapUrl: `${resource.AndhraPradesh.src}` },
     { name: "Arunachal Pradesh", mapUrl: `${resource.ArunachalPradesh.src}` },
     { name: "Assam", mapUrl: `${resource.Assam.src}` },
@@ -48,7 +59,7 @@ const GovSchemes = () => {
   return (
     <>
       <div
-        className="d-flex align-items-center  justify-content-center hero-section position-relative text-white text-center py-5"
+        className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5"
         style={{
           backgroundImage: `url(${resource.GovBG.src})`,
           backgroundSize: "cover",
@@ -67,26 +78,38 @@ const GovSchemes = () => {
       <Header />
       <Container className="py-4 ">
         <div className="text-center mb-4">
-          <p className="lead">
-            Access state-wise government schemes and benefits for farmers
-          </p>
+          <p className="lead">Access state-wise government schemes</p>
+
+          {/* Search Box */}
           <Form.Control
             type="text"
-            placeholder="Search for a state..."
+            placeholder="Search states"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-50 mx-auto mb-3"
+            className="mb-4 w-50 mx-auto"
           />
         </div>
+
         <Row>
           <Col lg={9}>
             <Row xs={1} sm={2} md={3} lg={4} className="g-4">
               {filteredStates.map((state, index) => (
                 <Col key={index}>
-                  <SchemeCard state={state.name} imageUrl={state.mapUrl} />
+                  <SchemeCard
+                    state={state.name}
+                    imageUrl={state.mapUrl}
+                    onClick={() =>
+                      navigate(
+                        `/state-schemes/${state.name
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`
+                      )
+                    }
+                  />
                 </Col>
               ))}
             </Row>
+
             {filteredStates.length === 0 && (
               <p className="text-center text-muted">No states found</p>
             )}

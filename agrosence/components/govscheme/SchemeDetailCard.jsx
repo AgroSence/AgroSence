@@ -5,7 +5,7 @@ import {
   FaExternalLinkAlt,
 } from "react-icons/fa";
 
-const SchemeCard = ({ data, type }) => {
+export const SchemeCard = ({ data, type }) => {
   return (
     <div className="card mb-4 scheme-card h-100 shadow-sm">
       <div className="card-body">

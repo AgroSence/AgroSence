@@ -15,7 +15,7 @@ import WelcomeHomeImg from './src/assets/home/Welcome to word of agriculture.png
 import Jeet from './src/assets/about/Jeet.jpg'
 import Herin from './src/assets/about/Herin.png'
 import Dhruv from './src/assets/about/Dhruv.jpg'
-import KMP from './src/assets/about/Kavindra sir.png'
+import KMP from './src/assets/about/Kavindra sir.jpg'
 import AboutHeader from './src/assets/about/About us.png'
 import ContactBg from './src/assets/contact/ContactHead.png'
 import FeatureBG from './src/assets/Feature/Feature BG.png'

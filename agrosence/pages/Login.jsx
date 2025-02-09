@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { resource } from "../resource";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const LoginPage = () => {
       </div>
       <div className="w-100 d-flex justify-content-center align-items-center flex-column flex-md-row">
         <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4">
-          <img src="/images/login-image.svg" alt="Login" className="img-fluid" style={{ maxHeight: "40%" }} />
+          <img src={resource.Register.src} alt="Login" className="img-fluid" style={{ maxHeight: "40%" }} />
         </div>
         <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4">
           <div className="container bg-white p-5 rounded shadow-lg" style={{ maxWidth: "500px" }}>

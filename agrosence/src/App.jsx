@@ -15,7 +15,7 @@ import Products from "../pages/Product";
 import OrderHistory from "../pages/OrderHistory";
 import GovSchemes from "../pages/GovScheme";
 import MarketAccess from "../pages/MarketAccess";
-import { StateSchemes } from "../pages/StateWiseScheme";
+import StateSchemes from "../pages/StateWiseScheme";
 
 // Function to check if user is authenticated
 const isAuthenticated = () => {

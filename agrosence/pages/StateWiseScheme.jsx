@@ -1,65 +1,94 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { SchemeHeader } from "../components/govscheme/SchemeHeader";
-import { SchemeCard } from "../components/govscheme/SchemeDetailCard";
-import { Spinner } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Spinner } from "react-bootstrap";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { resource } from "../resource";
 
-// Helper function to format state name (e.g., "uttar-pradesh" to "Uttar Pradesh")
-const formatStateName = (state) => {
-  return state
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};
-
-export const StateSchemes = () => {
-  const { stateName } = useParams(); // Get state name from URL
+const StateSchemes = () => {
+  const { stateName } = useParams();
+  const navigate = useNavigate();
   const [schemes, setSchemes] = useState([]);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-        const fetchSchemes = async () => {
-          try {
-            setLoading(true); // Start loading
-            const response = await fetch(`/api/schemes?state=${stateName}`);
-            const data = await response.json();
-            if (data && data.data) {
-              setSchemes(data.data); // Set fetched schemes
-            }
-          } catch (error) {
-            console.error("Error fetching schemes:", error);
-          } finally {
-            setLoading(false); // End loading
-          }
-        };
-      
-        fetchSchemes();
-      }, [stateName]); // Re-fetch when stateName changes
-      
-  return (
-    <div className="state-schemes-page">
-      {/* Render the formatted state name in the header */}
-      <SchemeHeader stateName={formatStateName(stateName)} />
+  const [error, setError] = useState(null);
 
-      <div className="container py-4">
-        {/* Show loading spinner while fetching data */}
-        {loading ? (
-          <div className="text-center">
-            <Spinner animation="border" variant="primary" />
-            <p>Loading schemes...</p>
-          </div>
-        ) : schemes.length === 0 ? (
-          <p className="text-center">No schemes available for {formatStateName(stateName)}.</p>
-        ) : (
-          <div className="row row-cols-1 row-cols-md-2 g-4">
-            {schemes.map((scheme, index) => (
-              <div className="col" key={index}>
-                <SchemeCard scheme={scheme} />
-              </div>
-            ))}
-          </div>
-        )}
+  useEffect(() => {
+    const fetchSchemes = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/schemes/all`);
+        const filteredSchemes = response.data.data.filter(
+          (scheme) => scheme.state.toLowerCase() === stateName.toLowerCase()
+        );
+        setSchemes(filteredSchemes);
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to fetch schemes. Please try again later.");
+        setLoading(false);
+      }
+    };
+
+    fetchSchemes();
+  }, [stateName]);
+
+  return (
+    <>
+      <Header />
+      <div
+        className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5"
+        style={{
+          backgroundImage: `url(${resource.GovBG.src})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "400px",
+        }}
+      >
+        <div
+          className="position-absolute top-0 start-0 w-100 h-100"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        ></div>
+        <h1 className="text-white position-relative display-2 fw-bold">
+          Government Schemes
+        </h1>
       </div>
-    </div>
+      <Container className="py-5">
+        <h2 className="text-center mb-4">{stateName} Government Schemes</h2>
+        <Button variant="primary" onClick={() => navigate(-1)} className="mb-4">
+          Back to States
+        </Button>
+        
+        {loading && <Spinner animation="border" className="d-block mx-auto" />} 
+        {error && <p className="text-danger text-center">{error}</p>}
+        
+        {!loading && !error && schemes.length === 0 && (
+          <p className="text-center text-muted">No schemes available for this state.</p>
+        )}
+
+        <Row xs={1} sm={2} md={3} lg={3} className="g-4">
+          {schemes.map((scheme) => (
+            <Col key={scheme._id}>
+              <Card className="shadow-sm">
+                <Card.Body>
+                  <Card.Title>{scheme.name}</Card.Title>
+                  <Card.Text>{scheme.description}</Card.Text>
+                  <Card.Text>
+                    <strong>Eligibility:</strong> {scheme.eligibility}
+                  </Card.Text>
+                  <Card.Text>
+                    <strong>Benefits:</strong> {scheme.benefits}
+                  </Card.Text>
+                  <Button variant="success" href={scheme.applyLink} target="_blank">
+                    Apply Now
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <Footer />
+    </>
   );
 };
+
+export default StateSchemes;

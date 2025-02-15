@@ -1,44 +1,44 @@
+"use client";
+
 import React from "react";
-import Hero from "../components/marketaccess/MarketHero";
+import { Container, Row, Col } from "react-bootstrap";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
-import ContentSection from "../components/marketaccess/ContentSection";
-import { resource } from "../resource";
+import MarketHero from "../components/marketaccess/MarketHero";
+import Sidebar from "../components/marketaccess/MarketAccessSidebar";
+import ContentArea from "../components/marketaccess/ContentArea";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const MarketAccess = () => {
-  const buyerText =
-    "AgroSense offers buyers a user-friendly platform to explore a wide range of agricultural products, including fresh produce, seeds, fertilizers, and farming tools. Buyers can easily browse product listings with detailed descriptions, images, and prices, making it simple to compare options and choose the best quality items.";
-
-  const sellerText =
-    "AgroSense empowers farmers and sellers to reach a broader market by listing their agricultural products directly on the platform. Sellers can upload product details, including descriptions, prices, and images, making it easy for buyers to find and purchase their goods. The app simplifies the selling process, helping farmers get fair prices by cutting out middlemen and connecting them directly with interested buyers. ";
-
+const MainLayout = () => {
   return (
     <>
       <Header />
-      <div className="market-access-page">
-        <Hero />
-        <div
-          className="content-wrapper"
-          style={{
-            backgroundImage: `url(${resource.MarketAccessHeroBG.src})`,
-            backgroundSize: "cover",
-            backgroundAttachment: "fixed",
-            backgroundPosition: "center",
-            position: "relative",
-          }}
-        >
-          <div className="dark-overlay"></div>
-          <div className="content-container">
-          <div className="dark-overlay position-absolute top-0 start-0 w-100 h-100"
-                   style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}></div>
-            <ContentSection type="buyer" text={buyerText} />
-            <ContentSection type="seller" text={sellerText} />
-          </div>
-        </div>
-      </div>
-      <Footer />
+      <MarketHero />
+
+      <Container fluid>
+        <Row>
+          {/* Sidebar - Always Visible After Hero */}
+          <Col
+            xs={12}
+            md={4}
+            lg={3}
+            className="mt-2 vh-50 overflow-y-auto"
+            style={{
+              position: "relative",
+              top: "0",
+              left: "0",
+            }}
+          >
+            <Sidebar />
+          </Col>
+
+          {/* Content Area */}
+          <Col xs={12} md={8} lg={9} className="content-area px-3 mt-2">
+            <ContentArea />
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };
 
-export default MarketAccess;
+export default MainLayout;

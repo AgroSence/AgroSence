@@ -1,5 +1,6 @@
 const express = require("express");
 const { signup, login } = require("../controllers/authController"); // Removed getUsers since it's defined here
+const authController = require("../controllers/authController");
 const User = require("../models/User");
 const router = express.Router();
 
@@ -41,6 +42,7 @@ router.delete("/users/:id", async (req, res) => {
     }
 });
 
+router.get("/user", authController.getUserProfile);  // ✅ Change `post` to `get`
 router.post("/signup", signup);
 router.post("/login", login);
 

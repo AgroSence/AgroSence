@@ -19,13 +19,6 @@ const Features = () => {
       image: `${resource.CropDetection2.src}`,
     },
     {
-      title: "AI chat bot",
-      description:
-        "Our AI-powered chatbot offers round-the-clock assistance to farmers, providing real-time answers to their queries related to farming practices, pest control, crop management, and weather updates. This feature ensures farmers can always access reliable information to make informed decisions, no matter the time of day.",
-      image: `${resource.Aichatbot2.src}`,
-      isReversed: true,
-    },
-    {
       title: "Resources",
       description:
         "This feature offers a comprehensive library of farming resources, including step-by-step guides, video tutorials, and expert tips. Farmers can access valuable content on various topics like sustainable farming practices, irrigation techniques, soil health, and pest management to improve crop yield and farm productivity.",

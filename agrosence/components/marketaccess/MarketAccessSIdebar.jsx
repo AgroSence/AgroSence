@@ -7,15 +7,16 @@ const Sidebar = () => {
     <Nav className="flex-column p-2 p-sm-4 h-100 border h-auto">
       <div className="d-flex align-items-center">
         <img
-          src={resource.Logo3.src}
-          alt="AgroSence Logo"
+          src={resource.Logo4.src}
+          alt="AgroSense Logo"
           className="img-fluid"
-          style={{ maxWidth: "120px" }}
+          style={{ maxWidth: "100px"}}
         />
-        <h3 className="text-success ">AgroSence</h3>
+        <h3 className="text-dark fw-bold mt-auto mb-3" style={{ fontFamily: "Martel" }}>
+          AgroSense
+        </h3>
       </div>
       <hr />
-
       <Nav.Link className="d-flex align-items-center mb-3 text-dark">
         <FiShoppingCart className="me-2" size={18} />
         <span className="fs-6">Buy</span>

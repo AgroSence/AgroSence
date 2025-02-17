@@ -26,7 +26,7 @@ const Sidebar = () => {
         style={{ width: "250px", zIndex: 1045 }}
       >
         <div className="p-3 border-bottom d-flex justify-content-between align-items-center">
-          <h3 className="m-0">AgroSence</h3>
+          <h3 className="m-0" style={{fontFamily:"martel"}}>AgroSence</h3>
         </div>
 
         <div

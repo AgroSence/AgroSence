@@ -59,8 +59,13 @@ import Uttarakhand from "./src/assets/scheme/Uttarakhand.jpeg";
 import WestBengal from "./src/assets/scheme/West Bengal.png";
 import MarketAccessBG from './src/assets/Feature/MarketAccessBG.jpg';
 import MarketAccessHeroBG from './src/assets/Feature/MarketAccessHeroBG.jpg'
+import Logo4 from "./src/assets/Logo4.png"
 
 const resource = {
+    Logo4:{
+        src:Logo4,
+        alt:"Logo4"
+    },
     MarketAccessHeroBG:{
         src: MarketAccessHeroBG,
         alt: "Market Access Hero BG",

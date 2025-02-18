@@ -20,7 +20,7 @@ const GovSchemes = () => {
 
   // States data
   const states = [
-    { name: "All States", mapUrl: `${resource.Logo.src}` },
+    { name: "All States", mapUrl: `${resource.india.src}` },
     { name: "Andhra Pradesh", mapUrl: `${resource.AndhraPradesh.src}` },
     { name: "Arunachal Pradesh", mapUrl: `${resource.ArunachalPradesh.src}` },
     { name: "Assam", mapUrl: `${resource.Assam.src}` },

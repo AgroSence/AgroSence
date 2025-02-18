@@ -57,11 +57,16 @@ import Tripura from "./src/assets/scheme/Tripura.jpeg";
 import UttarPradesh from "./src/assets/scheme/UP.jpeg";
 import Uttarakhand from "./src/assets/scheme/Uttarakhand.jpeg";
 import WestBengal from "./src/assets/scheme/West Bengal.png";
+import india from "./src/assets/scheme/India.jpeg"
 import MarketAccessBG from './src/assets/Feature/MarketAccessBG.jpg';
 import MarketAccessHeroBG from './src/assets/Feature/MarketAccessHeroBG.jpg'
 import Logo4 from "./src/assets/Logo4.png"
 
 const resource = {
+    india:{
+        src: india,
+        alt: "India"
+    },
     Logo4:{
         src:Logo4,
         alt:"Logo4"

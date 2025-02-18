@@ -292,7 +292,7 @@ html {
 }
 
 .chatbox-footer {
-  background-color: #838282;
+  background-color: #009444;
   display: flex;
   align-items: center;
   margin-top: 10px;
@@ -310,15 +310,15 @@ html {
 .send-button {
   background-color: #009444;
   color: white;
-  border: none;
-  padding: 8px 15px;
+  border: 2px solid ;
+  padding: 6px 10px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 18px;
 }
 
 .send-button:hover {
-  background-color: #45a049;
+  background-color: green;
 }
 
 /* Chatbot */

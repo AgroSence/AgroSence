@@ -80,11 +80,11 @@ const Chatbot = () => {
             style={{ backgroundColor: "#009444" }}
           >
             <img
-              src={resource.Chatbot.src}
-              alt={resource.Chatbot.alt}
+              src={resource.Logo2.src}
+              alt={resource.Logo2.alt}
               className="chatbox-image"
             />
-            <h3>AgroBot</h3>
+            <h3 style={{fontFamily:"martel"}} className="fw-light text-white">AgroBot</h3>
           </div>
           {/* Body Section */}
           <div className="chatbox-body text-dark p-1">

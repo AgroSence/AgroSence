@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 
 const HomeHero = () => {
   return (
-    <Carousel className="hero-carousel" interval={3000} pause={false}>
+    <Carousel className="hero-carousel" interval={2000} pause={false}> 
       <Carousel.Item>
         <div
           className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5"

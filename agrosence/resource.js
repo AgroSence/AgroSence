@@ -61,23 +61,43 @@ import india from "./src/assets/scheme/India.jpeg"
 import MarketAccessBG from './src/assets/Feature/MarketAccessBG.jpg';
 import MarketAccessHeroBG from './src/assets/Feature/MarketAccessHeroBG.jpg'
 import Logo4 from "./src/assets/Logo4.png"
+import s1 from "./src/assets/home/s1.jpg"
+import s2 from "./src/assets/home/s2.jpg"
+import s3 from "./src/assets/home/s3.jpg"
+import s4 from "./src/assets/home/s4.jpg"
 
 const resource = {
-    india:{
+    s1: {
+        src: s1,
+        alt: "s1"
+    },
+    s2: {
+        src: s2,
+        alt: "s2"
+    },
+    s3: {
+        src: s3,
+        alt: "s3"
+    },
+    s4: {
+        src: s4,
+        alt: "s4"
+    },
+    india: {
         src: india,
         alt: "India"
     },
-    Logo4:{
-        src:Logo4,
-        alt:"Logo4"
+    Logo4: {
+        src: Logo4,
+        alt: "Logo4"
     },
-    MarketAccessHeroBG:{
+    MarketAccessHeroBG: {
         src: MarketAccessHeroBG,
         alt: "Market Access Hero BG",
     },
-    MarketAccessBG:{
-        src:MarketAccessBG,
-        alt:"Market Access BG",
+    MarketAccessBG: {
+        src: MarketAccessBG,
+        alt: "Market Access BG",
     },
     AndhraPradesh: {
         src: AndhraPradesh,
@@ -191,25 +211,25 @@ const resource = {
         src: WestBengal,
         alt: "West Bengal Scheme"
     },
-    GovBG:{
-        src:GovBG,
-        alt:"Government Scheme"
+    GovBG: {
+        src: GovBG,
+        alt: "Government Scheme"
     },
-    Chatbot1:{
-        src:Chatbot1,
-        alt:"Chatbot1"
+    Chatbot1: {
+        src: Chatbot1,
+        alt: "Chatbot1"
     },
-    Chatbot:{
-        src:Chatbot,
-        alt:'Chatbot',
+    Chatbot: {
+        src: Chatbot,
+        alt: 'Chatbot',
     },
-    ExpertAdvice:{
-        src:ExpertAdvice,
-        alt:"Expert Advice",
+    ExpertAdvice: {
+        src: ExpertAdvice,
+        alt: "Expert Advice",
     },
-    ExpertAdvice2:{
-        src:ExpertAdvice2,
-        alt:"Expert Advice",
+    ExpertAdvice2: {
+        src: ExpertAdvice2,
+        alt: "Expert Advice",
     },
     Aichatbot2: {
         src: Aichatbot2,

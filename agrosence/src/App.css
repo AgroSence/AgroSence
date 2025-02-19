@@ -175,8 +175,8 @@ html {
 
 /* App.css */
 @media (max-width: 768px) {
-  .navbar {
-    background-color: #252525 !important; /* Set the background color for mobile view */
+  .navbar-nav .nav-item .nav-link{
+    color: black;
   }
 
   .navbar-toggler {

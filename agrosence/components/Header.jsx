@@ -10,8 +10,15 @@ function Header() {
   return (
     <>
       <nav
-        className="navbar navbar-expand-md shadow-sm text-white w-100 fixed-top"
-        style={{ overflowX: "hidden", position: "absolute" }}
+        className="navbar navbar-expand-md shadow-sm text-light w-100 fixed-top"
+        style={{
+          overflowX: "hidden",
+          position: "static",
+          backgroundColor: "#252525",
+          // background: "rgba(255, 255, 255, 0.45)", // Transparent background
+          backdropFilter: "blur(10px)", // Blur effect
+          WebkitBackdropFilter: "blur(10px)", // For Safari support
+        }}
       >
         <div className="container-fluid px-4">
           {/* Logo Section */}
@@ -20,9 +27,9 @@ function Header() {
               src={resource.Logo2.src}
               alt={resource.Logo2.alt}
               className="rounded-circle me-2"
-              style={{ width: "48px", height: "auto" }}
+              style={{ width: "50px", height: "auto" }}
             />
-            <h4 className="logoname mb-0 text-white">
+            <h4 className="logoname mb-0 text-light">
               <b>AgroSense</b>
             </h4>
           </a>
@@ -47,7 +54,7 @@ function Header() {
                 (item) => (
                   <li className="nav-item fs-5" key={item}>
                     <a
-                      className="nav-link position-relative text-white"
+                      className="nav-link position-relative text-light"
                       href={`/${item.replace(/\s+/g, "")}`}
                       style={{ textTransform: "capitalize" }}
                     >
@@ -101,7 +108,7 @@ function Header() {
                   />
                 </div>
               </form>
-{/* 
+              {/* 
               <button className="btn btn-danger ms-3" onClick={handleLogout}>
                 Logout
               </button> */}

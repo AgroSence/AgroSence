@@ -58,6 +58,7 @@ const GovSchemes = () => {
 
   return (
     <>
+    <Header />
       <div
         className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5"
         style={{
@@ -75,7 +76,6 @@ const GovSchemes = () => {
           Government Schemes
         </h1>
       </div>
-      <Header />
       <Container className="py-4 ">
         <div className="text-center mb-4">
           <p className="lead">Access state-wise government schemes</p>

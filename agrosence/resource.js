@@ -13,7 +13,7 @@ import GovScheme from './src/assets/home/gov schemes.png';
 import FarmingResources from './src/assets/home/resources.png';
 import WelcomeHomeImg from './src/assets/home/Welcome to word of agriculture.png';
 import Jeet from './src/assets/about/Jeet.jpg'
-import Herin from './src/assets/about/Herin.png'
+import Herin from './src/assets/about/Herin.jpg'
 import Dhruv from './src/assets/about/Dhruv.jpg'
 import KMP from './src/assets/about/Kavindra sir.jpg'
 import AboutHeader from './src/assets/about/About us.png'
@@ -65,8 +65,13 @@ import s1 from "./src/assets/home/s1.jpg"
 import s2 from "./src/assets/home/s2.jpg"
 import s3 from "./src/assets/home/s3.jpg"
 import s4 from "./src/assets/home/s4.jpg"
+import Login from './src/assets/Logn.jpg'
 
 const resource = {
+    Login:{
+        src:Login,
+        alt:"Login"
+    },
     s1: {
         src: s1,
         alt: "s1"

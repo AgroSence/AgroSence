@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { BsCheck2Square } from "react-icons/bs";
+import loadingGif from "../src/assets/Chatbot2.gif";
 import { resource } from "../resource";
-import loadingGif from "../src/assets/Chatbot2.gif"; // Import your GIF file
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(true); // State for loading animation
+  const [isLoading, setIsLoading] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
-  // Hide loading GIF after 2.5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -21,17 +24,24 @@ const LoginPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", {
-        mobile: phone,
-        password: password,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          mobile: phone,
+          password: password,
+        }
+      );
 
       if (response.status === 200) {
         localStorage.setItem("authToken", response.data.token);
-        navigate("/Home"); // Redirect to Home Page
+        navigate("/Home");
       }
     } catch (error) {
       setErrorMessage("Invalid phone number or password.");
@@ -39,62 +49,151 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="main" style={{ minHeight: "100vh", backgroundColor: "#34a853", overflowY: "auto" }}>
+    <div className="container min-vh-100 d-flex flex-column justify-content-center align-items-center ">
       {isLoading ? (
-        // Loading GIF animation
-        <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
-          <img src={loadingGif} alt="Loading..." style={{ width: "300px", height: "300px" }} />
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "100vh" }}
+        >
+          <img
+            src={loadingGif}
+            alt="Loading..."
+            style={{ width: "300px", height: "300px" }}
+          />
         </div>
       ) : (
-        // Login form after loading animation
-        <>
-          <div className="d-flex justify-content-end p-3">
-            <Link to="/Signup">
-              <button type="button" className="btn btn-light fs-6" style={{ color: "#252525", width: "120px" }}>Sign Up</button>
-            </Link>
-          </div>
-          <div className="w-100 d-flex justify-content-center align-items-center flex-column flex-md-row">
-            <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4">
-              <img src={resource.Register.src} alt="Login" className="img-fluid" style={{ maxHeight: "40%" }} />
+        <div className="row w-100 h-100">
+          <div
+            className="col-12 col-md-6 p-4 d-flex flex-column"
+            style={{
+              height: "600px",
+              border: "1px solid lightgray",
+              borderTopLeftRadius: "10px",
+              borderBottomLeftRadius: "10px",
+            }}
+          >
+            <div className="mb-4 text-center">
+              <img
+                src={resource.Logo4.src}
+                alt="AgroSence Logo"
+                style={{ width: "150px" }}
+              />
             </div>
-            <div className="container w-100 w-md-50 d-flex justify-content-center align-items-center mt-4">
-              <div className="container bg-white p-5 rounded shadow-lg" style={{ maxWidth: "500px" }}>
-                <h2 className="text-center">Sign in</h2>
-                <p className="text-center text-muted fs-4">Hey, Enter your details to login to your account</p>
-                {errorMessage && <p className="text-danger text-center">{errorMessage}</p>}
-                <form onSubmit={handleLogin}>
-                  <div className="mb-3">
-                    <label htmlFor="phone" className="form-label fs-5">Enter Phone No.</label>
-                    <input
-                      type="text"
-                      id="phone"
-                      className="form-control fs-6"
-                      placeholder="Enter your phone number"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="password" className="form-label fs-5">Password</label>
-                    <input
-                      type="password"
-                      id="password"
-                      className="form-control fs-6"
-                      placeholder="Enter your password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <button type="submit" className="btn w-100" style={{ backgroundColor: "#34a853", color: "white" }}>
-                    Sign in
+            <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+              <h1 className="mb-2 text-center">
+                Welcome back to <span className="text-success">AgroSence</span>
+              </h1>
+              <h2 className="mb-4 text-center">Login</h2>
+              {errorMessage && (
+                <p className="text-danger text-center">{errorMessage}</p>
+              )}
+              <form
+                onSubmit={handleLogin}
+                style={{ maxWidth: "450px", width: "100%" }}
+              >
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Enter your phone number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="mb-3 position-relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    className="form-control form-control-lg"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="btn position-absolute end-0 top-50 translate-middle-y bg-transparent border-0"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? <FiEyeOff /> : <FiEye />}
                   </button>
-                </form>
-              </div>
+                </div>
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                  <div className="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input visually-hidden"
+                      id="rememberMe"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                    />
+                    <label
+                      className="form-check-label d-flex align-items-center"
+                      htmlFor="rememberMe"
+                    >
+                      {rememberMe ? (
+                        <BsCheck2Square className="text-success me-2" />
+                      ) : (
+                        <div
+                          className="me-2"
+                          style={{
+                            width: "16px",
+                            height: "16px",
+                            border: "1px solid black",
+                            borderRadius: "3px",
+                          }}
+                        ></div>
+                      )}
+                      Remember me
+                    </label>
+                  </div>
+                  <a href="#" className="text-success text-decoration-none">
+                    Forget Password?
+                  </a>
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-success w-100 btn-lg mb-3"
+                >
+                  Login
+                </button>
+                <p className="text-center">
+                  Don't have an account?{" "}
+                  <Link
+                    to="/Signup"
+                    className="text-success text-decoration-none"
+                  >
+                    Get Started
+                  </Link>
+                </p>
+              </form>
             </div>
           </div>
-        </>
+          <div
+            className="col-md-6 d-none d-md-block position-relative p-0"
+            style={{
+              height: "600px",
+              backgroundImage: `url(${resource.Login.src})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              border: "1px solid lightgray",
+              borderTopRightRadius: "10px",
+              borderBottomRightRadius: "10px",
+            }}
+          >
+            <h2
+              className="fs-4 fw-bold text-center position-absolute w-100 p-4"
+              style={{
+                bottom: "0",
+                fontFamily: "martel",
+                background: "rgba(0, 0, 0, 0.4)",
+                color: "white",
+              }}
+            >
+              "Farm the land, feed the world." 🌾🌍
+            </h2>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -61,20 +61,15 @@ import india from "./src/assets/scheme/India.jpeg"
 import MarketAccessBG from './src/assets/Feature/MarketAccessBG.jpg';
 import MarketAccessHeroBG from './src/assets/Feature/MarketAccessHeroBG.jpg'
 import Logo4 from "./src/assets/Logo4.png"
-import s1 from "./src/assets/home/s1.jpg"
 import s2 from "./src/assets/home/s2.jpg"
 import s3 from "./src/assets/home/s3.jpg"
 import s4 from "./src/assets/home/s4.jpg"
-import Login from './src/assets/Logn.jpg'
+import Login from './src/assets/LoginBG.png'
 
 const resource = {
     Login:{
         src:Login,
         alt:"Login"
-    },
-    s1: {
-        src: s1,
-        alt: "s1"
     },
     s2: {
         src: s2,

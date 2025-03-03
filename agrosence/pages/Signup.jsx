@@ -36,14 +36,14 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
+    <div className="d-flex justify-content-center align-items-center h-75 mt-4">
       <div className="row w-75 shadow rounded overflow-hidden">
         {/* Image Section */}
         <div
           className="col-md-6 d-none d-md-block position-relative p-0"
           style={{
             height: "auto",
-            backgroundImage: `url(${resource.Login.src})`,
+            backgroundImage: `url(${resource.Register.src})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             border: "1px solid lightgray",
@@ -53,7 +53,7 @@ const SignUpPage = () => {
         >
           {/* Positioned Text at Bottom */}
           <h2
-            className="fs-4 fw-bold text-center p-3 position-absolute w-100"
+            className="fs-4 fw-bold text-center p-2 position-absolute w-100"
             style={{
               bottom: "0",
               background: "rgba(0, 0, 0, 0.4)",
@@ -68,7 +68,7 @@ const SignUpPage = () => {
 
         {/* Form Section */}
         <div
-          className="col-md-6 bg-white p-5 d-flex flex-column justify-content-center"
+          className="col-md-6 bg-white p-4 d-flex flex-column justify-content-center"
           style={{
             height: "auto",
             border: "1px solid lightgray",

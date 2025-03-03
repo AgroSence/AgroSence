@@ -8,7 +8,7 @@ const HomeHero = () => {
         <div
           className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5"
           style={{
-            backgroundImage: `url(${resource.s1.src})`,
+            backgroundImage: `url(${resource.s3.src})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
@@ -76,7 +76,7 @@ const HomeHero = () => {
         <div
           className="d-flex align-items-center justify-content-center hero-section position-relative text-white text-center py-5"
           style={{
-            backgroundImage: `url(${resource.s1.src})`,
+            backgroundImage: `url(${resource.s2.src})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",

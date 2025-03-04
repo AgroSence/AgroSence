@@ -36,8 +36,15 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center h-75 mt-4">
-      <div className="row w-75 shadow rounded overflow-hidden">
+    <div
+      className="d-flex justify-content-center align-items-center vh-100"
+      style={{
+        backgroundImage: `url(${resource.Login.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="row shadow rounded overflow-hidden bg-white" style={{ width: "55vw" }}>
         {/* Image Section */}
         <div
           className="col-md-6 d-none d-md-block position-relative p-0"
@@ -51,7 +58,6 @@ const SignUpPage = () => {
             borderBottomLeftRadius: "10px",
           }}
         >
-          {/* Positioned Text at Bottom */}
           <h2
             className="fs-4 fw-bold text-center p-2 position-absolute w-100"
             style={{
@@ -70,7 +76,6 @@ const SignUpPage = () => {
         <div
           className="col-md-6 bg-white p-4 d-flex flex-column justify-content-center"
           style={{
-            height: "auto",
             border: "1px solid lightgray",
             borderTopRightRadius: "10px",
             borderBottomRightRadius: "10px",
@@ -82,23 +87,27 @@ const SignUpPage = () => {
           </p>
           {message && <p className="text-center text-info">{message}</p>}
           <form onSubmit={handleSubmit}>
-            {["name", "mobile", "password", "confirmPassword", "state"].map(
-              (field) => (
-                <div className="mb-2" key={field}>
-                  <label htmlFor={field} className="form-label fs-6">
-                    {field.charAt(0).toUpperCase() + field.slice(1)}
-                  </label>
-                  <input
-                    type={field.includes("password") ? "password" : "text"}
-                    id={field}
-                    className="form-control fs-6"
-                    placeholder={`Enter your ${field}`}
-                    value={formData[field]}
-                    onChange={handleChange}
-                  />
-                </div>
-              )
-            )}
+            {[
+              "name",
+              "mobile",
+              "password",
+              "confirmPassword",
+              "state",
+            ].map((field) => (
+              <div className="mb-2" key={field}>
+                <label htmlFor={field} className="form-label fs-6">
+                  {field.charAt(0).toUpperCase() + field.slice(1)}
+                </label>
+                <input
+                  type={field.includes("password") ? "password" : "text"}
+                  id={field}
+                  className="form-control fs-6"
+                  placeholder={`Enter your ${field}`}
+                  value={formData[field]}
+                  onChange={handleChange}
+                />
+              </div>
+            ))}
             <div className="mb-2">
               <label htmlFor="address" className="form-label fs-6">
                 Address

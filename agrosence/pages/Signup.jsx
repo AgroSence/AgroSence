@@ -44,7 +44,7 @@ const SignUpPage = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="row shadow rounded overflow-hidden bg-white" style={{ width: "55vw" }}>
+      <div className="row shadow overflow-hidden bg-white" style={{ width: "55vw", borderRadius: "30px" }}>
         {/* Image Section */}
         <div
           className="col-md-6 d-none d-md-block position-relative p-0"

@@ -4,7 +4,12 @@ const jwt = require("jsonwebtoken");
 
 exports.signup = async (req, res) => {
     try {
-        const { name, mobile, password, confirmPassword, state, address } = req.body;
+        const { name, mobile, email, password, confirmPassword, state, address, language } = req.body;
+
+        // Validate language
+        if (!["English", "Hindi", "Gujarati"].includes(language)) {
+            return res.status(400).json({ message: "Invalid language selected" });
+        }
 
         if (password !== confirmPassword) {
             return res.status(400).json({ message: "Passwords do not match" });
@@ -17,11 +22,12 @@ exports.signup = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = new User({ name, mobile, password: hashedPassword, state, address });
+        const newUser = new User({ name, mobile, email, password: hashedPassword, state, address, language });
         await newUser.save();
 
         res.status(201).json({ message: "User registered successfully" });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: "Server error" });
     }
 };

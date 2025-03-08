@@ -16,6 +16,7 @@ router.get("/users", async (req, res) => {
             mobile: user.mobile,
             state: user.state,
             address: user.address,
+            language: user.language,
         }));
 
         res.status(200).json({ data: mappedUsers, total: mappedUsers.length });
@@ -42,7 +43,7 @@ router.delete("/users/:id", async (req, res) => {
     }
 });
 
-router.get("/user", authController.getUserProfile);  // ✅ Change `post` to `get`
+router.get("/user", authController.getUserProfile);  
 router.post("/signup", signup);
 router.post("/login", login);
 

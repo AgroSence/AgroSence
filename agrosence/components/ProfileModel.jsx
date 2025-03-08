@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { resource } from "../resource";
 
 const ProfileModal = ({ onClose }) => {
   return (
@@ -10,7 +11,7 @@ const ProfileModal = ({ onClose }) => {
         <div className="profile-header d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center">
             <img
-              src="https://via.placeholder.com/50" // Replace with actual profile image URL
+              src={resource.Dhruv.src}
               alt="User"
               className="rounded-circle me-2"
               style={{ width: "50px", height: "50px" }}

@@ -13,10 +13,10 @@ const HeroSection = () => {
             height: "450px", // Default height for larger screens
           }}
         >
-        <div
+        {/* <div
            className="position-absolute top-0 start-0 w-100 h-100"
            style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
-         ></div>
+         ></div> */}
           <h1 className="text-white position-relative display-2 fw-bold">
             About Us
           </h1>

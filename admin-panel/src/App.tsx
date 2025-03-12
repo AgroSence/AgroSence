@@ -54,8 +54,10 @@ const UserList = () => (
     <Datagrid>
       <TextField source="id" />
       <TextField source="name" />
+      <TextField source="email" />
       <TextField source="mobile" /> {/* Check if this is 'mobile' or 'phoneNumber' */}
       <TextField source="state" />
+      <TextField source="language" />
       <TextField source="address" />
     </Datagrid>
   </List>

@@ -6,6 +6,7 @@ require("dotenv").config();
 const authRoutes = require("./src/routes/authRoutes");
 const agricultureRoutes = require("./src/routes/agricultureRoutes");
 const schemeRoutes = require("./src/routes/govSchemeRoutes");
+const categoryRoutes = require("./src/routes/resourceCategoryRoutes");
 const app = express();
 
 // Middleware
@@ -16,6 +17,7 @@ app.use(cors());
 connectDB();
 
 // Routes
+app.use("/api/categories", categoryRoutes);
 app.use("/api/contact", contactFormRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/schemes", schemeRoutes);

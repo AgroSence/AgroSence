@@ -114,7 +114,7 @@ const customDataProvider = {
         const formData = new FormData();
         formData.append("name", params.data.name);
         formData.append("description", params.data.description);
-        formData.append("category", params.data.category);
+        formData.append("link", params.data.link);
         
         if (params.data.image && params.data.image.rawFile) {
           formData.append("image", params.data.image.rawFile);
@@ -161,7 +161,7 @@ create: async (resource, params) => {
         const formData = new FormData();
         formData.append("name", params.data.name);
         formData.append("description", params.data.description);
-        formData.append("category", params.data.category);
+        formData.append("link", params.data.link);
         
         if (params.data.image && params.data.image.rawFile) {
           formData.append("image", params.data.image.rawFile);

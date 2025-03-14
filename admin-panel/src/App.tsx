@@ -132,6 +132,8 @@ export const ResourceList = () => (
       <Datagrid>
           <TextField source="id" />
           <TextField source="name" />
+          <TextField source="link" />
+          <TextField source="description" />
           <ImageField source="image" title="Resource Image" />
       </Datagrid>
   </List>
@@ -142,7 +144,7 @@ const ResourceCreate = () => (
     <SimpleForm>
       <TextInput source="name" required />
       <TextInput source="description" required />
-      <TextInput source="category" required />
+      <TextInput source="link" required />
       <FileInput source="image" label="Upload Image">
         <FileField source="src" title="title" />
       </FileInput>
@@ -156,7 +158,7 @@ const ResourceEdit = () => (
     <SimpleForm>
       <TextInput source="name" required />
       <TextInput source="description" required />
-      <TextInput source="category" required />
+      <TextInput source="link" required />
       <FileInput source="image" label="Upload New Image">
         <FileField source="src" title="title" />
       </FileInput>

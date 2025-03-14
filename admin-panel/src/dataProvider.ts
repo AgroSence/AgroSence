@@ -10,94 +10,254 @@ const customDataProvider = {
 
   getList: async (resource, params) => {
     let url = "";
-    if (resource === "contacts") {
-      url = `${API_URL}/contact/submit`;
-    } else if (resource === "users") {
-      url = `${API_URL}/auth/users`;
-    } else if (resource === "schemes") {
-      url = `${API_URL}/schemes/all`; // Make sure this is the correct endpoint for fetching schemes
-    } else {
-      throw new Error(`Unknown resource: ${resource}`);
+    
+    switch (resource) {
+      case "contacts":
+        url = `${API_URL}/contact/submit`;
+        break;
+      case "users":
+        url = `${API_URL}/auth/users`;
+        break;
+      case "schemes":
+        url = `${API_URL}/schemes/all`;
+        break;
+      case "resources":
+        url = `${API_URL}/resources/all`; // Ensure correct endpoint
+        break;
+      default:
+        throw new Error(`Unknown resource: ${resource}`);
     }
 
     try {
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error(`Error fetching ${resource}: ${response.status} - ${response.statusText}`);
       }
+
       const data = await response.json();
 
-      const transformedData = Array.isArray(data.data)
-        ? data.data.map((item) => ({
-            id: item.id || item._id, // Ensure 'id' exists
-            name: item.name,
-            description: item.description,
-            eligibility: item.eligibility,
-            benefits: item.benefits,
-            state: item.state,
-            applyLink: item.applyLink, // Make sure applyLink is included in the response
-            ...item,
-          }))
-        : [];
+      if (!data || !data.data) {
+        throw new Error(`Invalid response structure for ${resource}`);
+      }
 
       return {
-        data: transformedData,
-        total: typeof data.total === "number" ? data.total : transformedData.length,
+        data: data.data.map((item) => ({
+          id: item._id, // Ensure correct ID mapping
+          ...item,
+        })),
+        total: data.data.length,
       };
     } catch (error) {
-      console.error("Error fetching data:", error);
-      throw new Error("Failed to fetch data");
+      console.error(`Error fetching ${resource}:`, error);
+      throw new Error(`Failed to fetch ${resource}: ${error.message}`);
     }
   },
 
   create: async (resource, params) => {
-    if (resource === "schemes") {
-      const response = await fetch(`${API_URL}/schemes/add`, {
+    let url;
+    let body;
+    let headers = {}; // Empty headers for FormData requests
+
+    switch (resource) {
+      case "resources":
+        url = `${API_URL}/resources/add`;
+
+        // Creating FormData for file upload
+        const formData = new FormData();
+        Object.keys(params.data).forEach((key) => {
+          formData.append(key, params.data[key]);
+        });
+
+        body = formData;
+        break;
+
+      case "schemes":
+        url = `${API_URL}/schemes/add`;
+        body = JSON.stringify(params.data);
+        headers = { "Content-Type": "application/json" };
+        break;
+
+      default:
+        return dataProvider.create(resource, params);
+    }
+
+    try {
+      const response = await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(params.data),
+        body,
+        headers, // Do not set headers manually for FormData (browser does it automatically)
       });
 
       if (!response.ok) {
-        throw new Error("Error adding scheme");
+        const errorMessage = await response.text();
+        throw new Error(`Error adding ${resource}: ${response.status} - ${errorMessage}`);
       }
 
       const data = await response.json();
-      return { data: { ...params.data, id: data.scheme._id } };
+      return { data: { id: data._id, ...data } };
+    } catch (error) {
+      console.error(`Error creating ${resource}:`, error);
+      throw new Error(`Failed to create ${resource}: ${error.message}`);
     }
-    return dataProvider.create(resource, params);
+  },
+
+  create: async (resource, params) => {
+    let url;
+    let body;
+    let headers = {}; // Do not set Content-Type manually for FormData
+
+    switch (resource) {
+      case "resources":
+        url = `${API_URL}/resources/add`;
+
+        // Create FormData for file upload
+        const formData = new FormData();
+        formData.append("name", params.data.name);
+        formData.append("description", params.data.description);
+        formData.append("category", params.data.category);
+        
+        if (params.data.image && params.data.image.rawFile) {
+          formData.append("image", params.data.image.rawFile);
+        } else {
+          console.error("No image file found in params.data");
+        }
+
+        body = formData;
+        break;
+
+      default:
+        return dataProvider.create(resource, params);
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body, // No need to set headers for FormData
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Error adding ${resource}: ${response.status} - ${errorMessage}`);
+      }
+
+      const data = await response.json();
+      return { data: { id: data._id, ...data } };
+    } catch (error) {
+      console.error(`Error creating ${resource}:`, error);
+      throw new Error(`Failed to create ${resource}: ${error.message}`);
+    }
+  },
+
+create: async (resource, params) => {
+    let url;
+    let body;
+    let headers = {}; // Do not set Content-Type manually for FormData
+
+    switch (resource) {
+      case "resources":
+        url = `${API_URL}/resources/add`;
+
+        // Create FormData for file upload
+        const formData = new FormData();
+        formData.append("name", params.data.name);
+        formData.append("description", params.data.description);
+        formData.append("category", params.data.category);
+        
+        if (params.data.image && params.data.image.rawFile) {
+          formData.append("image", params.data.image.rawFile);
+        } else {
+          console.error("No image file found in params.data");
+        }
+
+        body = formData;
+        break;
+
+      default:
+        return dataProvider.create(resource, params);
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body, // No need to set headers for FormData
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Error adding ${resource}: ${response.status} - ${errorMessage}`);
+      }
+
+      const data = await response.json();
+      return { data: { id: data._id, ...data } };
+    } catch (error) {
+      console.error(`Error creating ${resource}:`, error);
+      throw new Error(`Failed to create ${resource}: ${error.message}`);
+    }
   },
 
   update: async (resource, params) => {
-    if (resource === "schemes") {
-      const response = await fetch(`${API_URL}/schemes/update/${params.id}`, {
+    let url;
+    let body;
+
+    switch (resource) {
+      case "resources":
+        url = `${API_URL}/resources/update/${params.id}`;
+        body = JSON.stringify(params.data);
+        break;
+
+      case "schemes":
+        url = `${API_URL}/schemes/update/${params.id}`;
+        body = JSON.stringify(params.data);
+        break;
+
+      default:
+        return dataProvider.update(resource, params);
+    }
+
+    try {
+      const response = await fetch(url, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(params.data),
+        body,
       });
 
       if (!response.ok) {
-        throw new Error("Error updating scheme");
+        throw new Error(`Error updating ${resource}: ${response.statusText}`);
       }
 
       return { data: params.data };
+    } catch (error) {
+      console.error(`Error updating ${resource}:`, error);
+      throw new Error(`Failed to update ${resource}`);
     }
-    return dataProvider.update(resource, params);
   },
 
   delete: async (resource, params) => {
-    if (resource === "schemes") {
-      const response = await fetch(`${API_URL}/schemes/delete/${params.id}`, {
-        method: "DELETE",
-      });
+    let url;
+
+    switch (resource) {
+      case "resources":
+        url = `${API_URL}/resources/delete/${params.id}`;
+        break;
+      case "schemes":
+        url = `${API_URL}/schemes/delete/${params.id}`;
+        break;
+      default:
+        return dataProvider.delete(resource, params);
+    }
+
+    try {
+      const response = await fetch(url, { method: "DELETE" });
 
       if (!response.ok) {
-        throw new Error("Error deleting scheme");
+        throw new Error(`Error deleting ${resource}: ${response.statusText}`);
       }
 
       return { data: { id: params.id } };
+    } catch (error) {
+      console.error(`Error deleting ${resource}:`, error);
+      throw new Error(`Failed to delete ${resource}`);
     }
-    return dataProvider.delete(resource, params);
   },
 };
 

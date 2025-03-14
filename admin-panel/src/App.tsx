@@ -12,6 +12,9 @@ import {
   EditButton,
   DeleteButton,
   SelectInput,
+  ImageField,
+  FileInput,
+  FileField
 } from "react-admin";
 import customDataProvider from "./dataProvider";
 import authProvider from "./authProvider";
@@ -124,12 +127,48 @@ const SchemeEdit: React.FC = () => (
   </Edit>
 );
 
+export const ResourceList = () => (
+  <List>
+      <Datagrid>
+          <TextField source="id" />
+          <TextField source="name" />
+          <ImageField source="image" title="Resource Image" />
+      </Datagrid>
+  </List>
+);
+// Resource Create: Supports File Upload
+const ResourceCreate = () => (
+  <Create>
+    <SimpleForm>
+      <TextInput source="name" required />
+      <TextInput source="description" required />
+      <TextInput source="category" required />
+      <FileInput source="image" label="Upload Image">
+        <FileField source="src" title="title" />
+      </FileInput>
+    </SimpleForm>
+  </Create>
+);
 
+// Resource Edit: Supports File Upload
+const ResourceEdit = () => (
+  <Edit>
+    <SimpleForm>
+      <TextInput source="name" required />
+      <TextInput source="description" required />
+      <TextInput source="category" required />
+      <FileInput source="image" label="Upload New Image">
+        <FileField source="src" title="title" />
+      </FileInput>
+    </SimpleForm>
+  </Edit>
+);
 const App = () => (
   <Admin dataProvider={customDataProvider} authProvider={authProvider}>
     <Resource name="contacts" list={ContactList} />
     <Resource name="users" list={UserList} />
     <Resource name="schemes" list={SchemeList} create={SchemeCreate} edit={SchemeEdit} />
+    <Resource name="resources" list={ResourceList} create={ResourceCreate} edit={ResourceEdit} />
   </Admin>
 );
 

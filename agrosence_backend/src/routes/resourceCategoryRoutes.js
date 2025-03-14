@@ -1,70 +1,71 @@
 const express = require("express");
 const router = express.Router();
-const Category = require("../models/ResourceCategory");
+const multer = require("multer");
+const path = require("path");
+const Resource = require("../models/ResourceCategory");
 
-// Fetch only name and image for all categories
-router.get("/", async (req, res) => {
-  try {
-    const categories = await Category.find({}, "name image");
-    res.json(categories);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching categories" });
-  }
+// Fix storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/"); // Ensure 'uploads/' exists
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
 });
 
-// Fetch full details for a single category
-router.get("/:id", async (req, res) => {
+const upload = multer({ storage });
+
+// Fix route definition (change `app.post` to `router.post`)
+router.post("/add", upload.single("image"), async (req, res) => {
   try {
-    const category = await Category.findById(req.params.id);
-    if (!category) {
-      return res.status(404).json({ message: "Category not found" });
+    console.log("Received body:", req.body);
+    console.log("Received file:", req.file);
+
+    const { name, description, category } = req.body;
+
+    if (!name || !description || !category || !req.file) {
+      return res.status(400).json({ message: "All fields are required" });
     }
-    res.json(category);
+
+    const imagePath = `/uploads/${req.file.filename}`;
+    const newResource = new Resource({ name, description, category, image: imagePath });
+
+    await newResource.save();
+    res.status(201).json(newResource);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching category details" });
+    console.error("Error adding resource:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
-// Add a new category
-router.post("/add", async (req, res) => {
+// Get all resources
+router.get("/all", async (req, res) => {
   try {
-    const { name, image, description, howToUse, videoLinks } = req.body;
-    const newCategory = new Category({ name, image, description, howToUse, videoLinks });
-    await newCategory.save();
-    res.status(201).json({ message: "Category added successfully", category: newCategory });
+    const resources = await Resource.find();
+    res.status(200).json({ data: resources });
   } catch (error) {
-    res.status(500).json({ message: "Error adding category" });
+    res.status(500).json({ message: "Server error", error });
   }
 });
 
-// Update a category
+// Update a resource
 router.put("/update/:id", async (req, res) => {
   try {
-    const { name, image, description, howToUse, videoLinks } = req.body;
-    const updatedCategory = await Category.findByIdAndUpdate(
-      req.params.id,
-      { name, image, description, howToUse, videoLinks },
-      { new: true }
-    );
-    if (!updatedCategory) {
-      return res.status(404).json({ message: "Category not found" });
-    }
-    res.json({ message: "Category updated successfully", category: updatedCategory });
+    const updatedResource = await Resource.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json({ message: "Resource updated successfully", resource: updatedResource });
   } catch (error) {
-    res.status(500).json({ message: "Error updating category" });
+    res.status(500).json({ message: "Server error", error });
   }
 });
 
-// Delete a category
+// Delete a resource
 router.delete("/delete/:id", async (req, res) => {
   try {
-    const deletedCategory = await Category.findByIdAndDelete(req.params.id);
-    if (!deletedCategory) {
-      return res.status(404).json({ message: "Category not found" });
-    }
-    res.json({ message: "Category deleted successfully" });
+    await Resource.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Resource deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Error deleting category" });
+    res.status(500).json({ message: "Server error", error });
   }
 });
 

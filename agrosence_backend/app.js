@@ -6,7 +6,7 @@ require("dotenv").config();
 const authRoutes = require("./src/routes/authRoutes");
 const agricultureRoutes = require("./src/routes/agricultureRoutes");
 const schemeRoutes = require("./src/routes/govSchemeRoutes");
-const categoryRoutes = require("./src/routes/resourceCategoryRoutes");
+const resourceRoutes = require("./src/routes/resourceCategoryRoutes");
 const app = express();
 
 // Middleware
@@ -17,11 +17,27 @@ app.use(cors());
 connectDB();
 
 // Routes
-app.use("/api/categories", categoryRoutes);
+app.use("/uploads", express.static("uploads")); 
+app.use("/api/resources", resourceRoutes);
 app.use("/api/contact", contactFormRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/schemes", schemeRoutes);
 app.use("/api/agriculture", agricultureRoutes);
+
+app.get("/api/resources/all", async (req, res) => {
+    try {
+        const resources = await ResourceModel.find();
+        res.json({
+            success: true,
+            data: resources.map(resource => ({
+                ...resource._doc,
+                image: resource.image ? `${req.protocol}://${req.get("host")}/${resource.image}` : null
+            }))
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Error fetching resources" });
+    }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

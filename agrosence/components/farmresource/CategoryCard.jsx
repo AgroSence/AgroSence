@@ -6,7 +6,10 @@ const CategoryCard = ({ category }) => {
       <div className="card-img-container" style={{ height: "200px", overflow: "hidden" }}>
         <Card.Img
           variant="top"
-          src={category.image}
+          src={category.image 
+            ? `http://localhost:5000/uploads/${category.image}` 
+            : "NO image Found"
+          }          
           alt={category.name}
           className="img-fluid"
           style={{

@@ -45,7 +45,7 @@ const Sidebar = () => {
 
           <div className="mb-2">
             <Link
-              to="/UserHistory"
+              to="/OrderHistory"
               className="d-flex align-items-center text-decoration-none text-secondary p-2"
             >
               <BsClock className="me-3" />

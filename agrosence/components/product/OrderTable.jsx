@@ -8,10 +8,11 @@ const OrderTable = ({ orders, onDeleteOrder }) => {
           <tr>
             <th>ORDER ID</th>
             <th>DATE</th>
+            <th>TYPE</th>
             <th>ITEM</th>
-            <th>PRICE</th>
             <th>QTY</th>
-            <th>SUBTOTAL</th>
+            {/* <th>QTY</th> */}
+            <th>SUBTOTAL IN ₹</th>
             <th></th>
           </tr>
         </thead>
@@ -20,9 +21,10 @@ const OrderTable = ({ orders, onDeleteOrder }) => {
             <tr key={order.id}>
               <td>#{order.id}</td>
               <td>{order.date}</td>
+              <td>{order.type}</td>
               <td>{order.item}</td>
               <td>{order.price}/Kg</td>
-              <td>{order.qty}</td>
+              {/* <td>{order.qty}</td> */}
               <td>{order.subtotal}</td>
               <td>
                 <button className="btn btn-link text-danger p-0" onClick={() => onDeleteOrder(order.id)}>

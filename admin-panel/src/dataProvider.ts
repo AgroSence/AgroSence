@@ -10,7 +10,7 @@ const customDataProvider = {
 
   getList: async (resource, params) => {
     let url = "";
-    
+
     switch (resource) {
       case "contacts":
         url = `${API_URL}/contact/submit`;
@@ -35,14 +35,15 @@ const customDataProvider = {
       }
 
       const data = await response.json();
-
+      console.log(`Fetched ${resource}:`, data);
+      
       if (!data || !data.data) {
         throw new Error(`Invalid response structure for ${resource}`);
       }
 
       return {
         data: data.data.map((item) => ({
-          id: item._id, // Ensure correct ID mapping
+          id: item._id || item.id, // Ensure correct ID mapping
           ...item,
           imageUrl: `${item.image}`,
         })),
@@ -102,6 +103,19 @@ const customDataProvider = {
     }
   },
 
+  getDashboardStats: async () => {
+    try {
+      const response = await fetch(`${API_URL}/dashboard/stats`);
+      if (!response.ok) throw new Error("Failed to fetch dashboard stats");
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Dashboard stats error:", error);
+      return { users: 0, contacts: 0, schemes: 0, resources: 0 };
+    }
+  },
+
   create: async (resource, params) => {
     let url;
     let body;
@@ -116,7 +130,7 @@ const customDataProvider = {
         formData.append("name", params.data.name);
         formData.append("description", params.data.description);
         formData.append("link", params.data.link);
-        
+
         if (params.data.image && params.data.image.rawFile) {
           formData.append("image", params.data.image.rawFile);
         } else {
@@ -149,7 +163,7 @@ const customDataProvider = {
     }
   },
 
-create: async (resource, params) => {
+  create: async (resource, params) => {
     let url;
     let body;
     let headers = {}; // Do not set Content-Type manually for FormData
@@ -163,7 +177,7 @@ create: async (resource, params) => {
         formData.append("name", params.data.name);
         formData.append("description", params.data.description);
         formData.append("link", params.data.link);
-        
+
         if (params.data.image && params.data.image.rawFile) {
           formData.append("image", params.data.image.rawFile);
         } else {

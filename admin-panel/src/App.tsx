@@ -18,7 +18,7 @@ import {
 } from "react-admin";
 import customDataProvider from "./dataProvider";
 import authProvider from "./authProvider";
-
+import Dashboard from "./components/Dashboard";
 
 const states: { id: string; name: string }[] = [
   { id: "all-states", name: "All States" },
@@ -168,7 +168,7 @@ const ResourceEdit = () => (
 );
 
 const App = () => (
-  <Admin dataProvider={customDataProvider} authProvider={authProvider}>
+  <Admin dataProvider={customDataProvider} authProvider={authProvider} dashboard={Dashboard}>
     <Resource name="contacts" list={ContactList} />
     <Resource name="users" list={UserList} />
     <Resource name="schemes" list={SchemeList} create={SchemeCreate} edit={SchemeEdit} />

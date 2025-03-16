@@ -163,53 +163,6 @@ const customDataProvider = {
     }
   },
 
-  create: async (resource, params) => {
-    let url;
-    let body;
-    let headers = {}; // Do not set Content-Type manually for FormData
-
-    switch (resource) {
-      case "resources":
-        url = `${API_URL}/resources/add`;
-
-        // Create FormData for file upload
-        const formData = new FormData();
-        formData.append("name", params.data.name);
-        formData.append("description", params.data.description);
-        formData.append("link", params.data.link);
-
-        if (params.data.image && params.data.image.rawFile) {
-          formData.append("image", params.data.image.rawFile);
-        } else {
-          console.error("No image file found in params.data");
-        }
-
-        body = formData;
-        break;
-
-      default:
-        return dataProvider.create(resource, params);
-    }
-
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        body, // No need to set headers for FormData
-      });
-
-      if (!response.ok) {
-        const errorMessage = await response.text();
-        throw new Error(`Error adding ${resource}: ${response.status} - ${errorMessage}`);
-      }
-
-      const data = await response.json();
-      return { data: { id: data._id, ...data } };
-    } catch (error) {
-      console.error(`Error creating ${resource}:`, error);
-      throw new Error(`Failed to create ${resource}: ${error.message}`);
-    }
-  },
-
   update: async (resource, params) => {
     let url;
     let body;

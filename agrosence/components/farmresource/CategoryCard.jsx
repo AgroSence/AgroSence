@@ -2,17 +2,18 @@ import { Card } from "react-bootstrap"
 
 const CategoryCard = ({ category }) => {
   return (
-    <Card className="h-100 category-card border-0 shadow-sm">
-      <div className="card-img-container" style={{ height: "200px", overflow: "hidden" }}>
+    <Card className="h-100 category-card bg-light border-0 shadow-sm">
+      <div className="card-img-container" style={{ height: "300px", overflow: "hidden" }}>
         <Card.Img
           variant="top"
           src={category.image 
-            ? `http://localhost:5000/uploads/${category.image}` 
+            ? `http://localhost:5000${category.image}` 
             : "NO image Found"
           }          
           alt={category.name}
-          className="img-fluid"
+          className="img-fluid p-1"
           style={{
+            objectPosition: "center",
             objectFit: "cover",
             height: "100%",
             width: "100%",

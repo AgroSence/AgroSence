@@ -44,6 +44,7 @@ const customDataProvider = {
         data: data.data.map((item) => ({
           id: item._id, // Ensure correct ID mapping
           ...item,
+          imageUrl: `${item.image}`,
         })),
         total: data.data.length,
       };

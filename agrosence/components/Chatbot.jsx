@@ -31,17 +31,16 @@ const Chatbot = () => {
   // Handle sending the message
   const handleSendMessage = async () => {
     if (message.trim()) {
-      // Add user message to chat history
       setChatHistory([...chatHistory, { sender: "user", message: message }]);
-      setMessage(""); // Clear the input field after sending
-      setIsLoading(true); // Set loading while bot is responding
-
+      setMessage("");
+      setIsLoading(true);
+  
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/agriculture/faq?q=${message}`
-        );
+        const response = await axios.post("http://localhost:5000/api/chatbot", {
+          message: message,
+        });
+  
         const botMessage = response.data.answer;
-
         setChatHistory((prevChatHistory) => [
           ...prevChatHistory,
           { sender: "bot", message: botMessage },
@@ -52,11 +51,11 @@ const Chatbot = () => {
           { sender: "bot", message: "Sorry, I couldn't understand your question." },
         ]);
       }
-
-      setIsLoading(false); // Stop loading after bot replies
+  
+      setIsLoading(false);
     }
   };
-
+  
   return (
     <div>
       {/* Chatbot Button */}

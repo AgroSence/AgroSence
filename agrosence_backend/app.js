@@ -7,6 +7,7 @@ const authRoutes = require("./src/routes/authRoutes");
 const agricultureRoutes = require("./src/routes/agricultureRoutes");
 const schemeRoutes = require("./src/routes/govSchemeRoutes");
 const resourceRoutes = require("./src/routes/resourceCategoryRoutes");
+const getGeminiResponse = require("./src/services/GeminiAPI");
 const app = express();
 
 // Middleware
@@ -41,6 +42,17 @@ app.get("/api/resources/all", async (req, res) => {
     }
 });
 
+app.post("/api/chatbot", async (req, res) => {
+    const { message } = req.body;
+  
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
+    }
+  
+    const botResponse = await getGeminiResponse(message);
+    res.json({ answer: botResponse });
+  });
+  
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

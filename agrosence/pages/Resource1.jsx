@@ -10,7 +10,7 @@ const ResourcesPage = () => {
       <Header />
       <HeroBanner />
       <Container className="py-5">
-        <div className="text-center mb-5">
+        <div className="text-center mb-5" style={{color:"#C4C4C4"}}>
           <h2 className="mb-3">We Promise To Find You The Right Equipment</h2>
           <h1 className="display-4 fw-bold">Browse Machinery Categories</h1>
         </div>

@@ -65,8 +65,13 @@ import s2 from "./src/assets/home/s2.jpg"
 import s3 from "./src/assets/home/s3.jpg"
 import s4 from "./src/assets/home/s4.jpg"
 import Login from './src/assets/LoginBG.png'
+import ResourceBG from './src/assets/Feature/Resource BG.png'
 
 const resource = {
+    ResourceBG:{
+        src: ResourceBG,
+        alt: "Resource BG"
+    },
     Login:{
         src:Login,
         alt:"Login"

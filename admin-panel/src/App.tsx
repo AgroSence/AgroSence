@@ -134,6 +134,11 @@ const ResourceList = () => (
       <TextField source="description" label="Description" />
       <TextField source="link" label="Link" />
       <ImageField source="imageUrl" label="Image" title="Resource Image" />
+      {/* <TextInput source="adavantage" label="Adavantages" />
+      <TextInput source="attachment" label="Attachment" />
+      <TextInput source="popularBrand" label="Popular Brand" />
+      <TextInput source="fuelType" label="Fuel Type" />
+      <TextInput source="safety" label="Safety" /> */}
       <EditButton />
       <DeleteButton />
     </Datagrid>
@@ -150,6 +155,12 @@ const ResourceCreate = () => (
       <FileInput source="image" label="Upload Image" accept="image/*">
         <FileField source="src" title="title" />
       </FileInput>
+      <TextInput source="purpose" label="Purpose" />
+      <TextInput source="adavantage" label="Adavantages" />
+      <TextInput source="attachment" label="Attachment" />
+      <TextInput source="popularBrand" label="Popular Brand" />
+      <TextInput source="fuelType" label="Fuel Type" />
+      <TextInput source="safety" label="Safety" />
     </SimpleForm>
   </Create>
 );
@@ -163,6 +174,12 @@ const ResourceEdit = () => (
       <FileInput source="image" label="Upload New Image" accept="image/*">
         <FileField source="src" title="title" />
       </FileInput>
+      <TextInput source="purpose" label="Purpose" />
+      <TextInput source="adavantage" label="Adavantages" />
+      <TextInput source="attachment" label="Attachment" />
+      <TextInput source="popularBrand" label="Popular Brand" />
+      <TextInput source="fuelType" label="Fuel Type" />
+      <TextInput source="safety" label="Safety" />      
     </SimpleForm>
   </Edit>
 );

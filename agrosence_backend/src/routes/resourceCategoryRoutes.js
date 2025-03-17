@@ -23,14 +23,25 @@ router.post("/add", upload.single("image"), async (req, res) => {
     console.log("Received body:", req.body);
     console.log("Received file:", req.file);
 
-    const { name, description, link } = req.body;
+    const { name, description, link, purpose, advantages, attachment, fuelType, popularBrand, safety } = req.body;
 
-    if (!name || !description || !link || !req.file) {
+    if (!name || !description || !link || !purpose || !advantages || !attachment || !fuelType || !popularBrand || !safety || !req.file) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
     const imagePath = `/uploads/${req.file.filename}`;
-    const newResource = new Resource({ name, description, link, image: imagePath });
+    const newResource = new Resource({
+      name,
+      description,
+      link,
+      purpose,
+      advantages,
+      attachment,
+      fuelType,
+      popularBrand,
+      safety,
+      image: imagePath,
+    });
 
     await newResource.save();
     res.status(201).json(newResource);

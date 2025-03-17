@@ -133,12 +133,13 @@ const ResourceList = () => (
       <TextField source="name" label="Resource Name" />
       <TextField source="description" label="Description" />
       <TextField source="link" label="Link" />
-      <ImageField source="imageUrl" label="Image" title="Resource Image" />
-      {/* <TextInput source="adavantage" label="Adavantages" />
-      <TextInput source="attachment" label="Attachment" />
-      <TextInput source="popularBrand" label="Popular Brand" />
-      <TextInput source="fuelType" label="Fuel Type" />
-      <TextInput source="safety" label="Safety" /> */}
+      <ImageField source="image" label="Image" title="Resource Image" />
+      <TextField source="purpose" label="Purpose" />
+      <TextField source="advantages" label="Advantages" />
+      <TextField source="attachment" label="Attachment" />
+      <TextField source="popularBrand" label="Popular Brand" />
+      <TextField source="fuelType" label="Fuel Type" />
+      <TextField source="safety" label="Safety" />
       <EditButton />
       <DeleteButton />
     </Datagrid>
@@ -156,7 +157,7 @@ const ResourceCreate = () => (
         <FileField source="src" title="title" />
       </FileInput>
       <TextInput source="purpose" label="Purpose" />
-      <TextInput source="adavantage" label="Adavantages" />
+      <TextInput source="advantages" label="Adavantages" />
       <TextInput source="attachment" label="Attachment" />
       <TextInput source="popularBrand" label="Popular Brand" />
       <TextInput source="fuelType" label="Fuel Type" />
@@ -175,7 +176,7 @@ const ResourceEdit = () => (
         <FileField source="src" title="title" />
       </FileInput>
       <TextInput source="purpose" label="Purpose" />
-      <TextInput source="adavantage" label="Adavantages" />
+      <TextInput source="advantages" label="Adavantages" />
       <TextInput source="attachment" label="Attachment" />
       <TextInput source="popularBrand" label="Popular Brand" />
       <TextInput source="fuelType" label="Fuel Type" />

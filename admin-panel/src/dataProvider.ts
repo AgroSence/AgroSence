@@ -9,7 +9,7 @@ const customDataProvider = {
   ...dataProvider,
 
   getList: async (resource, params) => {
-    let url;
+    let url = "";
 
     switch (resource) {
       case "contacts":
@@ -22,7 +22,7 @@ const customDataProvider = {
         url = `${API_URL}/schemes/all`;
         break;
       case "resources":
-        url = `${API_URL}/resources/all`;
+        url = `${API_URL}/resources/all`; // Ensure correct endpoint
         break;
       default:
         throw new Error(`Unknown resource: ${resource}`);
@@ -36,7 +36,7 @@ const customDataProvider = {
 
       const data = await response.json();
       console.log(`Fetched ${resource}:`, data);
-
+      
       if (!data || !data.data) {
         throw new Error(`Invalid response structure for ${resource}`);
       }
@@ -45,7 +45,7 @@ const customDataProvider = {
         data: data.data.map((item) => ({
           id: item._id || item.id, // Ensure correct ID mapping
           ...item,
-          imageUrl: item.image || "", // Ensure image URL is handled correctly
+          imageUrl: `${item.image}`,
         })),
         total: data.data.length,
       };
@@ -58,23 +58,17 @@ const customDataProvider = {
   create: async (resource, params) => {
     let url;
     let body;
-    let headers = {}; // Empty headers for FormData
+    let headers = {}; // Empty headers for FormData requests
 
     switch (resource) {
       case "resources":
         url = `${API_URL}/resources/add`;
 
-        // Create FormData for file upload
+        // Creating FormData for file upload
         const formData = new FormData();
         Object.keys(params.data).forEach((key) => {
-          if (params.data[key] !== undefined) {
-            formData.append(key, params.data[key]);
-          }
+          formData.append(key, params.data[key]);
         });
-
-        if (params.data.image && params.data.image.rawFile) {
-          formData.append("image", params.data.image.rawFile);
-        }
 
         body = formData;
         break;
@@ -93,7 +87,73 @@ const customDataProvider = {
       const response = await fetch(url, {
         method: "POST",
         body,
-        headers, // No headers for FormData
+        headers, // Do not set headers manually for FormData (browser does it automatically)
+      });
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Error adding ${resource}: ${response.status} - ${errorMessage}`);
+      }
+
+      const data = await response.json();
+      return { data: { id: data._id, ...data } };
+    } catch (error) {
+      console.error(`Error creating ${resource}:`, error);
+      throw new Error(`Failed to create ${resource}: ${error.message}`);
+    }
+  },
+
+  getDashboardStats: async () => {
+    try {
+      const response = await fetch(`${API_URL}/dashboard/stats`);
+      if (!response.ok) throw new Error("Failed to fetch dashboard stats");
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Dashboard stats error:", error);
+      return { users: 0, contacts: 0, schemes: 0, resources: 0 };
+    }
+  },
+
+  create: async (resource, params) => {
+    let url;
+    let body;
+    let headers = {}; // Do not set Content-Type manually for FormData
+
+    switch (resource) {
+      case "resources":
+        url = `${API_URL}/resources/add`;
+
+        // Create FormData for file upload
+        const formData = new FormData();
+        formData.append("name", params.data.name);
+        formData.append("description", params.data.description);
+        formData.append("link", params.data.link);
+        formData.append("purpose", params.data.purpose);
+        formData.append("advantages", params.data.advantages);
+        formData.append("attachment", params.data.attachment);
+        formData.append("popularBrand", params.data.popularBrand);
+        formData.append("fuelType", params.data.fuelType);
+        formData.append("safety", params.data.safety);
+
+        if (params.data.image && params.data.image.rawFile) {
+          formData.append("image", params.data.image.rawFile);
+        } else {
+          console.error("No image file found in params.data");
+        }
+
+        body = formData;
+        break;
+
+      default:
+        return dataProvider.create(resource, params);
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body, // No need to set headers for FormData
       });
 
       if (!response.ok) {
@@ -118,10 +178,12 @@ const customDataProvider = {
         url = `${API_URL}/resources/update/${params.id}`;
         body = JSON.stringify(params.data);
         break;
+
       case "schemes":
         url = `${API_URL}/schemes/update/${params.id}`;
         body = JSON.stringify(params.data);
         break;
+
       default:
         return dataProvider.update(resource, params);
     }
@@ -169,19 +231,6 @@ const customDataProvider = {
     } catch (error) {
       console.error(`Error deleting ${resource}:`, error);
       throw new Error(`Failed to delete ${resource}`);
-    }
-  },
-
-  getDashboardStats: async () => {
-    try {
-      const response = await fetch(`${API_URL}/dashboard/stats`);
-      if (!response.ok) throw new Error("Failed to fetch dashboard stats");
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Dashboard stats error:", error);
-      return { users: 0, contacts: 0, schemes: 0, resources: 0 };
     }
   },
 };

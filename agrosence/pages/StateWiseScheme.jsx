@@ -52,32 +52,29 @@ const StateSchemes = () => {
           Government Schemes
         </h1>
       </div>
+
       <Container className="py-5">
         <h2 className="text-center mb-4">{stateName} Government Schemes</h2>
         <Button variant="primary" onClick={() => navigate(-1)} className="mb-4">
           Back to States
         </Button>
-        
+
         {loading && <Spinner animation="border" className="d-block mx-auto" />} 
         {error && <p className="text-danger text-center">{error}</p>}
-        
+
         {!loading && !error && schemes.length === 0 && (
           <p className="text-center text-muted">No schemes available for this state.</p>
         )}
 
-        <Row xs={1} sm={2} md={3} lg={3} className="g-4">
+        <Row xs={1} className="g-4">
           {schemes.map((scheme) => (
             <Col key={scheme._id}>
-              <Card className="shadow-sm">
+              <Card className="shadow-sm w-100 p-3">
                 <Card.Body>
-                  <Card.Title>{scheme.name}</Card.Title>
-                  <Card.Text>{scheme.description}</Card.Text>
-                  <Card.Text>
-                    <strong>Eligibility:</strong> {scheme.eligibility}
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>Benefits:</strong> {scheme.benefits}
-                  </Card.Text>
+                  <p className="mb-2 fs-4 text-primary"><strong>Scheme Name:</strong> {scheme.name}</p>
+                  <p className="mb-2"><strong>Description:</strong> {scheme.description}</p>
+                  <p className="mb-2"><strong>Eligibility:</strong> {scheme.eligibility}</p>
+                  <p className="mb-3"><strong>Benefits:</strong> {scheme.benefits}</p>
                   <Button variant="success" href={scheme.applyLink} target="_blank">
                     Apply Now
                   </Button>
@@ -87,6 +84,7 @@ const StateSchemes = () => {
           ))}
         </Row>
       </Container>
+
       <Footer />
     </>
   );

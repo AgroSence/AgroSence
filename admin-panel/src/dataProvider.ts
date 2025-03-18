@@ -132,10 +132,8 @@ const customDataProvider = {
         formData.append("link", params.data.link);
         formData.append("purpose", params.data.purpose);
         formData.append("advantages", params.data.advantages);
-        formData.append("attachment", params.data.attachment);
-        formData.append("popularBrand", params.data.popularBrand);
-        formData.append("fuelType", params.data.fuelType);
-        formData.append("safety", params.data.safety);
+        formData.append("howtouse", params.data.howtouse);
+        formData.append("popularbrand", params.data.popularbrand);
 
         if (params.data.image && params.data.image.rawFile) {
           formData.append("image", params.data.image.rawFile);

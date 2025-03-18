@@ -132,14 +132,12 @@ const ResourceList = () => (
     <Datagrid>
       <TextField source="name" label="Resource Name" />
       <TextField source="description" label="Description" />
-      <TextField source="link" label="Link" />
       <ImageField source="image" label="Image" title="Resource Image" />
+      <TextField source="popularbrand" label="Popular Brand" />
+      <TextField source="link" label="Link" />
       <TextField source="purpose" label="Purpose" />
       <TextField source="advantages" label="Advantages" />
-      <TextField source="attachment" label="Attachment" />
-      <TextField source="popularBrand" label="Popular Brand" />
-      <TextField source="fuelType" label="Fuel Type" />
-      <TextField source="safety" label="Safety" />
+      <TextField source="howtouse" label="How To Use" />
       <EditButton />
       <DeleteButton />
     </Datagrid>
@@ -152,16 +150,14 @@ const ResourceCreate = () => (
     <SimpleForm>
       <TextInput source="name" label="Resource Name" />
       <TextInput source="description" label="Description" />
-      <TextInput source="link" label="Link" />
       <FileInput source="image" label="Upload Image" accept="image/*">
         <FileField source="src" title="title" />
       </FileInput>
+      <TextInput source="popularbrand" label="Popular Brand" />
+      <TextInput source="link" label="Link" />
       <TextInput source="purpose" label="Purpose" />
       <TextInput source="advantages" label="Adavantages" />
-      <TextInput source="attachment" label="Attachment" />
-      <TextInput source="popularBrand" label="Popular Brand" />
-      <TextInput source="fuelType" label="Fuel Type" />
-      <TextInput source="safety" label="Safety" />
+      <TextInput source="howtouse" label="How To Use" />
     </SimpleForm>
   </Create>
 );
@@ -171,16 +167,14 @@ const ResourceEdit = () => (
     <SimpleForm>
       <TextInput source="name" label="Resource Name" />
       <TextInput source="description" label="Description" />
-      <TextInput source="link" label="Link" />
       <FileInput source="image" label="Upload New Image" accept="image/*">
         <FileField source="src" title="title" />
       </FileInput>
+      <TextInput source="popularbrand" label="Popular Brand" />
+      <TextInput source="link" label="Link" />
       <TextInput source="purpose" label="Purpose" />
       <TextInput source="advantages" label="Adavantages" />
-      <TextInput source="attachment" label="Attachment" />
-      <TextInput source="popularBrand" label="Popular Brand" />
-      <TextInput source="fuelType" label="Fuel Type" />
-      <TextInput source="safety" label="Safety" />      
+      <TextField source="howtouse" label="How To Use" />
     </SimpleForm>
   </Edit>
 );

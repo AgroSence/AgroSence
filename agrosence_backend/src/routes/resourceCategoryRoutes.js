@@ -59,6 +59,18 @@ router.get("/all", async (req, res) => {
   }
 });
 
+router.get("/:_id", async (req, res) => {
+  try {
+    const resource = await Resource.findById(req.params._id);
+    if (!resource) {
+      return res.status(404).json({ message: "Resource not found" });
+    }
+    res.status(200).json(resource); // Return directly, no need to wrap in `{ data: resource }`
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+});
+
 // Update a resource
 router.put("/update/:id", async (req, res) => {
   try {

@@ -82,9 +82,9 @@ const ResourceDetail = () => {
                     </div>
                   </div>
                   <div className="text-start">
-                    <h5 className="fw-bold">Advantage</h5>
+                    <h5 className="fw-bold">Popular Brand</h5>
                     <p className="fs-6 fw-medium text-muted">
-                      {resource.advantages || "No data available"}
+                      {resource.popularbrand || "No data available"}
                     </p>
                   </div>
                 </div>
@@ -137,9 +137,9 @@ const ResourceDetail = () => {
                     </div>
                   </div>
                   <div className="text-start">
-                    <h5 className="fw-bold">Popular Brand</h5>
+                    <h5 className="fw-bold">Advantages</h5>
                     <p className="fs-6 fw-medium text-muted">
-                      {resource.popularbrand || "No data available"}
+                      {resource.advantages || "No data available"}
                     </p>
                   </div>
                 </div>

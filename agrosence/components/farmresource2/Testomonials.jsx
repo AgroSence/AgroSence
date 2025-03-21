@@ -79,7 +79,7 @@ const TestimonialsSection = () => {
             }}
           >
             {testimonials.map((testimonial, idx) => (
-              <Card key={idx} className="shadow-sm border-0 mx-3 flex-shrink-0" style={{ minWidth: "300px" }}>
+              <Card key={idx} className="shadow-sm border-0 mx-3 flex-shrink-0" style={{ minWidth: "200px" }}>
                 <Card.Body className="text-center">
                   <FaQuoteRight className="text-success opacity-25 position-absolute top-0 end-0 m-2" size={24} />
                   <h5 className="fw-bold">{testimonial.name}</h5>

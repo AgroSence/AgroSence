@@ -40,6 +40,7 @@ const LoginPage = () => {
 
       if (response.status === 200) {
         localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("userId", response.data.userId);
         navigate("/Home");
       }
     } catch (error) {

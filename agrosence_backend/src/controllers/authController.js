@@ -48,7 +48,7 @@ exports.login = async (req, res) => {
 
         const token = jwt.sign({ userId: user._id }, "your_jwt_secret", { expiresIn: "1h" });
 
-        res.status(200).json({ message: "Login successful", token });
+        res.status(200).json({ message: "Login successful", token, userId: user._id });  
     } catch (error) {
         res.status(500).json({ message: "Server error" });
     }
@@ -62,6 +62,7 @@ exports.getUsers = async (req, res) => {
                 id: user._id,
                 name: user.name,
                 mobile: user.mobile,
+                email: user.email,
                 state: user.state,
                 address: user.address
             })),
@@ -89,21 +90,25 @@ exports.deleteUser = async (req, res) => {
     }
   };
   
-  
   exports.getUserProfile = async (req, res) => {
     try {
-      const token = req.header("Authorization").replace("Bearer ", "");
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const user = await User.findById(decoded.userId).select("-password");
-  
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-  
-      res.json(user);
-    } catch (error) {
-      res.status(500).json({ message: "Server error" });
-    }
-  };
+        const token = req.headers.authorization?.split(" ")[1]; // Extract Bearer token
+        if (!token) return res.status(401).json({ error: "Unauthorized" });
 
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.userId);
+        if (!user) return res.status(404).json({ error: "User not found" });
+
+        res.status(200).json({
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            mobile: user.mobile,
+            state: user.state,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error" });
+    }
+};
   

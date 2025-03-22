@@ -36,7 +36,7 @@ const customDataProvider = {
 
       const data = await response.json();
       console.log(`Fetched ${resource}:`, data);
-      
+
       if (!data || !data.data) {
         throw new Error(`Invalid response structure for ${resource}`);
       }
@@ -144,6 +144,22 @@ const customDataProvider = {
         body = formData;
         break;
 
+      case "schemes":
+        url = `${API_URL}/schemes/add`;
+
+        // Scheme Data in JSON Format
+        body = JSON.stringify({
+          name: params.data.name,
+          description: params.data.description,
+          eligibility: params.data.eligibility,
+          benefits: params.data.benefits,
+          state: params.data.state || "All States",
+          applyLink: params.data.applyLink,
+        });
+
+        headers = { "Content-Type": "application/json" }; // JSON headers
+        break;
+
       default:
         return dataProvider.create(resource, params);
     }
@@ -151,7 +167,8 @@ const customDataProvider = {
     try {
       const response = await fetch(url, {
         method: "POST",
-        body, // No need to set headers for FormData
+        body,
+        headers, // Set headers only for JSON data
       });
 
       if (!response.ok) {
@@ -160,7 +177,7 @@ const customDataProvider = {
       }
 
       const data = await response.json();
-      return { data: { id: data._id, ...data } };
+      return { data: { id: data.scheme._id, ...data.scheme } }; // Use scheme._id from the response
     } catch (error) {
       console.error(`Error creating ${resource}:`, error);
       throw new Error(`Failed to create ${resource}: ${error.message}`);

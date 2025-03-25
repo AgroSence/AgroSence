@@ -6,10 +6,16 @@ const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/
 
 const getGeminiResponse = async (userMessage) => {
     try {
+        // Check if the message is agriculture-related
+        if (!/\b(hi|hello|farming|agriculture|crops|soil|harvest|fertilizer|irrigation|pesticide|organic farming|yield|weather)\b/i.test(userMessage)) {
+            return "I'm only programmed to respond to agriculture-related queries.";
+        }
+
         const response = await axios.post(
             `${GEMINI_API_URL}?key=${GEMINI_API_KEY}`,
             {
                 contents: [{ parts: [{ text: userMessage }] }],
+                generationConfig: { maxOutputTokens: 100 } // Limit response length
             },
             {
                 headers: { "Content-Type": "application/json" },

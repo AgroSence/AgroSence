@@ -3,8 +3,11 @@ import axios from "axios";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 import { BsBell, BsList } from "react-icons/bs";
 import ProfileModal from "../../components/ProfileModel";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ toggleSidebar }) => {
+  const navigate = useNavigate(); // ✅ Fix: Move useNavigate inside the component
+
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [user, setUser] = useState(null);
@@ -22,9 +25,12 @@ const Header = ({ toggleSidebar }) => {
           return;
         }
 
-        const response = await axios.get(`http://localhost:5000/api/auth/users/${userId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          `http://localhost:5000/api/auth/users/${userId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
         setUser(response.data);
       } catch (error) {
@@ -43,44 +49,27 @@ const Header = ({ toggleSidebar }) => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/notifications/${user._id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
-      });
+      const response = await axios.get(
+        `http://localhost:5000/api/notifications/${user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
       setNotifications(response.data);
     } catch (error) {
-      console.error("Error fetching notifications:", error.response?.data || error.message);
+      console.error(
+        "Error fetching notifications:",
+        error.response?.data || error.message
+      );
     }
   };
 
   const handleNotificationClick = () => {
-    setShowNotifications(!showNotifications);
-  };
-
-  const handleAction = async (notificationId, cropId, action) => {
-    try {
-      await axios.put(
-        `http://localhost:5000/api/notifications/${notificationId}/update`,
-        { status: action },
-        { headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` } }
-      );
-  
-      if (action === "accepted") {
-        await axios.put(
-          `http://localhost:5000/api/crops/${cropId}/update-status`,
-          { status: "Not Available" },
-          { headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` } }
-        );
-      }
-  
-      setNotifications((prev) =>
-        prev.filter((notification) => notification._id !== notificationId)
-      );
-    } catch (error) {
-      console.error("Error updating notification or crop status:", error);
-    }
+    setShowNotifications(!showNotifications); // Toggle Notification Visibility
   };
   
-
   return (
     <>
       <div className="header bg-white border-bottom p-3">
@@ -88,7 +77,10 @@ const Header = ({ toggleSidebar }) => {
           <div className="row align-items-center">
             {/* Sidebar Toggle for Mobile */}
             <div className="col-auto d-flex align-items-center">
-              <button className="btn btn-light me-2 d-lg-none" onClick={toggleSidebar}>
+              <button
+                className="btn btn-light me-2 d-lg-none"
+                onClick={toggleSidebar}
+              >
                 <BsList size={20} />
               </button>
 
@@ -128,7 +120,11 @@ const Header = ({ toggleSidebar }) => {
             <div className="col d-flex justify-content-end align-items-center">
               {/* Notifications */}
               <div className="position-relative me-3">
-                <BsBell className="text-muted fs-5" onClick={handleNotificationClick} style={{ cursor: "pointer" }} />
+                <BsBell
+                  className="text-muted fs-5"
+                  onClick={handleNotificationClick}
+                  style={{ cursor: "pointer" }}
+                />
                 {notifications.length > 0 && (
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {notifications.length}
@@ -152,22 +148,39 @@ const Header = ({ toggleSidebar }) => {
         <div className="notification-popup">
           <div className="popup-content">
             <h5>Notifications</h5>
-            {notifications.length === 0 ? (
-              <p>No new notifications</p>
-            ) : (
-              notifications.map((notification) => (
-                <div key={notification._id} className="notification-item">
-                  <p>{notification.message}</p>
-                  <button className="btn btn-success me-2" onClick={() => handleAction(notification._id, "accepted")}>
-                    Accept
-                  </button>
-                  <button className="btn btn-danger" onClick={() => handleAction(notification._id, "rejected")}>
-                    Reject
+            {showNotifications && (
+              <div className="notification-popup">
+                <div className="popup-content">
+                  <h5>Notifications</h5>
+                  {notifications.length === 0 ? (
+                    <p>No new notifications</p>
+                  ) : (
+                    notifications.map((notification) => (
+                      <div key={notification._id} className="notification-item">
+                        <p>{notification.message}</p>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => navigate("/Reports")}
+                        >
+                          View Report
+                        </button>
+                      </div>
+                    ))
+                  )}
+                  <button
+                    className="btn btn-secondary mt-2"
+                    onClick={() => setShowNotifications(false)}
+                  >
+                    Close
                   </button>
                 </div>
-              ))
+              </div>
             )}
-            <button className="btn btn-secondary mt-2" onClick={() => setShowNotifications(false)}>
+
+            <button
+              className="btn btn-secondary mt-2"
+              onClick={() => setShowNotifications(false)}
+            >
               Close
             </button>
           </div>

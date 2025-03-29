@@ -10,6 +10,7 @@ const resourceRoutes = require("./src/routes/resourceCategoryRoutes");
 const getGeminiResponse = require("./src/services/GeminiAPI");
 const cropSellRoutes = require("./src/routes/cropSellRoutes");
 const notificationRoutes = require("./src/routes/notificationRoutes");
+const orderRoutes = require("./src/routes/orderRoutes"); 
 
 
 const app = express();
@@ -30,6 +31,7 @@ app.use("/api/crops", cropSellRoutes);
 app.use("/api/schemes", schemeRoutes);
 app.use("/api/agriculture", agricultureRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.get("/api/resources/all", async (req, res) => {
     try {

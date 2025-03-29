@@ -21,6 +21,7 @@ import ResourceDetail from "../pages/ResourceDetail";
 import AgroExpert from "../pages/AgroExpert"
 import CropSell from "../pages/CropSell"
 import CropDetail from "../pages/CropDetailCard"
+import Reports from "../pages/FarmingReport"
 // Function to check if user is authenticated
 const isAuthenticated = () => {
   return localStorage.getItem("authToken") !== null; // Check if auth token exists
@@ -64,6 +65,7 @@ const AppContent = () => {
         <Route path="/state-schemes/:stateName" element={<ProtectedRoute element={<StateSchemes />} />} />
         <Route path="/Setting" element={<ProtectedRoute element={<Setting />} />} />
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+        <Route path="/Reports" element={<ProtectedRoute element={<Reports />} />} />
         <Route path="/CropSell" element={<ProtectedRoute element={<CropSell />} />} />
         <Route path="/product" element={<ProtectedRoute element={<Products />} />} />
         <Route path="/OrderHistory" element={<ProtectedRoute element={<OrderHistory />} />} />

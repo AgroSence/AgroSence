@@ -108,7 +108,6 @@ const FarmingReport = () => {
                     <p><strong>Order Status:</strong> {order?.status}</p>
                   )
                 ) : (
-                  // ✅ Seller View (Full Details)
                   <>
                     <Card.Title>{order?.cropId?.cropName || "Unknown Crop"}</Card.Title>
                     <p><strong>Seller:</strong> {order?.sellerId?.name || "Unknown Seller"}</p>

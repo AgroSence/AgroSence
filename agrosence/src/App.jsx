@@ -18,6 +18,9 @@ import MarketAccess from "../pages/MarketAccess";
 import StateSchemes from "../pages/StateWiseScheme";
 import ResourcesPage from "../pages/Resource1";
 import ResourceDetail from "../pages/ResourceDetail";
+import AgroExpert from "../pages/AgroExpert"
+import CropSell from "../pages/CropSell"
+import CropDetail from "../pages/CropDetailCard"
 // Function to check if user is authenticated
 const isAuthenticated = () => {
   return localStorage.getItem("authToken") !== null; // Check if auth token exists
@@ -54,11 +57,14 @@ const AppContent = () => {
         <Route path="/Feature" element={<ProtectedRoute element={<Feature />} />} />
         <Route path="/features/government-schemes" element={<ProtectedRoute element={<GovSchemes />} />} />
         <Route path="/features/MarketAccess" element={<ProtectedRoute element={<MarketAccess />} />} />
+        <Route path="/features/MarketAccess/product/:id" element={<ProtectedRoute element={<CropDetail />} />} />
+        <Route path="/features/expert" element={<ProtectedRoute element={<AgroExpert />} />} />
         <Route path="/features/resources" element={<ProtectedRoute element={<ResourcesPage />} />} />
         <Route path="/features/resources/:_id" element={<ProtectedRoute element={<ResourceDetail />} />} />
         <Route path="/state-schemes/:stateName" element={<ProtectedRoute element={<StateSchemes />} />} />
         <Route path="/Setting" element={<ProtectedRoute element={<Setting />} />} />
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+        <Route path="/CropSell" element={<ProtectedRoute element={<CropSell />} />} />
         <Route path="/product" element={<ProtectedRoute element={<Products />} />} />
         <Route path="/OrderHistory" element={<ProtectedRoute element={<OrderHistory />} />} />
       </Routes>

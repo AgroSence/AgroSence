@@ -8,6 +8,8 @@ const Header = ({ toggleSidebar }) => {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [user, setUser] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -29,16 +31,55 @@ const Header = ({ toggleSidebar }) => {
         console.error("Error fetching profile:", error);
       }
     };
+
     fetchUserProfile();
   }, []);
 
-  const toggleMobileSidebar = () => {
-    setIsMobileSidebarOpen(!isMobileSidebarOpen);
-    const sidebar = document.querySelector(".sidebar.d-lg-none");
-    if (sidebar) {
-      sidebar.style.transform = isMobileSidebarOpen ? "translateX(-100%)" : "translateX(0)";
+  useEffect(() => {
+    if (user) {
+      fetchNotifications();
+    }
+  }, [user]);
+
+  const fetchNotifications = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/notifications/${user._id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+      });
+      setNotifications(response.data);
+    } catch (error) {
+      console.error("Error fetching notifications:", error.response?.data || error.message);
     }
   };
+
+  const handleNotificationClick = () => {
+    setShowNotifications(!showNotifications);
+  };
+
+  const handleAction = async (notificationId, cropId, action) => {
+    try {
+      await axios.put(
+        `http://localhost:5000/api/notifications/${notificationId}/update`,
+        { status: action },
+        { headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` } }
+      );
+  
+      if (action === "accepted") {
+        await axios.put(
+          `http://localhost:5000/api/crops/${cropId}/update-status`,
+          { status: "Not Available" },
+          { headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` } }
+        );
+      }
+  
+      setNotifications((prev) =>
+        prev.filter((notification) => notification._id !== notificationId)
+      );
+    } catch (error) {
+      console.error("Error updating notification or crop status:", error);
+    }
+  };
+  
 
   return (
     <>
@@ -47,7 +88,7 @@ const Header = ({ toggleSidebar }) => {
           <div className="row align-items-center">
             {/* Sidebar Toggle for Mobile */}
             <div className="col-auto d-flex align-items-center">
-              <button className="btn btn-light me-2 d-lg-none" onClick={toggleMobileSidebar}>
+              <button className="btn btn-light me-2 d-lg-none" onClick={toggleSidebar}>
                 <BsList size={20} />
               </button>
 
@@ -87,30 +128,74 @@ const Header = ({ toggleSidebar }) => {
             <div className="col d-flex justify-content-end align-items-center">
               {/* Notifications */}
               <div className="position-relative me-3">
-                <BsBell className="text-muted fs-5" />
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  6
-                </span>
+                <BsBell className="text-muted fs-5" onClick={handleNotificationClick} style={{ cursor: "pointer" }} />
+                {notifications.length > 0 && (
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {notifications.length}
+                  </span>
+                )}
               </div>
 
-              {/* User Info */}
-              <div className="d-flex align-items-center">
-                {/* Logged-in User Name */}
-
-                {/* User Profile Icon */}
-                <FaUserCircle
-                  className="me-2 rounded-circle"
-                  style={{ fontSize: "2.5rem", cursor: "pointer" }}
-                  onClick={() => setShowProfile(true)}
-                />
-                <span className="text-muted">{user?.name || "Guest"}</span>
-              </div>
+              {/* User Profile Icon */}
+              <FaUserCircle
+                className="me-2 rounded-circle"
+                style={{ fontSize: "2.5rem", cursor: "pointer" }}
+                onClick={() => setShowProfile(true)}
+              />
             </div>
           </div>
         </div>
       </div>
 
+      {/* Notification Popup Box */}
+      {showNotifications && (
+        <div className="notification-popup">
+          <div className="popup-content">
+            <h5>Notifications</h5>
+            {notifications.length === 0 ? (
+              <p>No new notifications</p>
+            ) : (
+              notifications.map((notification) => (
+                <div key={notification._id} className="notification-item">
+                  <p>{notification.message}</p>
+                  <button className="btn btn-success me-2" onClick={() => handleAction(notification._id, "accepted")}>
+                    Accept
+                  </button>
+                  <button className="btn btn-danger" onClick={() => handleAction(notification._id, "rejected")}>
+                    Reject
+                  </button>
+                </div>
+              ))
+            )}
+            <button className="btn btn-secondary mt-2" onClick={() => setShowNotifications(false)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       {showProfile && <ProfileModal onClose={() => setShowProfile(false)} />}
+
+      {/* CSS for popup */}
+      <style>{`
+        .notification-popup {
+          position: fixed;
+          top: 60px;
+          right: 20px;
+          background: white;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          width: 300px;
+          border-radius: 10px;
+          z-index: 1000;
+        }
+        .popup-content {
+          padding: 15px;
+        }
+        .notification-item {
+          border-bottom: 1px solid #ddd;
+          padding: 10px 0;
+        }
+      `}</style>
     </>
   );
 };

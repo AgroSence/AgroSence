@@ -43,6 +43,17 @@ const Sidebar = () => {
             </Link>
           </div>
 
+          
+          <div className="mb-2">
+            <Link
+              to="/CropSell"
+              className="d-flex align-items-center text-decoration-none text-secondary p-2"
+            >
+              <BsBarChart className="me-3" />
+              <span>Crop Sell</span>
+            </Link>
+          </div>
+          
           <div className="mb-2">
             <Link
               to="/OrderHistory"
@@ -60,16 +71,6 @@ const Sidebar = () => {
             >
               <BsBookmark className="me-3" />
               <span>Bookmarks / Collection</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link
-              to="/AppUsage"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
-              <BsBarChart className="me-3" />
-              <span>Analytic of App Usage</span>
             </Link>
           </div>
 

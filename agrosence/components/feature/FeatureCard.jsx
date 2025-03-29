@@ -12,6 +12,7 @@ const FeatureCard = ({ title, description, image, index }) => {
     "AI chat bot": "/features/ai-chatbot",
     "Resources": "/features/resources",
     "Government schemes": "/features/government-schemes",
+    "Expert Advice": "/features/expert",
   };
 
   return (

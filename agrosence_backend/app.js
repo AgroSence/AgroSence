@@ -8,6 +8,10 @@ const agricultureRoutes = require("./src/routes/agricultureRoutes");
 const schemeRoutes = require("./src/routes/govSchemeRoutes");
 const resourceRoutes = require("./src/routes/resourceCategoryRoutes");
 const getGeminiResponse = require("./src/services/GeminiAPI");
+const cropSellRoutes = require("./src/routes/cropSellRoutes");
+const notificationRoutes = require("./src/routes/notificationRoutes");
+
+
 const app = express();
 
 // Middleware
@@ -22,8 +26,10 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/resources", resourceRoutes);
 app.use("/api/contact", contactFormRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/crops", cropSellRoutes);
 app.use("/api/schemes", schemeRoutes);
 app.use("/api/agriculture", agricultureRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 app.get("/api/resources/all", async (req, res) => {
     try {

@@ -103,6 +103,33 @@ const customDataProvider = {
     }
   },
 
+  getOrderDetails: async () => {
+    try {
+        const token = localStorage.getItem("token"); // Ensure admin authentication
+        const response = await fetch(`${API_URL}/orders`, { // ⬅ No userId required
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`, 
+            },
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Failed to fetch orders: ${response.status} - ${errorText}`);
+        }
+
+        const data = await response.json();
+        console.log("Fetched orders:", data);
+
+        return data || []; // Return empty array to prevent errors
+    } catch (error) {
+        console.error("Order fetch error:", error);
+        return []; // Return empty array to prevent crashes
+    }
+},
+
+
   getDashboardStats: async () => {
     try {
       const response = await fetch(`${API_URL}/dashboard/stats`);

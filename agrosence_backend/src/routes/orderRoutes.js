@@ -76,12 +76,21 @@ router.put("/:orderId/status", async (req, res) => {
 router.get("/", async (req, res) => {
     try {
         const orders = await Order.find()
-            .populate("buyerId", "name email phone")
-            .populate("sellerId", "name email phone")
-            .populate("cropId", "cropName cropUnit cropType cropQuantity cropCategory cropSellingPrice");
+            .populate({
+                path: "buyerId",
+                select: "name email phone", // Fetch buyer's details
+            })
+            .populate({
+                path: "sellerId",
+                select: "name email phone", // Fetch seller's details
+            })
+            .populate({
+                path: "cropId",
+                select: "cropName cropUnit cropType cropQuantity cropCategory cropSellingPrice",
+            });
 
         if (!orders.length) {
-            return res.status(404).json({ message: "No orders found" });
+            return res.json([]); // ✅ Return empty array instead of error
         }
 
         res.json(orders);
@@ -94,15 +103,30 @@ router.get("/", async (req, res) => {
 
 router.get("/user/:userId", async (req, res) => {
     try {
-      const { userId } = req.params;
-      const orders = await Order.find({
-        $or: [{ buyerId: userId }, { sellerId: userId }],
-      }).populate("cropId").populate("buyerId", "name").populate("sellerId", "name");
-  
-      res.status(200).json(orders);
+        const { userId } = req.params;
+        const orders = await Order.find({
+            $or: [{ buyerId: userId }, { sellerId: userId }],
+        }).populate("cropId").populate("buyerId", "name").populate("sellerId", "name");
+
+        res.status(200).json(orders);
     } catch (error) {
-      res.status(500).json({ message: "Server Error", error });
+        res.status(500).json({ message: "Server Error", error });
     }
-  });
-  
+});
+
+
+router.get("/analytics", async (req, res) => {
+    try {
+        console.log("Received request for order analytics"); // 👈 Debugging line
+        const analyticsData = await Order.aggregate([
+            { $group: { _id: "$status", count: { $sum: 1 } } }
+        ]);
+        res.json(analyticsData);
+    } catch (error) {
+        console.error("Order analytics error:", error); // 👈 Debugging line
+        res.status(400).json({ message: "Error fetching analytics", error });
+    }
+});
+
+
 module.exports = router;

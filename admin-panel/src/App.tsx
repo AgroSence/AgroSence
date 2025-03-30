@@ -19,6 +19,7 @@ import {
 import customDataProvider from "./dataProvider";
 import authProvider from "./authProvider";
 import Dashboard from "./components/Dashboard";
+import AnalyticsDashboard from "./components/Analytic";
 
 const states: { id: string; name: string }[] = [
   { id: "all-states", name: "All States" },
@@ -185,6 +186,7 @@ const App = () => (
     <Resource name="users" list={UserList} />
     <Resource name="schemes" list={SchemeList} create={SchemeCreate} edit={SchemeEdit} />
     <Resource name="resources" list={ResourceList} create={ResourceCreate} edit={ResourceEdit} />
+    <Resource name="Analytic" list={AnalyticsDashboard} />
   </Admin>
 );
 

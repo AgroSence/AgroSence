@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Card, Button } from "react-bootstrap";
 import Layout from "../components/dashboard/Layout";
 
-const MarketAccessHistory = () => {
+const FarmingReport = () => {
+  const [user, setUser] = useState(null); // Fetch user profile first
   const [orders, setOrders] = useState([]);
-  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  // ✅ Fetch User Profile First
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -19,7 +22,9 @@ const MarketAccessHistory = () => {
 
         const response = await axios.get(
           `http://localhost:5000/api/auth/users/${userId}`,
-          { headers: { Authorization: `Bearer ${token}` } }
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
 
         setUser(response.data);
@@ -31,79 +36,151 @@ const MarketAccessHistory = () => {
     fetchUserProfile();
   }, []);
 
+  // ✅ Fetch Orders After User is Set
   useEffect(() => {
+    if (!user) return; // Wait until user is fetched
+
     const fetchOrders = async () => {
-      if (!user) return;
-
       try {
-        const token = localStorage.getItem("authToken");
-        const response = await axios.get(
-          `http://localhost:5000/api/orders/user/${user._id}`,
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
+        const authToken = localStorage.getItem("authToken");
+        const response = await axios.get(`http://localhost:5000/api/orders`, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        });
 
-        setOrders(response.data);
+        // ✅ Filter out Accepted and Rejected orders from frontend state
+        setOrders(response.data.filter((order) => order.status === "Pending"));
       } catch (error) {
-        console.error("Error fetching order history:", error);
+        console.error("Error fetching orders:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    if (user) {
-      fetchOrders();
+    fetchOrders();
+  }, [user]); // Depend on user so it only runs after fetching the profile
+
+  const updateOrderStatus = async (orderId, status) => {
+    try {
+      await axios.put(
+        `http://localhost:5000/api/orders/${orderId}/status`,
+        { status },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+
+      // ✅ Immediately update state to remove accepted/rejected orders
+      setOrders((prevOrders) =>
+        prevOrders.filter((order) => order._id !== orderId)
+      );
+    } catch (error) {
+      console.error("Error updating order status:", error);
     }
-  }, [user]);
+  };
 
   return (
     <Layout>
-      <div className="card border-0 shadow-sm h-100">
-        <div className="card-body">
-          <h5 className="card-title fs-3">Farming Report and Order Status</h5>
-          <p className="text-muted small">Your transaction history</p>
+      <h2>Farming Report</h2>
 
-          <div
-            className="list-group list-group-flush overflow-auto"
-            style={{ maxHeight: "400px" }}
-          >
-            {orders.length > 0 ? (
-              orders
-                .filter((order) => order.status !== "Accepted") // 🔹 Hide Accepted Orders
-                .map((order, index) => (
-                  <div
-                    key={index}
-                    className="list-group-item border-0 px-0 py-2 d-flex justify-content-between align-items-center"
-                  >
-                    <div className="d-flex align-items-center">
+      {loading ? (
+        <p>Loading orders...</p>
+      ) : orders.length === 0 ? (
+        <p>No orders available.</p>
+      ) : (
+        orders.map((order) => {
+          const isBuyer =
+            user?._id?.toString() === order?.buyerId?._id?.toString();
+          const isSeller =
+            user?._id?.toString() === order?.sellerId?._id?.toString();
+
+          return (
+            <Card key={order._id} className="mb-3">
+              <Card.Body>
+                {/* ✅ Buyer View (Show full details if accepted) */}
+                {isBuyer ? (
+                  order?.status === "Accepted" ? (
+                    <>
+                      <Card.Title>
+                        {order?.cropId?.cropName || "Unknown Crop"}
+                      </Card.Title>
+                      <p>
+                        <strong>Seller:</strong>{" "}
+                        {order?.sellerId?.name || "Unknown Seller"}
+                      </p>
+                      <p>
+                        <strong>Quantity:</strong> {order?.cropQuantity}{" "}
+                        {order?.cropId?.cropUnit || "Unit"}
+                      </p>
+                      <p>
+                        <strong>Price:</strong> ₹
+                        {order?.cropId?.cropSellingPrice || "0"}
+                      </p>
+                      <p>
+                        <strong>Status:</strong> {order?.status || "Pending"}
+                      </p>
+                    </>
+                  ) : (
+                    <p>
+                      <strong>Order Status:</strong> {order?.status}
+                    </p>
+                  )
+                ) : (
+                  <>
+                    <Card.Title>
+                      {order?.cropId?.cropName || "Unknown Crop"}
+                    </Card.Title>
+                    <p>
+                      <strong>Seller:</strong>{" "}
+                      {order?.sellerId?.name || "Unknown Seller"}
+                    </p>
+                    <p>
+                      <strong>Buyer:</strong>{" "}
+                      {order?.buyerId?.name || "No Buyer"}
+                    </p>
+                    <p>
+                      <strong>Quantity:</strong> {order?.cropQuantity}{" "}
+                      {order?.cropId?.cropUnit || "Unit"}
+                    </p>
+                    <p>
+                      <strong>Price:</strong> ₹
+                      {order?.cropId?.cropSellingPrice || "0"}
+                    </p>
+                    <p>
+                      <strong>Status:</strong> {order?.status || "Pending"}
+                    </p>
+
+                    {/* ✅ Show Accept/Reject only for Seller & if Order is Pending */}
+                    {isSeller && order?.status === "Pending" && (
                       <div>
-                        <strong>Order ID:</strong> {order._id} <br />
-                        <strong>Date:</strong>{" "}
-                        {new Date(order.createdAt).toLocaleDateString()} <br />
-                        <strong>Type:</strong> {order.status} <br />
-                        <strong>Crop:</strong> {order.cropId?.cropName} <br />
-                        <strong>Quantity:</strong> {order.quantity}{" "}
-                        {order.cropId?.cropUnit} <br />
-                        <strong>Price:</strong> {order.cropId?.cropSellingPrice}{" "}
-                        ₹ <br />
-                        {order.status === "Accepted" && (
-                          <strong>
-                            {user._id === order.sellerId._id
-                              ? `Buyer: ${order.buyerId.name}`
-                              : `Seller: ${order.sellerId.name}`}
-                          </strong>
-                        )}
+                        <Button
+                          variant="success"
+                          onClick={() =>
+                            updateOrderStatus(order._id, "Accepted")
+                          }
+                        >
+                          Accept
+                        </Button>
+                        <Button
+                          variant="danger"
+                          onClick={() =>
+                            updateOrderStatus(order._id, "Rejected")
+                          }
+                        >
+                          Reject
+                        </Button>
                       </div>
-                    </div>
-                  </div>
-                ))
-            ) : (
-              <p className="text-center text-muted">
-                No market access history available.
-              </p>
-            )}
-          </div>
-        </div>
-      </div>
+                    )}
+                  </>
+                )}
+              </Card.Body>
+            </Card>
+          );
+        })
+      )}
     </Layout>
   );
 };
 
-export default MarketAccessHistory;
+export default FarmingReport;

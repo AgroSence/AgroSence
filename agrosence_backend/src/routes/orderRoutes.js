@@ -15,9 +15,9 @@ router.get("/:userId", async (req, res) => {
         const orders = await Order.find({
             $or: [{ sellerId: userId }, { buyerId: userId }],
         })
-        .populate("cropId", "cropName cropUnit cropQuantity cropCategory cropSellingPrice")
-        .populate("sellerId", "name")
-        .populate("buyerId", "name");
+            .populate("cropId", "cropName cropUnit cropQuantity cropCategory cropSellingPrice")
+            .populate("sellerId", "name")
+            .populate("buyerId", "name");
 
         res.status(200).json(orders);
     } catch (error) {
@@ -125,5 +125,38 @@ router.get("/analytics", async (req, res) => {
     }
 });
 
+
+router.get("/", async (req, res) => {
+    try {
+        const orders = await Order.find({ status: "Pending" }) // Exclude "Accepted" & "Rejected"
+            .populate("cropId", "cropName cropUnit cropQuantity cropCategory cropSellingPrice")
+            .populate("sellerId", "name")
+            .populate("buyerId", "name");
+
+        res.status(200).json(orders);
+    } catch (error) {
+        console.error("Error fetching orders:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
+
+router.post("/", async (req, res) => {
+    try {
+        const { sellerId, buyerId, cropId, quantity, totalPrice } = req.body;
+
+        if (!sellerId || !buyerId || !cropId || !quantity || !totalPrice) {
+            return res.status(400).json({ message: "Missing required fields" });
+        }
+
+        const newOrder = new Order({ sellerId, buyerId, cropId, quantity, totalPrice, status: "Pending" });
+        await newOrder.save();
+
+        res.status(201).json({ message: "Order placed successfully", order: newOrder });
+    } catch (error) {
+        console.error("Error placing order:", error);
+        res.status(500).json({ message: "Server error", error });
+    }
+});
 
 module.exports = router;

@@ -38,10 +38,10 @@ const Header = ({ toggleSidebar }) => {
   }, []);
 
   useEffect(() => {
-    if (user) {
+    if (user && user._id) {
       fetchNotifications();
     }
-  }, [user]);
+  }, [user]);  
 
   const fetchNotifications = async () => {
     try {
@@ -62,31 +62,37 @@ const Header = ({ toggleSidebar }) => {
     }
   };
 
-  const handleRemoveNotification = async (notificationId) => {
+  const handleRemoveNotification = async (notificationId, cropId) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this notification?"
+      "Are you sure you want to accept this request?"
     );
-
-    if (!confirmDelete) return; // If user cancels, stop here
-
+  
+    if (!confirmDelete) return;
+  
     try {
-      await axios.delete(
-        `http://localhost:5000/api/notifications/${notificationId}`,
+      await axios.put(
+        `http://localhost:5000/api/notifications/${notificationId}/update`,
+        { status: "accepted" },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
         }
       );
-
+  
+      // Remove notification from UI
       setNotifications((prev) => prev.filter((n) => n._id !== notificationId));
+  
+      // Refresh crop list or navigate
+      navigate("/Reports");
     } catch (error) {
       console.error(
-        "Error removing notification:",
+        "Error updating notification:",
         error.response?.data || error.message
       );
     }
   };
+  
 
   return (
     <>

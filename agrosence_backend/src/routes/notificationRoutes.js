@@ -57,28 +57,32 @@ router.put("/:id/read", async (req, res) => {
 });
 
 router.put("/:id/update", async (req, res) => {
-    try {
-      const { status } = req.body;
-      const notification = await Notification.findByIdAndUpdate(req.params.id, { status }, { new: true });
-  
-      if (!notification) {
-        return res.status(404).json({ message: "Notification not found" });
-      }
-  
-      if (status === "accepted") {
-        const crop = await Crop.findByIdAndUpdate(notification.cropId, { status: "Not Available" }, { new: true });
-  
-        if (!crop) {
-          return res.status(404).json({ message: "Crop not found" });
-        }
-      }
-  
-      res.status(200).json({ message: `Notification marked as ${status}` });
-    } catch (error) {
-      console.error("Error updating notification:", error);
-      res.status(500).json({ message: "Internal Server Error" });
+  try {
+    const { status } = req.body;
+    const notification = await Notification.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+
+    if (!notification) {
+      return res.status(404).json({ message: "Notification not found" });
     }
-  });
+
+    if (status === "accepted") {
+      await Crop.findByIdAndUpdate(
+        notification.cropId,
+        { status: "Not Available" },
+        { new: true }
+      );
+    }
+
+    res.status(200).json({ message: `Notification marked as ${status}` });
+  } catch (error) {
+    console.error("Error updating notification:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
   
   router.put("/:id/update-status", async (req, res) => {
     try {

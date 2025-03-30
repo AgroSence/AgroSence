@@ -2,7 +2,6 @@ import React from "react";
 import { BsPeople, BsBox,BsGraphUp, BsClock,} from "react-icons/bs";
 import MetricCard from "../components/dashboard/MetricCard";
 import RatingChart from "../components/dashboard/RatingChart";
-import MostOrdered from "../components/dashboard/Order";
 import Layout from "../components/dashboard/Layout"; // Import the Layout component
 
 const Dashboard = () => {

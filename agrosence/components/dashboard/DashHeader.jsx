@@ -6,9 +6,7 @@ import ProfileModal from "../../components/ProfileModel";
 import { useNavigate } from "react-router-dom";
 
 const Header = ({ toggleSidebar }) => {
-  const navigate = useNavigate(); // ✅ Fix: Move useNavigate inside the component
-
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const navigate = useNavigate();
   const [showProfile, setShowProfile] = useState(false);
   const [user, setUser] = useState(null);
   const [notifications, setNotifications] = useState([]);
@@ -27,9 +25,7 @@ const Header = ({ toggleSidebar }) => {
 
         const response = await axios.get(
           `http://localhost:5000/api/auth/users/${userId}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
 
         setUser(response.data);
@@ -66,10 +62,32 @@ const Header = ({ toggleSidebar }) => {
     }
   };
 
-  const handleNotificationClick = () => {
-    setShowNotifications(!showNotifications); // Toggle Notification Visibility
+  const handleRemoveNotification = async (notificationId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this notification?"
+    );
+
+    if (!confirmDelete) return; // If user cancels, stop here
+
+    try {
+      await axios.delete(
+        `http://localhost:5000/api/notifications/${notificationId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+
+      setNotifications((prev) => prev.filter((n) => n._id !== notificationId));
+    } catch (error) {
+      console.error(
+        "Error removing notification:",
+        error.response?.data || error.message
+      );
+    }
   };
-  
+
   return (
     <>
       <div className="header bg-white border-bottom p-3">
@@ -122,7 +140,7 @@ const Header = ({ toggleSidebar }) => {
               <div className="position-relative me-3">
                 <BsBell
                   className="text-muted fs-5"
-                  onClick={handleNotificationClick}
+                  onClick={() => setShowNotifications(!showNotifications)}
                   style={{ cursor: "pointer" }}
                 />
                 {notifications.length > 0 && (
@@ -148,40 +166,29 @@ const Header = ({ toggleSidebar }) => {
         <div className="notification-popup">
           <div className="popup-content">
             <h5>Notifications</h5>
-            {showNotifications && (
-              <div className="notification-popup">
-                <div className="popup-content">
-                  <h5>Notifications</h5>
-                  {notifications.length === 0 ? (
-                    <p>No new notifications</p>
-                  ) : (
-                    notifications.map((notification) => (
-                      <div key={notification._id} className="notification-item">
-                        <p>{notification.message}</p>
-                        <button
-                          className="btn btn-primary"
-                          onClick={() => navigate("/Reports")}
-                        >
-                          View Report
-                        </button>
-                      </div>
-                    ))
-                  )}
-                  <button
-                    className="btn btn-secondary mt-2"
-                    onClick={() => setShowNotifications(false)}
-                  >
-                    Close
-                  </button>
-                </div>
+            {notifications.map((notification) => (
+              <div key={notification._id} className="notification-item">
+                <p>{notification.message}</p>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => navigate("/Reports")}
+                >
+                  View Report
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleRemoveNotification(notification._id)}
+                >
+                  Close
+                </button>
               </div>
-            )}
+            ))}
 
             <button
               className="btn btn-secondary mt-2"
               onClick={() => setShowNotifications(false)}
             >
-              Close
+              Close All
             </button>
           </div>
         </div>

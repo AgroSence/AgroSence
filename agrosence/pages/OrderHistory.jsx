@@ -1,108 +1,112 @@
-import { useState } from "react";
-import OrderTable from "../components/product/OrderTable";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Layout from "../components/dashboard/Layout";
 
-const OrderHistory = () => {
-  const [orders, setOrders] = useState([
-    {
-      id: "15267",
-      date: "Mar 1, 2023",
-      type: "SELL",
-      item: "RICE",
-      price: "200",
-      qty: 1,
-      subtotal: "20000",
-    },
-    {
-      id: "12436",
-      date: "Feb 12, 2033",
-      type: "BUY",
-      item: "SWEET PATATO",
-      price: "100",
-      qty: 2,
-      subtotal: "30000",
-    },
-    {
-      id: "16879",
-      date: "Jan 26, 2023",
-      type: "SELL",
-      item: "COTTON",
-      price: "500",
-      qty: 1,
-      subtotal: "50000",
-    },
-    {
-      id: "14334",
-      date: "Mar 7, 2021",
-      type: "SELL",
-      item: "TOMATO",
-      price: "200",
-      qty: 3,
-      subtotal: "60000",
-    },
-    {
-      id: "11445",
-      date: "Jan 17, 2023",
-      type: "BUY",
-      item: "STRAWBERRY",
-      price: "100",
-      qty: 2,
-      subtotal: "150000",
-    },
-    {
-      id: "23567",
-      date: "Jan 20, 2020",
-      type: "BUY",
-      item: "COTTON",
-      price: "500",
-      qty: 1,
-      subtotal: "50000",
-    },
-    {
-      id: "65987",
-      date: "Sep 17, 2019",
-      type: "BUY",
-      item: "WHEAT",
-      price: "600",
-      qty: 1,
-      subtotal: "60000",
-    },
-    {
-      id: "22459",
-      date: "Aug 20, 2022",
-      type: "SELL",
-      item: "ALMOND",
-      price: "100",
-      qty: 1,
-      subtotal: "200000",
-    },
-    {
-      id: "56874",
-      date: "Jul 27, 2018",
-      type: "SELL",
-      item: "SUGARCANE",
-      price: "500",
-      qty: 3,
-      subtotal: "70000",
-    },
-  ]);
+const MarketAccessHistory = () => {
+  const [user, setUser] = useState(null);
+  const [orders, setOrders] = useState([]);
 
-  const handleDeleteOrder = (orderId) => {
-    setOrders(orders.filter((order) => order.id !== orderId));
-  };
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+
+        if (!token || !userId) {
+          console.error("No auth token or user ID found");
+          return;
+        }
+
+        const response = await axios.get(
+          `http://localhost:5000/api/auth/users/${userId}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
+
+    fetchUserProfile();
+  }, [userId]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if (!user) return;
+
+      try {
+        const token = localStorage.getItem("authToken");
+        const response = await axios.get(
+          `http://localhost:5000/api/orders/${user._id}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        setOrders(response.data);
+      } catch (error) {
+        console.error("Error fetching order history:", error);
+      }
+    };
+
+    if (user) {
+      fetchOrders();
+    }
+  }, [user]);
+
+  if (!user) return <p>Loading user data...</p>;
 
   return (
     <Layout>
-      <div className="container-fluid p-4">
-        <h2 className="mb-4">Order History</h2>
-        <div className="card border-0 shadow-sm">
-          <div className="card-body p-0">
-            <OrderTable orders={orders} onDeleteOrder={handleDeleteOrder} />
-          </div>
+      <div className="card border-0 shadow-sm h-100">
+        <div className="card-body">
+          <h5 className="card-title fs-3">Market Access History</h5>
+          <p className="text-muted small">Your transaction history</p>
+
+          {orders.length > 0 ? (
+            <div className="table-responsive">
+              <table className="table table-striped table-hover">
+                <thead className="table-dark">
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Crop</th>
+                    <th>Quantity</th>
+                    <th>Price (₹)</th>
+                    <th>Buyer/Seller</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order, index) => (
+                    <tr key={index}>
+                      <td>{order._id}</td>
+                      <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                      <td>{order.status}</td>
+                      <td>{order.cropId?.cropName}</td>
+                      <td>
+                        {order.cropId?.cropQuantity} {order.cropId?.cropUnit}
+                      </td>
+                      <td>{order.cropId?.cropSellingPrice}</td>
+                      <td>
+                        {userId === order.sellerId?._id
+                          ? `Buyer: ${order.buyerId?.name}`
+                          : `Seller: ${order.sellerId?.name}`}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p className="text-center text-muted">
+              No market access history available.
+            </p>
+          )}
         </div>
       </div>
     </Layout>
   );
 };
 
-export default OrderHistory;
+export default MarketAccessHistory;

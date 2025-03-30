@@ -7,20 +7,17 @@ const Crop = require("../models/CropModel");
 router.get("/:userId", async (req, res) => {
     try {
         const { userId } = req.params;
-        if (!userId.match(/^[0-9a-fA-F]{24}$/)) {
-            return res.status(400).json({ message: "Invalid User ID format" });
+
+        if (!userId || !userId.match(/^[0-9a-fA-F]{24}$/)) {
+            return res.status(400).json({ message: "Invalid or missing User ID" });
         }
 
         const orders = await Order.find({
             $or: [{ sellerId: userId }, { buyerId: userId }],
         })
-            .populate("cropId", "cropName cropUnit cropQuantity cropCategory cropSellingPrice")
-            .populate("sellerId", "name")
-            .populate("buyerId", "name");
-
-        if (!orders.length) {
-            return res.status(200).json([]); // Return empty array instead of error
-        }
+        .populate("cropId", "cropName cropUnit cropQuantity cropCategory cropSellingPrice")
+        .populate("sellerId", "name")
+        .populate("buyerId", "name");
 
         res.status(200).json(orders);
     } catch (error) {

@@ -21,12 +21,27 @@ const Dashboard = () => {
       const userId = localStorage.getItem("userId"); // Get user ID from local storage
       const response = await fetch(`${API_URL}/orders/${userId}`);
       const orders = await response.json();
+      
       setOrders(orders);
+  
+      // Calculate total orders count
+      setTotalOrders(orders.length);
+  
+      // Calculate pending orders count
+      const pendingCount = orders.filter(order => order.status === "pending").length;
+      setPendingOrders(pendingCount);
+  
+      // Calculate total sales (CropQuantity * CropSellingPrice)
+      const sales = orders.reduce((acc, order) => {
+        return acc + (order.cropId.cropQuantity * order.cropId.cropSellingPrice);
+      }, 0);
+  
+      setTotalSales(sales);
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
   };
-
+  
   const fetchWeather = (lat, lon) => {
     if (!lat || !lon) {
       console.error("Latitude or Longitude is undefined.");

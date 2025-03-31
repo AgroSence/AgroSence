@@ -79,11 +79,18 @@ const ProfileModal = ({ onClose }) => {
                 </div>
 
                 {/* Update Button */}
-                <button className="btn btn-success w-100">
+                <div className="profile-button d-flex justify-content-evenly">
+                <button className="btn btn-success w-auto">
                     <a href="/Setting" style={{ textDecoration: "none", color: "white" }}>
                         Update
                     </a>
                 </button>
+                <button className="btn btn-success w-auto">
+                    <a href="/" style={{ textDecoration: "none", color: "white" }}>
+                        Logout
+                    </a>
+                </button>
+                </div>
             </div>
         </div>
     );

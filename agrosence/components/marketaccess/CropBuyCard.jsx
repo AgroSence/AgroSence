@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Card,
-  Button,
-  Row,
-  Col,
-  Modal,
-  Badge,
-  Alert,
-} from "react-bootstrap";
+import { Container, Card, Button, Row, Col, Modal, Badge, Alert } from "react-bootstrap";
 import axios from "axios";
 
 const MarketAccess = () => {
-  const [crops, setCrops] = useState([]); // Store all crops
-  const [selectedCrop, setSelectedCrop] = useState(null); // Selected crop for modal
-  const [showModal, setShowModal] = useState(false); // Control modal visibility
-  const [notification, setNotification] = useState(""); // Notification message
-  const [user, setUser] = useState(null); // Store logged-in user
+  const [crops, setCrops] = useState([]);
+  const [selectedCrop, setSelectedCrop] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [notification, setNotification] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     fetchCrops();
@@ -44,9 +35,7 @@ const MarketAccess = () => {
 
       const response = await axios.get(
         `http://localhost:5000/api/auth/users/${userId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       setUser(response.data);
@@ -66,10 +55,10 @@ const MarketAccess = () => {
       return;
     }
 
-    setNotification(""); // Clear previous notifications
+    setNotification("");
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:5000/api/orders",
         {
           sellerId: selectedCrop.userId._id,
@@ -81,10 +70,10 @@ const MarketAccess = () => {
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
         }
-      );      
+      );
 
       setNotification("Order placed! The seller has been notified.");
-      setShowModal(false); // Close modal after successful order
+      setShowModal(false);
     } catch (error) {
       console.error("Error placing order:", error);
       setNotification("Failed to place order. Please try again.");
@@ -95,26 +84,21 @@ const MarketAccess = () => {
     <Container className="py-4">
       <h2 className="mb-4">Available Crops</h2>
       {notification && <Alert variant="info">{notification}</Alert>}
+
       <Row className="g-4">
         {crops.map((crop) => (
           <Col md={4} key={crop._id}>
             <Card className="shadow-sm border-0">
               <Card.Img
                 variant="top"
-                src={
-                  crop.cropImages?.[0]
-                    ? `http://localhost:5000${crop.cropImages[0]}`
-                    : "/placeholder.png"
-                }
+                src={crop.cropImages?.[0] || "/placeholder.png"} // Use Cloudinary URL directly
                 alt={crop.cropName}
                 style={{ height: "200px", objectFit: "cover" }}
               />
               <Card.Body>
                 <Card.Title>{crop.cropName}</Card.Title>
                 <Badge bg="success">{crop.cropCategory}</Badge>
-                <p className="text-muted mt-2">
-                  ₹{crop.cropSellingPrice}/{crop.cropUnit}
-                </p>
+                <p className="text-muted mt-2">₹{crop.cropSellingPrice}/{crop.cropUnit}</p>
                 <Button variant="primary" onClick={() => handleShowModal(crop)}>
                   View Details
                 </Button>
@@ -125,12 +109,7 @@ const MarketAccess = () => {
       </Row>
 
       {/* Crop Detail Modal */}
-      <Modal
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        size="lg"
-        centered
-      >
+      <Modal show={showModal} onHide={() => setShowModal(false)} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>{selectedCrop?.cropName} Details</Modal.Title>
         </Modal.Header>
@@ -140,11 +119,7 @@ const MarketAccess = () => {
               {/* Crop Image */}
               <Col md={6}>
                 <img
-                  src={
-                    selectedCrop.cropImages?.[0]
-                      ? `http://localhost:5000${selectedCrop.cropImages[0]}`
-                      : "/placeholder.png"
-                  }
+                  src={selectedCrop.cropImages?.[0] || "/placeholder.png"}
                   alt={selectedCrop.cropName}
                   className="img-fluid rounded"
                   style={{ maxHeight: "300px", objectFit: "cover" }}
@@ -156,26 +131,15 @@ const MarketAccess = () => {
                 <h4 className="text-success">
                   ₹{selectedCrop.cropSellingPrice}/{selectedCrop.cropUnit}
                 </h4>
-                <p>
-                  <strong>Category:</strong> {selectedCrop.cropCategory}
-                </p>
-                <p>
-                  <strong>Description:</strong> {selectedCrop.cropDescription}
-                </p>
-                <p>
-                  <strong>Quantity:</strong> {selectedCrop.cropQuantity}{" "}
-                  {selectedCrop.cropUnit}
-                </p>
+                <p><strong>Category:</strong> {selectedCrop.cropCategory}</p>
+                <p><strong>Description:</strong> {selectedCrop.cropDescription}</p>
+                <p><strong>Quantity:</strong> {selectedCrop.cropQuantity} {selectedCrop.cropUnit}</p>
                 <p>
                   <strong>Grown Organically:</strong>{" "}
-                  {selectedCrop.grownOrganically === "Yes" ? "✅ Yes" : "❌ No"}
+                  {selectedCrop.grownOrganically === "true" ? "✅ Yes" : "❌ No"}
                 </p>
-                <p>
-                  <strong>Crop Status:</strong> {selectedCrop.cropStatus}
-                </p>
-                <p>
-                  <strong>Crop ID:</strong> {selectedCrop._id}
-                </p>
+                <p><strong>Crop Status:</strong> {selectedCrop.cropStatus || "Available"}</p>
+                <p><strong>Crop ID:</strong> {selectedCrop._id}</p>
               </Col>
             </Row>
           )}
@@ -184,15 +148,9 @@ const MarketAccess = () => {
           {selectedCrop?.userId && (
             <Card className="mt-4 p-3 bg-light">
               <h5>Seller Information</h5>
-              <p>
-                <strong>Name:</strong> {selectedCrop.userId.name}
-              </p>
-              <p>
-                <strong>Mobile:</strong> {selectedCrop.userId.mobile}
-              </p>
-              <p>
-                <strong>Location:</strong> {selectedCrop.userId.state}
-              </p>
+              <p><strong>Name:</strong> {selectedCrop.userId.name}</p>
+              <p><strong>Mobile:</strong> {selectedCrop.userId.mobile}</p>
+              <p><strong>Location:</strong> {selectedCrop.userId.state}</p>
             </Card>
           )}
         </Modal.Body>
@@ -201,13 +159,11 @@ const MarketAccess = () => {
             variant="success"
             onClick={handleBuyNow}
             disabled={
-              user?._id === selectedCrop?.userId?._id ||
-              selectedCrop?.cropStatus === "Not Available"
+              user?._id === selectedCrop?.userId?._id || selectedCrop?.cropStatus === "Not Available"
             }
           >
             Buy Now
           </Button>
-
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close
           </Button>

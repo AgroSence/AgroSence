@@ -44,6 +44,8 @@ const Header = ({ toggleSidebar }) => {
   }, [user]);  
 
   const fetchNotifications = async () => {
+    if (!user || !user._id) return;
+  
     try {
       const response = await axios.get(
         `http://localhost:5000/api/notifications/${user._id}`,
@@ -53,14 +55,12 @@ const Header = ({ toggleSidebar }) => {
           },
         }
       );
+      console.log("Fetched Notifications:", response.data); // Debugging
       setNotifications(response.data);
     } catch (error) {
-      console.error(
-        "Error fetching notifications:",
-        error.response?.data || error.message
-      );
+      console.error("Error fetching notifications:", error.response?.data || error.message);
     }
-  };
+  };    
 
   const handleRemoveNotification = async (notificationId, cropId) => {
     const confirmDelete = window.confirm(

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SchemeCard from "../components/govscheme/SchemeCard";
 import QuickReports from "../components/govscheme/QuickReport";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Button, Row, Col, Form } from "react-bootstrap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { resource } from "../resource";
@@ -89,7 +89,11 @@ const GovSchemes = () => {
             className="mb-4 w-50 mx-auto"
           />
         </div>
-
+        <div className="backbtn w-100 d-flex justify-content-start align-items-center">
+        <Button variant="primary" onClick={() => navigate(-1)} className="mb-4">
+          Back to Features
+        </Button>
+      </div>
         <Row>
           <Col lg={9}>
             <Row xs={1} sm={2} md={3} lg={4} className="g-4">

@@ -40,7 +40,6 @@ const ResourceDetail = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <b>Description : </b>
           {resource.description}
         </motion.p>
 

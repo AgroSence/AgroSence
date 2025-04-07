@@ -64,17 +64,17 @@ const Sidebar = () => {
             </Link>
           </div>
 
-          <div className="mb-2">
+          {/* <div className="mb-2">
             <Link to="/Bookmarks" className={linkClass("/Bookmarks")}>
               <BsBookmark className="me-3" />
               <span>Bookmarks / Collection</span>
             </Link>
-          </div>
+          </div> */}
 
           <div className="mb-2">
             <Link to="/Reports" className={linkClass("/Reports")}>
               <BsFileText className="me-3" />
-              <span>Farming Report</span>
+              <span>Farming Report / Requests</span>
             </Link>
           </div>
 

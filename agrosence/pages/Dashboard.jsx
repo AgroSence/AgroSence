@@ -124,7 +124,7 @@ const Dashboard = () => {
               <div className="card-body">
                 <BsGraphUp size={24} className="text-success" />
                 <h5>Total Sales</h5>
-                <p>${totalSales}</p>
+                <p>INR.{totalSales}/-</p>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   BsGrid1X2Fill,
   BsBox,
@@ -18,6 +18,16 @@ import {
 } from "react-icons/bs";
 
 const Sidebar = () => {
+  const location = useLocation();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const linkClass = (path) =>
+    `d-flex align-items-center text-decoration-none p-2 rounded ${
+      location.pathname === path
+        ? "text-success bg-success bg-opacity-10"
+        : "text-secondary"
+    }`;
+
   return (
     <>
       {/* Sidebar */}
@@ -26,7 +36,7 @@ const Sidebar = () => {
         style={{ width: "250px", zIndex: 1045 }}
       >
         <div className="p-3 border-bottom d-flex justify-content-between align-items-center">
-          <h3 className="m-0" style={{fontFamily:"martel"}}>AgroSence</h3>
+          <h3 className="m-0" style={{ fontFamily: "martel" }}>AgroSence</h3>
         </div>
 
         <div
@@ -34,71 +44,49 @@ const Sidebar = () => {
           style={{ height: "calc(100vh - 71px)" }}
         >
           <div className="mb-4">
-            <Link
-              to="/Dashboard"
-              className="d-flex align-items-center text-decoration-none text-success p-2 bg-success bg-opacity-10 rounded"
-            >
+            <Link to="/Dashboard" className={linkClass("/Dashboard")}>
               <BsGrid1X2Fill className="me-3" />
               <span>Dashboard</span>
             </Link>
           </div>
 
-          
           <div className="mb-2">
-            <Link
-              to="/CropSell"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/CropSell" className={linkClass("/CropSell")}>
               <BsBarChart className="me-3" />
               <span>Crop Sell</span>
             </Link>
           </div>
-          
+
           <div className="mb-2">
-            <Link
-              to="/OrderHistory"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/OrderHistory" className={linkClass("/OrderHistory")}>
               <BsClock className="me-3" />
               <span>User History</span>
             </Link>
           </div>
 
           <div className="mb-2">
-            <Link
-              to="/Bookmarks"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/Bookmarks" className={linkClass("/Bookmarks")}>
               <BsBookmark className="me-3" />
               <span>Bookmarks / Collection</span>
             </Link>
           </div>
 
           <div className="mb-2">
-            <Link
-              to="/Reports"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/Reports" className={linkClass("/Reports")}>
               <BsFileText className="me-3" />
               <span>Farming Report</span>
             </Link>
           </div>
 
           <div className="mb-2">
-            <Link
-              to="/Reports"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/Routine" className={linkClass("/Routine")}>
               <BsBox className="me-3" />
               <span>Farming Routine</span>
             </Link>
           </div>
 
           <div className="mb-4">
-            <Link
-              to="/QuickSupport"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/QuickSupport" className={linkClass("/QuickSupport")}>
               <BsLifePreserver className="me-3" />
               <span>Quick Support / Feedback</span>
             </Link>
@@ -108,40 +96,28 @@ const Sidebar = () => {
             <small className="text-muted px-2 fw-bold">Access Other Features</small>
 
             <div className="mt-2">
-              <Link
-                to="/Home"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/Home" className={linkClass("/Home")}>
                 <BsHouseFill className="me-3" />
                 <span>Home</span>
               </Link>
             </div>
 
             <div className="mb-2">
-              <Link
-                to="/Feature"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/Feature" className={linkClass("/Feature")}>
                 <BsTools className="me-3" />
                 <span>Features</span>
               </Link>
             </div>
 
             <div className="mb-2">
-              <Link
-                to="/ContactUs"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/ContactUs" className={linkClass("/ContactUs")}>
                 <BsPhoneFill className="me-3" />
                 <span>Contact</span>
               </Link>
             </div>
 
             <div className="mb-2">
-              <Link
-                to="/Setting"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/Setting" className={linkClass("/Setting")}>
                 <BsGearFill className="me-3" />
                 <span>Settings</span>
               </Link>
@@ -150,10 +126,7 @@ const Sidebar = () => {
 
           <div className="border-top pt-4">
             <div className="mb-2">
-              <Link
-                to="/"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/" className={linkClass("/")}>
                 <BsBoxArrowRight className="me-3" />
                 <span>Logout</span>
               </Link>
@@ -197,7 +170,7 @@ const Sidebar = () => {
               type="text"
               className="form-control"
               placeholder="Search"
-              // value={searchQuery}
+              value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 backgroundColor: "#F2F4F8",
@@ -215,70 +188,49 @@ const Sidebar = () => {
           style={{ height: "calc(100vh - 71px)" }}
         >
           <div className="mb-4">
-            <Link
-              to="/Dashboard"
-              className="d-flex align-items-center text-decoration-none text-success p-2 bg-success bg-opacity-10 rounded"
-            >
+            <Link to="/Dashboard" className={linkClass("/Dashboard")}>
               <BsGrid1X2Fill className="me-3" />
               <span>Dashboard</span>
             </Link>
           </div>
 
           <div className="mb-2">
-            <Link
-              to="/UserHistory"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/OrderHistory" className={linkClass("/OrderHistory")}>
               <BsClock className="me-3" />
               <span>User History</span>
             </Link>
           </div>
 
           <div className="mb-2">
-            <Link
-              to="/Bookmarks"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/Bookmarks" className={linkClass("/Bookmarks")}>
               <BsBookmark className="me-3" />
               <span>Bookmarks / Collection</span>
             </Link>
           </div>
 
           <div className="mb-2">
-            <Link
-              to="/AppUsage"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/AppUsage" className={linkClass("/AppUsage")}>
               <BsBarChart className="me-3" />
               <span>Analytic of App Usage</span>
             </Link>
           </div>
 
           <div className="mb-2">
-            <Link
-              to="/Reports"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/Reports" className={linkClass("/Reports")}>
               <BsFileText className="me-3" />
               <span>Farming Report</span>
             </Link>
           </div>
 
           <div className="mb-2">
-            <Link
-              to="/Reports"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/Routine" className={linkClass("/Routine")}>
               <BsBox className="me-3" />
               <span>Farming Routine</span>
             </Link>
           </div>
 
           <div className="mb-4">
-            <Link
-              to="/QuickSupport"
-              className="d-flex align-items-center text-decoration-none text-secondary p-2"
-            >
+            <Link to="/QuickSupport" className={linkClass("/QuickSupport")}>
               <BsLifePreserver className="me-3" />
               <span>Quick Support / Feedback</span>
             </Link>
@@ -288,50 +240,35 @@ const Sidebar = () => {
             <small className="text-muted px-2 fw-bold">Access Other Features</small>
 
             <div className="mt-2">
-              <Link
-                to="/Home"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/Home" className={linkClass("/Home")}>
                 <BsHouseFill className="me-3" />
                 <span>Home</span>
               </Link>
             </div>
 
             <div className="mb-2">
-              <Link
-                to="/Feature"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/Feature" className={linkClass("/Feature")}>
                 <BsTools className="me-3" />
                 <span>Features</span>
               </Link>
             </div>
 
             <div className="mb-2">
-              <Link
-                to="/ContactUs"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/ContactUs" className={linkClass("/ContactUs")}>
                 <BsPhoneFill className="me-3" />
                 <span>Contact</span>
               </Link>
             </div>
 
             <div className="mb-2">
-              <Link
-                to="/Setting"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/Setting" className={linkClass("/Setting")}>
                 <BsGearFill className="me-3" />
                 <span>Settings</span>
               </Link>
             </div>
 
             <div className="mb-2">
-              <Link
-                to="/"
-                className="d-flex align-items-center text-decoration-none text-secondary p-2"
-              >
+              <Link to="/" className={linkClass("/")}>
                 <BsBoxArrowRight className="me-3" />
                 <span>Logout</span>
               </Link>

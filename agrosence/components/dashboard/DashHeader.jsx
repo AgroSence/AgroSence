@@ -11,6 +11,7 @@ const Header = ({ toggleSidebar }) => {
   const [user, setUser] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -41,11 +42,11 @@ const Header = ({ toggleSidebar }) => {
     if (user && user._id) {
       fetchNotifications();
     }
-  }, [user]);  
+  }, [user]);
 
   const fetchNotifications = async () => {
     if (!user || !user._id) return;
-  
+
     try {
       const response = await axios.get(
         `http://localhost:5000/api/notifications/${user._id}`,
@@ -55,20 +56,22 @@ const Header = ({ toggleSidebar }) => {
           },
         }
       );
-      console.log("Fetched Notifications:", response.data); // Debugging
       setNotifications(response.data);
     } catch (error) {
-      console.error("Error fetching notifications:", error.response?.data || error.message);
+      console.error(
+        "Error fetching notifications:",
+        error.response?.data || error.message
+      );
     }
-  };    
+  };
 
-  const handleRemoveNotification = async (notificationId, cropId) => {
+  const handleRemoveNotification = async (notificationId) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to accept this request?"
     );
-  
+
     if (!confirmDelete) return;
-  
+
     try {
       await axios.put(
         `http://localhost:5000/api/notifications/${notificationId}/update`,
@@ -79,11 +82,11 @@ const Header = ({ toggleSidebar }) => {
           },
         }
       );
-  
-      // Remove notification from UI
-      setNotifications((prev) => prev.filter((n) => n._id !== notificationId));
-  
-      // Refresh crop list or navigate
+
+      setNotifications((prev) =>
+        prev.filter((n) => n._id !== notificationId)
+      );
+
       navigate("/Reports");
     } catch (error) {
       console.error(
@@ -92,7 +95,53 @@ const Header = ({ toggleSidebar }) => {
       );
     }
   };
-  
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = searchQuery.toLowerCase();
+
+    if (query.includes("report")) {
+      navigate("/Reports");
+    } else if (query.includes("profile")) {
+      navigate("/Setting");
+    } else if (query.includes("history")) {
+      navigate("/OrderHistory");
+    } else if (query.includes("sell")) {
+      navigate("/CropSell");
+    } else if (query.includes("bookmark")) {
+      navigate("/Bookmarks");
+    } else if (query.includes("routine")) {
+      navigate("/Routine");
+    } else if (query.includes("dash")) {
+      navigate("/Dashboard");
+    } else if (query.includes("home")) {
+      navigate("/Home");
+    } else if (query.includes("about")) {
+      navigate("/About");
+    } else if (query.includes("contact")) {
+      navigate("/ContactUs");
+    } else if (query.includes("feature") || query.includes("features")) {
+      navigate("/Feature");
+    } else if (query.includes("government")) {
+      navigate("/features/government-schemes");
+    } else if (query.includes("market")) {
+      navigate("/features/MarketAccess");
+    } else if (query.includes("expert")) {
+      navigate("/features/expert");
+    } else if (query.includes("resource")) {
+      navigate("/features/resources");
+    } else if (query.includes("support")) {
+      navigate("/QuickSupport");
+    } else if (query.includes("product")) {
+      navigate("/product");
+    } else if (query.includes("order")) {
+      navigate("/OrderHistory");
+    } else {
+      alert("No matching route found!");
+    }
+
+    setSearchQuery("");
+  };
 
   return (
     <>
@@ -108,8 +157,11 @@ const Header = ({ toggleSidebar }) => {
                 <BsList size={20} />
               </button>
 
-              {/* Search Form for Desktop */}
-              <form className="d-none d-lg-flex align-items-center">
+              {/* Search Form */}
+              <form
+                className="d-none d-lg-flex align-items-center"
+                onSubmit={handleSearch}
+              >
                 <div className="input-group" style={{ maxWidth: "400px" }}>
                   <span
                     className="input-group-text text-muted fs-5"
@@ -126,8 +178,10 @@ const Header = ({ toggleSidebar }) => {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Search"
+                    placeholder="Search (e.g., Report, Profile)"
                     aria-label="Search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     style={{
                       backgroundColor: "#F2F4F8",
                       borderTopRightRadius: "25px",
@@ -140,7 +194,7 @@ const Header = ({ toggleSidebar }) => {
               </form>
             </div>
 
-            {/* Right-side Elements */}
+            {/* Right-side Icons */}
             <div className="col d-flex justify-content-end align-items-center">
               {/* Notifications */}
               <div className="position-relative me-3">
@@ -156,7 +210,7 @@ const Header = ({ toggleSidebar }) => {
                 )}
               </div>
 
-              {/* User Profile Icon */}
+              {/* User Icon */}
               <FaUserCircle
                 className="me-2 rounded-circle"
                 style={{ fontSize: "2.5rem", cursor: "pointer" }}
@@ -167,7 +221,7 @@ const Header = ({ toggleSidebar }) => {
         </div>
       </div>
 
-      {/* Notification Popup Box */}
+      {/* Notification Popup */}
       {showNotifications && (
         <div className="notification-popup">
           <div className="popup-content">
@@ -189,7 +243,6 @@ const Header = ({ toggleSidebar }) => {
                 </button>
               </div>
             ))}
-
             <button
               className="btn btn-secondary mt-2"
               onClick={() => setShowNotifications(false)}
@@ -202,7 +255,7 @@ const Header = ({ toggleSidebar }) => {
 
       {showProfile && <ProfileModal onClose={() => setShowProfile(false)} />}
 
-      {/* CSS for popup */}
+      {/* Popup Styles */}
       <style>{`
         .notification-popup {
           position: fixed;

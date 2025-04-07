@@ -23,6 +23,7 @@ import CropSell from "../pages/CropSell"
 import CropDetail from "../pages/CropDetailCard"
 import Reports from "../pages/FarmingReport"
 import QuickSupport from "../pages/QuickSupport"
+import FarmingRoutine from "../pages/FarmingRoutine"
 // Function to check if user is authenticated
 const isAuthenticated = () => {
   return localStorage.getItem("authToken") !== null; // Check if auth token exists
@@ -68,6 +69,7 @@ const AppContent = () => {
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
         <Route path="/QuickSupport" element={<ProtectedRoute element={<QuickSupport />} />} />
         <Route path="/Reports" element={<ProtectedRoute element={<Reports />} />} />
+        <Route path="/Routine" element={<ProtectedRoute element={<FarmingRoutine />} />} />
         <Route path="/CropSell" element={<ProtectedRoute element={<CropSell />} />} />
         <Route path="/product" element={<ProtectedRoute element={<Products />} />} />
         <Route path="/OrderHistory" element={<ProtectedRoute element={<OrderHistory />} />} />

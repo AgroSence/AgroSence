@@ -600,3 +600,63 @@ html {
   font-size: 1.5rem;
   color: #333;
 }
+
+/* Farming Routine */
+.farming-routine-container {
+  /* background-color: #f8f9fa;s */
+}
+
+.task-icon {
+  font-size: 1.5rem;
+  color: #198754; /* Bootstrap success color */
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.divider::before {
+  margin-right: 1rem;
+}
+
+.divider::after {
+  margin-left: 1rem;
+}
+
+.divider-text {
+  padding: 0.5rem 1rem;
+  background-color: #198754;
+  color: white;
+  border-radius: 0.25rem;
+  font-weight: bold;
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Video thumbnail hover effect */
+.card-img-top {
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-img-top {
+  opacity: 0.9;
+}
+

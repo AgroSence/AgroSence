@@ -1,7 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import DailyRoutineSection from "../components/routine/DailyRoutine";
 import SeasonalRoutineSection from "../components/routine/SeasonalRoutine";
-import VideoExampleSection from "../components/routine/VideoExample";
 import Layout from "../components/dashboard/Layout";
 const FarmingRoutine = () => {
   return (
@@ -40,7 +39,6 @@ const FarmingRoutine = () => {
           </Col>
         </Row>
 
-        <VideoExampleSection />
       </Container>
     </Layout>
   );

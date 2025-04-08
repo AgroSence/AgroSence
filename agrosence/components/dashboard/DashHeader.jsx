@@ -150,13 +150,6 @@ const Header = ({ toggleSidebar }) => {
           <div className="row align-items-center">
             {/* Sidebar Toggle for Mobile */}
             <div className="col-auto d-flex align-items-center">
-              <button
-                className="btn btn-light me-2 d-lg-none"
-                onClick={toggleSidebar}
-              >
-                <BsList size={20} />
-              </button>
-
               {/* Search Form */}
               <form
                 className="d-none d-lg-flex align-items-center"

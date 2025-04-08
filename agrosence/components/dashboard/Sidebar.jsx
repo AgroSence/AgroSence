@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { IoIosPricetags } from "react-icons/io";
 import {
   BsGrid1X2Fill,
   BsBox,
-  BsBookmark,
   BsBarChart,
   BsFileText,
   BsClock,
@@ -15,11 +15,13 @@ import {
   BsSearch,
   BsBoxArrowRight,
   BsX,
+  BsList,
 } from "react-icons/bs";
 
 const Sidebar = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const linkClass = (path) =>
     `d-flex align-items-center text-decoration-none p-2 rounded ${
@@ -28,9 +30,39 @@ const Sidebar = () => {
         : "text-secondary"
     }`;
 
+  const toggleSidebar = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const menuItems = [
+    { to: "/Dashboard", icon: <BsGrid1X2Fill />, label: "Dashboard" },
+    { to: "/CropSell", icon: <BsBarChart />, label: "Crop Sell" },
+    { to: "/OrderHistory", icon: <BsClock />, label: "User History" },
+    { to: "/LiveCropPricing", icon: <IoIosPricetags />, label: "Live Crop Pricing" },
+    { to: "/Reports", icon: <BsFileText />, label: "Farming Report / Requests" },
+    { to: "/Routine", icon: <BsBox />, label: "Farming Routine" },
+    { to: "/QuickSupport", icon: <BsLifePreserver />, label: "Quick Support / Feedback" },
+  ];
+
+  const extraLinks = [
+    { to: "/Home", icon: <BsHouseFill />, label: "Home" },
+    { to: "/Feature", icon: <BsTools />, label: "Features" },
+    { to: "/ContactUs", icon: <BsPhoneFill />, label: "Contact" },
+    { to: "/Setting", icon: <BsGearFill />, label: "Settings" },
+    { to: "/", icon: <BsBoxArrowRight />, label: "Logout" },
+  ];
+
   return (
     <>
-      {/* Sidebar */}
+      {/* Toggle Button for Mobile */}
+      <button
+        className="btn btn-light d-lg-none position-fixed top-0 start-0 m-4 z-3"
+        onClick={toggleSidebar}
+      >
+        <BsList size={24} />
+      </button>
+
+      {/* Desktop Sidebar */}
       <div
         className="sidebar bg-white border-end h-100 position-fixed d-none d-lg-block"
         style={{ width: "250px", zIndex: 1045 }}
@@ -39,115 +71,38 @@ const Sidebar = () => {
           <h3 className="m-0" style={{ fontFamily: "martel" }}>AgroSence</h3>
         </div>
 
-        <div
-          className="p-3 sidebar-content overflow-auto"
-          style={{ height: "calc(100vh - 71px)" }}
-        >
-          <div className="mb-4">
-            <Link to="/Dashboard" className={linkClass("/Dashboard")}>
-              <BsGrid1X2Fill className="me-3" />
-              <span>Dashboard</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link to="/CropSell" className={linkClass("/CropSell")}>
-              <BsBarChart className="me-3" />
-              <span>Crop Sell</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link to="/OrderHistory" className={linkClass("/OrderHistory")}>
-              <BsClock className="me-3" />
-              <span>User History</span>
-            </Link>
-          </div>
-
-          {/* <div className="mb-2">
-            <Link to="/Bookmarks" className={linkClass("/Bookmarks")}>
-              <BsBookmark className="me-3" />
-              <span>Bookmarks / Collection</span>
-            </Link>
-          </div> */}
-
-          <div className="mb-2">
-            <Link to="/Reports" className={linkClass("/Reports")}>
-              <BsFileText className="me-3" />
-              <span>Farming Report / Requests</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link to="/Routine" className={linkClass("/Routine")}>
-              <BsBox className="me-3" />
-              <span>Farming Routine</span>
-            </Link>
-          </div>
-
-          <div className="mb-4">
-            <Link to="/QuickSupport" className={linkClass("/QuickSupport")}>
-              <BsLifePreserver className="me-3" />
-              <span>Quick Support / Feedback</span>
-            </Link>
-          </div>
+        <div className="p-3 sidebar-content overflow-auto" style={{ height: "calc(100vh - 71px)" }}>
+          {menuItems.map((item, idx) => (
+            <div className="mb-2" key={idx}>
+              <Link to={item.to} className={linkClass(item.to)}>
+                {item.icon}
+                <span className="ms-3">{item.label}</span>
+              </Link>
+            </div>
+          ))}
 
           <div className="border-top pt-4">
             <small className="text-muted px-2 fw-bold">Access Other Features</small>
-
-            <div className="mt-2">
-              <Link to="/Home" className={linkClass("/Home")}>
-                <BsHouseFill className="me-3" />
-                <span>Home</span>
-              </Link>
-            </div>
-
-            <div className="mb-2">
-              <Link to="/Feature" className={linkClass("/Feature")}>
-                <BsTools className="me-3" />
-                <span>Features</span>
-              </Link>
-            </div>
-
-            <div className="mb-2">
-              <Link to="/ContactUs" className={linkClass("/ContactUs")}>
-                <BsPhoneFill className="me-3" />
-                <span>Contact</span>
-              </Link>
-            </div>
-
-            <div className="mb-2">
-              <Link to="/Setting" className={linkClass("/Setting")}>
-                <BsGearFill className="me-3" />
-                <span>Settings</span>
-              </Link>
-            </div>
-          </div>
-
-          <div className="border-top pt-4">
-            <div className="mb-2">
-              <Link to="/" className={linkClass("/")}>
-                <BsBoxArrowRight className="me-3" />
-                <span>Logout</span>
-              </Link>
-            </div>
+            {extraLinks.map((item, idx) => (
+              <div className="mt-2" key={idx}>
+                <Link to={item.to} className={linkClass(item.to)}>
+                  {item.icon}
+                  <span className="ms-3">{item.label}</span>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Mobile Sidebar */}
       <div
-        className="sidebar bg-white border-end position-fixed start-0 top-0 h-100 d-lg-none"
-        style={{
-          width: "250px",
-          zIndex: 1045,
-          transform: "translateX(-100%)",
-          transition: "transform 0.3s ease-in-out",
-        }}
+        className={`sidebar bg-white border-end position-fixed start-0 top-0 h-100 d-lg-none ${mobileOpen ? "" : "d-none"}`}
+        style={{ width: "250px", zIndex: 1050 }}
       >
         <div className="p-3 border-bottom d-flex justify-content-between align-items-center">
           <h3 className="m-0">AgroSence</h3>
-          <button className="btn btn-link d-lg-none p-0 text-dark">
+          <button className="btn btn-link p-0 text-dark" onClick={toggleSidebar}>
             <BsX size={24} />
           </button>
         </div>
@@ -183,96 +138,26 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div
-          className="p-3 sidebar-content overflow-auto"
-          style={{ height: "calc(100vh - 71px)" }}
-        >
-          <div className="mb-4">
-            <Link to="/Dashboard" className={linkClass("/Dashboard")}>
-              <BsGrid1X2Fill className="me-3" />
-              <span>Dashboard</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link to="/OrderHistory" className={linkClass("/OrderHistory")}>
-              <BsClock className="me-3" />
-              <span>User History</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link to="/Bookmarks" className={linkClass("/Bookmarks")}>
-              <BsBookmark className="me-3" />
-              <span>Bookmarks / Collection</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link to="/AppUsage" className={linkClass("/AppUsage")}>
-              <BsBarChart className="me-3" />
-              <span>Analytic of App Usage</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link to="/Reports" className={linkClass("/Reports")}>
-              <BsFileText className="me-3" />
-              <span>Farming Report</span>
-            </Link>
-          </div>
-
-          <div className="mb-2">
-            <Link to="/Routine" className={linkClass("/Routine")}>
-              <BsBox className="me-3" />
-              <span>Farming Routine</span>
-            </Link>
-          </div>
-
-          <div className="mb-4">
-            <Link to="/QuickSupport" className={linkClass("/QuickSupport")}>
-              <BsLifePreserver className="me-3" />
-              <span>Quick Support / Feedback</span>
-            </Link>
-          </div>
+        <div className="p-3 sidebar-content overflow-auto" style={{ height: "calc(100vh - 71px)" }}>
+          {menuItems.map((item, idx) => (
+            <div className="mb-2" key={idx}>
+              <Link to={item.to} className={linkClass(item.to)} onClick={toggleSidebar}>
+                {item.icon}
+                <span className="ms-3">{item.label}</span>
+              </Link>
+            </div>
+          ))}
 
           <div className="border-top pt-4">
             <small className="text-muted px-2 fw-bold">Access Other Features</small>
-
-            <div className="mt-2">
-              <Link to="/Home" className={linkClass("/Home")}>
-                <BsHouseFill className="me-3" />
-                <span>Home</span>
-              </Link>
-            </div>
-
-            <div className="mb-2">
-              <Link to="/Feature" className={linkClass("/Feature")}>
-                <BsTools className="me-3" />
-                <span>Features</span>
-              </Link>
-            </div>
-
-            <div className="mb-2">
-              <Link to="/ContactUs" className={linkClass("/ContactUs")}>
-                <BsPhoneFill className="me-3" />
-                <span>Contact</span>
-              </Link>
-            </div>
-
-            <div className="mb-2">
-              <Link to="/Setting" className={linkClass("/Setting")}>
-                <BsGearFill className="me-3" />
-                <span>Settings</span>
-              </Link>
-            </div>
-
-            <div className="mb-2">
-              <Link to="/" className={linkClass("/")}>
-                <BsBoxArrowRight className="me-3" />
-                <span>Logout</span>
-              </Link>
-            </div>
+            {extraLinks.map((item, idx) => (
+              <div className="mt-2" key={idx}>
+                <Link to={item.to} className={linkClass(item.to)} onClick={toggleSidebar}>
+                  {item.icon}
+                  <span className="ms-3">{item.label}</span>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>

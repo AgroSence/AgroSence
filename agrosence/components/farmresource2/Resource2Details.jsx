@@ -108,7 +108,7 @@ const ResourceDetail = () => {
                 <img
                   src={
                     resource.image
-                      ? `http://localhost:5000${resource.image}`
+                      ? `${resource.image}`
                       : "/placeholder.svg"
                   }
                   alt={resource.name}

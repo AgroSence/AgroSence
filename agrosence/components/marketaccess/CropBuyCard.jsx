@@ -72,6 +72,13 @@ const MarketAccess = () => {
         }
       );
 
+      await axios.post("http://localhost:5000/api/notifications", {
+        sellerId: selectedCrop.userId._id,  // this must be from crop or DB
+        buyerId: user._id,          // from token or session
+        cropId: selectedCrop._id,
+        message: `You received a new order request for ${selectedCrop.name}`,
+      });
+
       setNotification("Order placed! The seller has been notified.");
       setShowModal(false);
     } catch (error) {
@@ -136,7 +143,7 @@ const MarketAccess = () => {
                 <p><strong>Quantity:</strong> {selectedCrop.cropQuantity} {selectedCrop.cropUnit}</p>
                 <p>
                   <strong>Grown Organically:</strong>{" "}
-                  {selectedCrop.grownOrganically === "true" ? "✅ Yes" : "❌ No"}
+                  {["yes", "true"].includes(selectedCrop.grownOrganically?.toLowerCase()) ? "✅ Yes": "❌ No"}
                 </p>
                 <p><strong>Crop Status:</strong> {selectedCrop.cropStatus || "Available"}</p>
                 <p><strong>Crop ID:</strong> {selectedCrop._id}</p>

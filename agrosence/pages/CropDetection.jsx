@@ -44,7 +44,7 @@ function CropDetection() {
     <>
       <Navbar />
 
-      <div className="flex mt-2 flex-col lg:flex-row justify-center items-start gap-10 p-6 lg:p-16 bg-gradient-to-br from-green-50 to-green-100 min-h-screen">
+      <div className="container flex mt-2 flex-col lg:flex-row justify-center items-start gap-10 p-6 lg:p-16 bg-gradient-to-br from-green-50 to-green-100 min-h-screen">
         {/* LEFT: Upload and Result */}
         <div className="w-full lg:w-1/2 bg-white p-8 rounded-2xl shadow-xl">
           <h2 className="text-3xl font-bold text-green-700 mb-4">
@@ -77,28 +77,28 @@ function CropDetection() {
                 alt="Detected"
                 className="w-full h-60 object-cover rounded-xl border mb-4"
               />
-              <h3 className="text-xl font-semibold text-green-700">
+              <h3 className="text-xl fw-bold font-semibold text-green-700">
                 🌱 Scientific Name:
               </h3>
-              <p className="italic text-gray-800 mb-3">
+              <h4 className="italic text-gray-800 mb-3">
                 {result.scientificName}
-              </p>
+              </h4>
 
               {result.commonNames?.length > 0 && (
                 <>
-                  <h4 className="text-lg font-medium text-green-600">
+                  <h4 className="text-lg fw-bold font-medium text-blue-600">
                     Local/Common Names:
                   </h4>
-                  <p className="text-gray-700 mb-3">
+                  <h6 className="text-gray-700 mb-3">
                     {result.commonNames.join(", ")}
-                  </p>
+                  </h6>
                 </>
               )}
 
-              <h4 className="text-lg font-medium text-green-600">
+              <h4 className="text-lg fw-bold font-medium text-blue-600">
                 Description:
               </h4>
-              <p className="text-gray-700">{result.description}</p>
+              <h6 className="text-gray-700">{result.description}</h6>
             </div>
           )}
         </div>

@@ -14,7 +14,7 @@ function Header() {
     e.preventDefault();
     const query = searchQuery.toLowerCase();
 
-    if (query.includes("home")) navigate("/Home");
+    if (query.includes("home")) navigate("/");
     else if (query.includes("about")) navigate("/About");
     else if (query.includes("contact")) navigate("/ContactUs");
     else if (query.includes("feature") || query.includes("features"))

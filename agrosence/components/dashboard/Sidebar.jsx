@@ -63,7 +63,7 @@ const Sidebar = () => {
   ];
 
   const extraLinks = [
-    { to: "/Home", icon: <BsHouseFill />, label: "Home" },
+    { to: "/", icon: <BsHouseFill />, label: "Home" },
     { to: "/Feature", icon: <BsTools />, label: "Features" },
     { to: "/ContactUs", icon: <BsPhoneFill />, label: "Contact" },
     { to: "/Setting", icon: <BsGearFill />, label: "Settings" },

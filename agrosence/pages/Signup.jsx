@@ -22,10 +22,37 @@ const SignUpPage = () => {
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
+    setMessage(""); // clear error on typing
   };
 
   const handleNext = () => {
-    setStep((prevStep) => prevStep + 1);
+    let isValid = true;
+    let requiredFields = [];
+
+    if (step === 1) {
+      requiredFields = ["name", "mobile", "email"];
+    } else if (step === 2) {
+      requiredFields = ["password", "confirmPassword"];
+      if (formData.password !== formData.confirmPassword) {
+        setMessage("Passwords do not match");
+        return;
+      }
+    } else if (step === 3) {
+      requiredFields = ["state", "address", "language"];
+    }
+
+    for (let field of requiredFields) {
+      if (!formData[field]?.trim()) {
+        setMessage(`Please fill in your ${field}`);
+        isValid = false;
+        break;
+      }
+    }
+
+    if (isValid) {
+      setMessage(""); // clear any existing messages
+      setStep((prevStep) => prevStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -40,7 +67,7 @@ const SignUpPage = () => {
         formData
       );
       setMessage(response.data.message);
-      navigate("/"); // Redirect to login page on successful signup
+      navigate("/Login"); // Redirect to login page on successful signup
     } catch (error) {
       setMessage(error.response?.data?.message || "An error occurred");
     }
@@ -55,7 +82,10 @@ const SignUpPage = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="row shadow overflow-hidden bg-white" style={{height:"80vh", width: "60vw", borderRadius: "30px" }}>
+      <div
+        className="row shadow overflow-hidden bg-white"
+        style={{ height: "80vh", width: "60vw", borderRadius: "30px" }}
+      >
         <div
           className="col-md-6 d-none d-md-block position-relative p-0"
           style={{
@@ -112,7 +142,11 @@ const SignUpPage = () => {
                     />
                   </div>
                 ))}
-                <button type="button" className="btn w-100 mt-2" onClick={handleNext}>
+                <button
+                  type="button"
+                  className="btn w-100 mt-2"
+                  onClick={handleNext}
+                >
                   Next
                 </button>
               </>
@@ -135,10 +169,18 @@ const SignUpPage = () => {
                     />
                   </div>
                 ))}
-                <button type="button" className="btn w-100 mt-2" onClick={handleBack}>
+                <button
+                  type="button"
+                  className="btn w-100 mt-2"
+                  onClick={handleBack}
+                >
                   Back
                 </button>
-                <button type="button" className="btn w-100 mt-2" onClick={handleNext}>
+                <button
+                  type="button"
+                  className="btn w-100 mt-2"
+                  onClick={handleNext}
+                >
                   Next
                 </button>
               </>
@@ -162,7 +204,9 @@ const SignUpPage = () => {
                   </div>
                 ))}
                 <div className="mb-2">
-                  <label htmlFor="language" className="form-label fs-6">Language</label>
+                  <label htmlFor="language" className="form-label fs-6">
+                    Language
+                  </label>
                   <select
                     id="language"
                     className="form-control fs-6"
@@ -175,10 +219,18 @@ const SignUpPage = () => {
                     <option value="Gujarati">Gujarati</option>
                   </select>
                 </div>
-                <button type="button" className="btn w-100 mt-2" onClick={handleBack}>
+                <button
+                  type="button"
+                  className="btn w-100 mt-2"
+                  onClick={handleBack}
+                >
                   Back
                 </button>
-                <button type="submit" className="btn w-100 mt-2" style={{ backgroundColor: "#34a853", color: "white" }}>
+                <button
+                  type="submit"
+                  className="btn w-100 mt-2"
+                  style={{ backgroundColor: "#34a853", color: "white" }}
+                >
                   Sign Up
                 </button>
               </>

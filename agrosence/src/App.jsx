@@ -33,7 +33,7 @@ const isAuthenticated = () => {
 
 // ProtectedRoute Component
 const ProtectedRoute = ({ element }) => {
-  return isAuthenticated() ? element : <Navigate to="/" replace />;
+  return isAuthenticated() ? element : <Navigate to="/login" replace />;
 };
 
 const App = () => {
@@ -46,20 +46,22 @@ const App = () => {
 
 const AppContent = () => {
   const location = useLocation();
-  const hideChatbotRoutes = ["/", "/Signup"]; // Hide chatbot on these routes
+  const hideChatbotRoutes = ["/Login", "/Signup"]; // Hide chatbot on auth pages
 
   return (
     <>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/About" element={<About />} />
+        <Route path="/ContactUs" element={<Contact />} />
+        <Route path="/Feature" element={<Feature />} />
+        <Route path="/Login" element={<LoginPage />} />
         <Route path="/Signup" element={<SignupPage />} />
 
         {/* Protected Routes */}
-        <Route path="/Home" element={<ProtectedRoute element={<Home />} />} />
-        <Route path="/About" element={<ProtectedRoute element={<About />} />} />
-        <Route path="/ContactUs" element={<ProtectedRoute element={<Contact />} />} />
-        <Route path="/Feature" element={<ProtectedRoute element={<Feature />} />} />
+        <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+        <Route path="/Setting" element={<ProtectedRoute element={<Setting />} />} />
         <Route path="/features/government-schemes" element={<ProtectedRoute element={<GovSchemes />} />} />
         <Route path="/features/MarketAccess" element={<ProtectedRoute element={<MarketAccess />} />} />
         <Route path="/features/MarketAccess/product/:id" element={<ProtectedRoute element={<CropDetail />} />} />
@@ -68,8 +70,6 @@ const AppContent = () => {
         <Route path="/features/resources" element={<ProtectedRoute element={<ResourcesPage />} />} />
         <Route path="/features/resources/:_id" element={<ProtectedRoute element={<ResourceDetail />} />} />
         <Route path="/state-schemes/:stateName" element={<ProtectedRoute element={<StateSchemes />} />} />
-        <Route path="/Setting" element={<ProtectedRoute element={<Setting />} />} />
-        <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
         <Route path="/QuickSupport" element={<ProtectedRoute element={<QuickSupport />} />} />
         <Route path="/Reports" element={<ProtectedRoute element={<Reports />} />} />
         <Route path="/LiveCropPricing" element={<ProtectedRoute element={<LiveCropPricing />} />} />
@@ -79,7 +79,6 @@ const AppContent = () => {
         <Route path="/OrderHistory" element={<ProtectedRoute element={<OrderHistory />} />} />
       </Routes>
 
-      {/* Conditionally render Chatbot */}
       {!hideChatbotRoutes.includes(location.pathname) && <Chatbot />}
     </>
   );

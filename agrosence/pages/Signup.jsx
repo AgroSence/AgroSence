@@ -236,6 +236,16 @@ const SignUpPage = () => {
               </>
             )}
           </form>
+          <div className="text-center mt-3">
+            <span className="text-muted">Already have an account?</span>{" "}
+            <button
+              className="btn btn-link p-0"
+              onClick={() => navigate("/Login")}
+              style={{ textDecoration: "none", fontWeight: "bold" }}
+            >
+              Login
+            </button>
+          </div>
         </div>
       </div>
     </div>

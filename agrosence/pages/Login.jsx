@@ -17,6 +17,15 @@ const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState(false);
 
   useEffect(() => {
+    const savedPhone = localStorage.getItem("rememberedPhone");
+    const savedPassword = localStorage.getItem("rememberedPassword");
+
+    if (savedPhone && savedPassword) {
+      setPhone(savedPhone);
+      setPassword(savedPassword);
+      setRememberMe(true);
+    }
+
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2500);
@@ -41,6 +50,13 @@ const LoginPage = () => {
       if (response.status === 200) {
         localStorage.setItem("authToken", response.data.token);
         localStorage.setItem("userId", response.data.userId);
+        if (rememberMe) {
+          localStorage.setItem("rememberedPhone", phone);
+          localStorage.setItem("rememberedPassword", password);
+        } else {
+          localStorage.removeItem("rememberedPhone");
+          localStorage.removeItem("rememberedPassword");
+        }
         navigate("/");
       }
     } catch (error) {
@@ -60,7 +76,7 @@ const LoginPage = () => {
       {isLoading ? (
         <div
           className="d-flex justify-content-center align-items-center"
-          style={{ height: "100vh", width:"100vw", backgroundColor: "white" }} // Added white background
+          style={{ height: "100vh", width: "100vw", backgroundColor: "white" }} // Added white background
         >
           <img
             src={loadingGif}
@@ -115,6 +131,7 @@ const LoginPage = () => {
                   required
                 />
               </div>
+
               <div className="mb-3 position-relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -132,9 +149,33 @@ const LoginPage = () => {
                   {showPassword ? <FiEyeOff /> : <FiEye />}
                 </button>
               </div>
+
+              {/* Remember Me and Forgot Password Row */}
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <div className="form-check">
+                  <input
+                    type="checkbox"
+                    className="form-check-input"
+                    id="rememberMe"
+                    checked={rememberMe}
+                    onChange={() => setRememberMe(!rememberMe)}
+                  />
+                  <label className="form-check-label" htmlFor="rememberMe">
+                    Remember Me
+                  </label>
+                </div>
+                <Link
+                  to="/forgot-password"
+                  className="text-decoration-none text-success"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+
               <button type="submit" className="btn btn-success w-100">
                 Login
               </button>
+
               <p className="text-center mt-3 mb-5">
                 Don't have an account?{" "}
                 <Link to="/Signup" className="text-success">

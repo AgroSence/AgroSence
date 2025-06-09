@@ -26,6 +26,7 @@ import QuickSupport from "../pages/QuickSupport"
 import FarmingRoutine from "../pages/FarmingRoutine"
 import LiveCropPricing from "../pages/LiveCropPricing";
 import CropDetection from "../pages/CropDetection";
+import ForgotPasswordPage from "../pages/ForgotPassword";
 // Function to check if user is authenticated
 const isAuthenticated = () => {
   return localStorage.getItem("authToken") !== null; // Check if auth token exists
@@ -58,6 +59,7 @@ const AppContent = () => {
         <Route path="/Feature" element={<Feature />} />
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Signup" element={<SignupPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
         {/* Protected Routes */}
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
